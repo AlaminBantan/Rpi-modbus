@@ -19,6 +19,7 @@ sensy_boi.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
 sensy_boi.clear_buffers_before_each_transaction = True
 sensy_boi.close_port_after_each_call = True
 
+csv_header = ["Date", "Time", "Light Intensity (umol.m^-2.s^-1)"]
 
 while True:
     # Get current date and time
