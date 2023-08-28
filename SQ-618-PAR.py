@@ -19,24 +19,30 @@ sensy_boi.clear_buffers_before_each_transaction = True
 sensy_boi.close_port_after_each_call = True
 
 
-# Create or open the CSV file for writing
-csv_filename = "PAR_sensor_data.csv"
-csv_header = ["Date", "Time", "Light Intensity (umol.m^-2.s^-1)"]
+while True:
+    # Get current date and time
+    current_date = strftime("%m-%d-%Y")
+    current_time = strftime("%H:%M")
 
-try:
-    with open(csv_filename, mode="w", newline='') as csv_file:
+    # Check if it's a new day and create a new CSV file
+    if not os.path.exists(f"data_{current_date}.csv"):
+        with open(f"data_{current_date}.csv", mode="w", newline='') as csv_file:
+            csv_writer = csv.writer(csv_file)
+            csv_writer.writerow(csv_header)
+
+    # Read light intensity from the sensor
+    lightintensity = sensy_boi.read_float(0, 3, 2, 0)
+
+    # Append data to the current day's CSV file
+    with open(f"data_{current_date}.csv", mode="a", newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
-        csv_writer.writerow(csv_header)
+        csv_writer.writerow([current_date, current_time, lightintensity])
 
-        while True:
-            lightintensity = sensy_boi.read_float(0, 3, 2, 0)
-            current_time = strftime("%H:%M")
-            current_date = strftime("%m/%d/%Y")
+    # Check if it's past 12 AM, and if so, exit the loop
+    if current_time >= "00:00":
+        break
 
-            # Append data to the CSV file
-            csv_writer.writerow([current_date, current_time, lightintensity])
+    sleep(60)
 
-            sleep(60)
-except KeyboardInterrupt:
-    sensy_boi.serial.close()
-    print("Ports Now Closed")
+sensy_boi.serial.close()
+print("Ports Now Closed")
