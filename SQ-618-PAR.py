@@ -1,6 +1,7 @@
 import minimalmodbus
 from time import sleep, strftime
 import csv
+import os
 
 
 mb_address = 1  # Modbus address of sensor
