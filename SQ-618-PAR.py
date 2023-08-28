@@ -41,7 +41,7 @@ while True:
         csv_writer.writerow([current_date, current_time, lightintensity])
 
     # Check if it's past 12 AM, and if so, exit the loop
-    if current_time >= ""23:59:59"":
+    if current_time >= "23:59:59":
         break
 
     sleep(60)
