@@ -4,7 +4,7 @@ import re
 
 # Email configuration
 sender_email = "bantanalamin@gmail.com"
-sender_password = "Ab!78803812"
+sender_password = "muzomvmpwxiczzmo"
 receiver_email = "alamin.bantan@kaust.edu.sa"
 subject = "CSVs from Raspberry Pi"
 
