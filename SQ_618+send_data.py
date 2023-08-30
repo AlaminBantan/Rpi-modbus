@@ -20,44 +20,34 @@ sensy_boi.close_port_after_each_call = True
 
 csv_header = ["Date", "Time", "Light Intensity (umol.m^-2.s^-1)"]
 
-# Email configuration
-sender_email = "bantanalamin@gmail.com"
-sender_password = "muzomvmpwxiczzmo"
-receiver_email = "alamin.bantan@kaust.edu.sa"
-subject = "CSVs from Raspberry Pi"
-
+# Define your email settings
+email_sender = 'bantanalamin@gmail.com'  # Replace with your sender email
+email_password = 'muzomvmpwxiczzmo'  # Replace with your sender email password
+email_receiver = 'alamin.bantan@kaust.edu.sa'  # Replace with the recipient email address
 
 # Set up yagmail SMTP connection
-yag = yagmail.SMTP(sender_email, sender_password)
+yag = yagmail.SMTP(email_sender, email_password)
 
 while True:
     current_date = strftime("%m-%d-%Y")
     current_time = strftime("%H:%M")
 
-    if not os.path.exists(f"data_{current_date}.csv"):
-        with open(f"data_{current_date}.csv", mode="w", newline='') as csv_file:
-            csv_writer = csv.writer(csv_file)
-            csv_writer.writerow(csv_header)
-            
-    lightintensity = sensy_boi.read_float(0, 3, 2, 0)
+    if current_time == "00:30":
+        previous_date = (strftime("%m-%d-%Y", (strftime("%s") - 24*60*60)))
+        if os.path.exists(f"data_{previous_date}.csv"):
+            # Send the CSV file as an email attachment
+            email_subject = f"Sensor Data {previous_date}"
+            email_contents = f"Hi Amin, attached is the sensor data CSV for {previous_date}"
+            attachment_path = f"data_{previous_date}.csv"
 
-    with open(f"data_{current_date}.csv", mode="a", newline='') as csv_file:
-        csv_writer = csv.writer(csv_file)
-        csv_writer.writerow([current_date, current_time, lightintensity])
-        
-        # Send the CSV file as an email attachment
-        email_subject = f"PAR sensor Data {current_date}"
-        email_contents = f"Hello Amin, check the attached sensor data CSV for {current_date}"
-        attachment_path = f"data_{current_date}.csv"
-        
-        yag.send(
-            to=receiver_email,
-            subject=email_subject,
-            contents=email_contents,
-            attachments=attachment_path,
-        )
+            yag.send(
+                to=email_receiver,
+                subject=email_subject,
+                contents=email_contents,
+                attachments=attachment_path,
+            )
 
-        print("Email sent successfully")
+            print("Email sent successfully")
 
     if current_time >= "23:59:59":
         break
