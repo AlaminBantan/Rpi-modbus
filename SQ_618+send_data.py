@@ -28,7 +28,7 @@ subject = "CSVs from Raspberry Pi"
 
 
 # Set up yagmail SMTP connection
-yag = yagmail.SMTP(email_sender, email_password)
+yag = yagmail.SMTP(sender_email, sender_password)
 
 while True:
     current_date = strftime("%m-%d-%Y")
@@ -51,7 +51,7 @@ while True:
         attachment_path = f"data_{current_date}.csv"
         
         yag.send(
-            to=email_receiver,
+            to=receiver_email,
             subject=email_subject,
             contents=email_contents,
             attachments=attachment_path,
