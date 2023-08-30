@@ -33,11 +33,12 @@ while True:
     current_time = strftime("%H:%M")
 
     if current_time == "00:30":
-        previous_date = (strftime("%m-%d-%Y", (strftime("%s") - 24*60*60)))
+        previous_unix_timestamp = int(strftime("%s")) - 24*60*60
+        previous_date = strftime("%m-%d-%Y", time.localtime(previous_unix_timestamp))
         if os.path.exists(f"data_{previous_date}.csv"):
             # Send the CSV file as an email attachment
             email_subject = f"Sensor Data {previous_date}"
-            email_contents = f"Hi Amin, attached is the sensor data CSV for {previous_date}"
+            email_contents = f"Hello Boss, find attached is the PAR sensor data CSV for {previous_date}"
             attachment_path = f"data_{previous_date}.csv"
 
             yag.send(
@@ -48,6 +49,13 @@ while True:
             )
 
             print("Email sent successfully")
+
+    # Read light intensity from the sensor
+    lightintensity = sensy_boi.read_float(0, 3, 2, 0)
+
+    with open(f"data_{current_date}.csv", mode="a", newline='') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow([current_date, current_time, lightintensity])
 
     if current_time >= "23:59:59":
         break
