@@ -2,7 +2,7 @@ import minimalmodbus # Don't forget to import the library!!
 from time import sleep
 
 
-mb_address = 7 # Modbus address of sensor
+mb_address = 15 # Modbus address of sensor
 
 Solar_sensy = minimalmodbus.Instrument('/dev/ttyUSB0',mb_address)	# Make an "instrument" object called Solar_sensy (port name, slave address (in decimal))
 
