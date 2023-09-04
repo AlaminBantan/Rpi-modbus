@@ -27,7 +27,7 @@ try:
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
-		print(f"PAR Intensity 32 bit: {light32} umol.m^-2.s^-1")
+		print(f"PAR Intensity is: {light32} umol.m^-2.s^-1")
 		print("------------------------------------------")
 		
 		

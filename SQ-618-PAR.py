@@ -19,7 +19,7 @@ PAR_sensy.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
 PAR_sensy.clear_buffers_before_each_transaction = True
 PAR_sensy.close_port_after_each_call = True
 
-csv_header = ["Date", "Time", "Light Intensity (umol.m^-2.s^-1)"]
+csv_header = ["Date", "Time", "PAR Intensity (umol.m^-2.s^-1)"]
 
 while True:
     # Get current date and time
@@ -33,12 +33,12 @@ while True:
             csv_writer.writerow(csv_header)
 
     # Read light intensity from the sensor
-    lightintensity = PAR_sensy.read_float(0, 3, 2, 0)
+    PAR_intensity = PAR_sensy.read_float(0, 3, 2, 0)
 
     # Append data to the current day's CSV file
     with open(f"data_{current_date}.csv", mode="a", newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
-        csv_writer.writerow([current_date, current_time, lightintensity])
+        csv_writer.writerow([current_date, current_time, PAR_intensity])
 
     # Check if it's past 12 AM, and if so, exit the loop
     if current_time >= "23:59:59":
