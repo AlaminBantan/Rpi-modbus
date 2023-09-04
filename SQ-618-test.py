@@ -22,12 +22,12 @@ try:
 	while True:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
-		light32 = PAR_sensy.read_float(0, 3, 2, 0) 
+		PAR_intensity = PAR_sensy.read_float(0, 3, 2, 0) 
 	
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
-		print(f"PAR Intensity is: {light32} umol.m^-2.s^-1")
+		print(f"PAR Intensity is: {PAR_intensity} umol.m^-2.s^-1")
 		print("------------------------------------------")
 		
 		
@@ -35,7 +35,7 @@ try:
 		print("")
 		print("")
 		print("")
-		sleep(30)
+		sleep(1)
 	
 except KeyboardInterrupt:
 	
