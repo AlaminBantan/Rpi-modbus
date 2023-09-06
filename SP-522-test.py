@@ -19,11 +19,17 @@ try:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
 		Solar_Radiation = Solar_sensy.read_float(0, 3, 2, 0)
+		Parity = Solar_sensy.read_float(24,3,2,0)
+		Baud = Solar_sensy.read_float(22,3,2,0)
+		stopbits = Solar_sensy.read_float(26,3,2,0)
+		slave = Solar_sensy.read_float(16,3,2,0)
 	
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
 		print(f"Solar radiation is: {Solar_Radiation} W.m^-2")
+		print(f"slaveid={slave}, parity={Parity}, Baud={Baud}, stopbits={stopbits}")
+
 		print("------------------------------------------")
 		
 		
