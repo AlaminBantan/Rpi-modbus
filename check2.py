@@ -1,36 +1,31 @@
+#Test
 import minimalmodbus
+from time import sleep
 
-# Specify the serial port and Modbus communication parameters
-port = '/dev/ttyUSB0'
-baudrate = 19200
-bytesize = 8
-parity = minimalmodbus.serial.PARITY_NONE
-stopbits = 1
-timeout = 1  # Adjust the timeout as needed
+id = 15
+time_it = 10
+c = 0
+n_inst = minimalmodbus.Instrument('/dev/ttyS0', id, debug=False)  # port name, slave address (in decimal)
+n_inst.serial.baudrate = 9600
+#n_inst.serial.parity = minimalmodbus.serial.PARITY_EVEN
 
-# Known Modbus register to read (you may need to adjust this)
-register_address = 0
 
-# Try different slave addresses
-for slave_address in range(1, 255):
+while True:
+
     try:
-        instrument = minimalmodbus.Instrument(port, slave_address)
-        instrument.serial.baudrate = baudrate
-        instrument.serial.bytesize = bytesize
-        instrument.serial.parity = parity
-        instrument.serial.stopbits = stopbits
-        instrument.serial.timeout = timeout
+        #output = n_inst.read_registers(4106, 1, 4) 
 
-        # Try reading a known register from the sensor
-        value = instrument.read_register(0, 3, 2, 0)
+        #read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) → float
 
-        print(f"Slave address {slave_address} responded with data: {value}")
-
-        # If you receive data without errors, this may be the correct address
-        # You can add further logic to verify that the response is as expected
-        # and decide whether this address is the correct one for your sensor.
-        
-    except (ValueError, IOError, minimalmodbus.ModbusException, serial.SerialException):
-        # If there was an error (e.g., no response or communication error),
-        # continue to the next address.
-        pass
+        output = n_inst.read_float(0, 3, 2, 0)
+        #output = n_inst.read_register(1)
+        print('float output is ',output)
+        #print('integer output is ',output)
+    except minimalmodbus.NoResponseError:
+        print('No answer for single holding register')
+        continue
+    except minimalmodbus.InvalidResponseError:
+        print('checksum error')
+        continue
+    
+    sleep(2)
