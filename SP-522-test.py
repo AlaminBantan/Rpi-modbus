@@ -6,7 +6,7 @@ mb_address = 15 # Modbus address of sensor
 
 Solar_sensy = minimalmodbus.Instrument('/dev/ttyUSB0',mb_address)	# Make an "instrument" object called Solar_sensy (port name, slave address (in decimal))
 
-Solar_sensy.serial.baudrate = 19200 				# BaudRate
+Solar_sensy.serial.baudrate = 9600 				# BaudRate
 Solar_sensy.serial.bytesize = 8					# Number of data bits to be requested
 Solar_sensy.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
 Solar_sensy.serial.stopbits = 1					# Number of stop bits
