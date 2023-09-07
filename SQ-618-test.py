@@ -23,11 +23,13 @@ try:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
 		PAR_intensity = PAR_sensy.read_float(0, 3, 2, 0) 
+		Slave = PAR_sensy.read_float(16,3,2,0)
 	
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
 		print(f"PAR Intensity is: {PAR_intensity} umol.m^-2.s^-1")
+		print(f"Slave ID is: {Slave}")
 		print("------------------------------------------")
 		
 		
