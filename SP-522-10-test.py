@@ -4,25 +4,25 @@ from time import sleep
 
 mb_address = 10 # Modbus address of sensor
 
-Solar_sensy = minimalmodbus.Instrument('/dev/ttyUSB0', mb_address, debug=False)	# Make an "instrument" object called Solar_sensy (port name, slave address (in decimal))
+Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', mb_address, debug=False)	# Make an "instrument" object called Solar_10 (port name, slave address (in decimal))
 
-Solar_sensy.serial.baudrate = 9600 		
+Solar_10.serial.baudrate = 9600 		
 
 
 # Good practice to clean up before and after each execution
-Solar_sensy.clear_buffers_before_each_transaction = True
-Solar_sensy.close_port_after_each_call = True
+Solar_10.clear_buffers_before_each_transaction = True
+Solar_10.close_port_after_each_call = True
 
 
 try:
 	while True:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
-		Solar_Radiation = Solar_sensy.read_float(0, 3, 2, 0)
-		Parity = Solar_sensy.read_float(24,3,2,0)
-		Baud = Solar_sensy.read_float(22,3,2,0)
-		stopbits = Solar_sensy.read_float(26,3,2,0)
-		slave = Solar_sensy.read_float(16,3,2,0)
+		Solar_Radiation = Solar_10.read_float(0, 3, 2, 0)
+		Parity = Solar_10.read_float(24,3,2,0)
+		Baud = Solar_10.read_float(22,3,2,0)
+		stopbits = Solar_10.read_float(26,3,2,0)
+		slave = Solar_10.read_float(16,3,2,0)
 	
 		
 		print("\n"*50)
@@ -42,5 +42,5 @@ try:
 except KeyboardInterrupt:
 	
 	# Piece of mind close out
-	Solar_sensy.serial.close()
+	Solar_10.serial.close()
 	print("Ports Now Closed")
