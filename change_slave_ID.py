@@ -17,5 +17,5 @@ PAR_sensy.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
 PAR_sensy.clear_buffers_before_each_transaction = True
 PAR_sensy.close_port_after_each_call = True
 
-
-PAR_sensy.write_bit(48, 2, 5) 
+NEW=2
+PAR_sensy.write_bit(48, NEW, 5) 
