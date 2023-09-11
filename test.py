@@ -46,4 +46,7 @@ try:
 		sleep(1)
 	
 except KeyboardInterrupt:
-	
+		# Piece of mind close out
+	Solar_15.serial.close()
+	Solar_10.serial.close()
+	print("Ports Now Closed")
