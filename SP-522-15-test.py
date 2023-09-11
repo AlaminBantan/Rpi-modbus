@@ -6,7 +6,7 @@ mb_address = 15 # Modbus address of sensor
 
 Solar_15 = minimalmodbus.Instrument('/dev/ttyUSB0', mb_address, debug=False)	# Make an "instrument" object called Solar_15 (port name, slave address (in decimal))
 
-Solar_15.serial.baudrate = 9600 		
+Solar_15.serial.baudrate = 19200 		
 
 
 # Good practice to clean up before and after each execution
