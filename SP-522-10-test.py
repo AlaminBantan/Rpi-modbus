@@ -19,10 +19,8 @@ try:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
 		Solar_Radiation = Solar_10.read_float(0, 3, 2, 0)
-		Parity = Solar_10.read_float(24,3,2,0)
-		Baud = Solar_10.read_float(22,3,2,0)
-		stopbits = Solar_10.read_float(26,3,2,0)
 		slave = Solar_10.read_float(16,3,2,0)
+		
 	
 		
 		print("\n"*50)
