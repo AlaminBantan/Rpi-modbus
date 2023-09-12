@@ -21,21 +21,12 @@ PAR_2.mode = minimalmodbus.MODE_RTU
 
 #configuration of first pyranometer
 Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 10, debug=False)	
-Solar_10.serial.baudrate = 19200 Solar_10.serial.baudrate = 19200 	
-Solar_10.serial.bytesize = 8					
-Solar_10.serial.parity = minimalmodbus.serial.PARITY_EVEN	
-Solar_10.serial.stopbits = 1					
-Solar_10.serial.timeout  = 0.5					
-Solar_10.mode = minimalmodbus.MODE_RTU					
+Solar_10.serial.baudrate = 19200 
+			
 
 #configuration of second pyranometer
 Solar_15 = minimalmodbus.Instrument('/dev/ttyUSB0', 15, debug=False)		
 Solar_15.serial.baudrate = 19200 	
-Solar_15.serial.bytesize = 8					
-Solar_15.serial.parity = minimalmodbus.serial.PARITY_EVEN	
-Solar_15.serial.stopbits = 1					
-Solar_15.serial.timeout  = 0.5					
-Solar_15.mode = minimalmodbus.MODE_RTU				
 
 
 # Good practice to clean up before and after each execution
