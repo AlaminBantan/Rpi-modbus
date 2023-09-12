@@ -46,8 +46,7 @@ Solar_15.close_port_after_each_call = True
 try:
 	while True: 
 		PAR_intensity_1 = PAR_1.read_float(0,3,2,0) 
-		Slave_1 = PAR_1.read_float(16,3,2,0)
-		Baud_1 = PAR_1.read_float(22,3,2,0)
+
 		print(f"PAR Intensity in Zone B is: {PAR_intensity_1} umol.m^-2.s^-1")
 		sleep(1)
 except KeyboardInterrupt:
@@ -56,8 +55,7 @@ except KeyboardInterrupt:
 try:
 	while True:
 		PAR_intensity_2 = PAR_2.read_float(0,3,2,0) 
-		Slave_2 = PAR_2.read_float(16,3,2,0)
-		Baud_2 = PAR_2.read_float(22,3,2,0)
+
 		print(f"PAR Intensity in Zone C is: {PAR_intensity_2} umol.m^-2.s^-1")		
 		sleep(1)
 except KeyboardInterrupt:
@@ -66,8 +64,7 @@ except KeyboardInterrupt:
 try:
 	while True:
 		Solar_Radiation_10 = Solar_10.read_float(0,3,2,0)
-		slave_10 = Solar_10.read_float(16,3,2,0)
-		Baud_10 = Solar_10.read_float(22,3,2,0)
+
 		print(f"Solar radiation in zone B is: {Solar_Radiation_10} W.m^-2")
 		sleep(1)
 except KeyboardInterrupt:
@@ -76,8 +73,7 @@ except KeyboardInterrupt:
 try:
 	while True:
 		Solar_Radiation_15 = Solar_15.read_float(0,3,2,0)
-		slave_15 = Solar_15.read_float(16,3,2,0)
-		Baud_15 = Solar_15.read_float(22,3,2,0)
+
 		print(f"Solar radiation in zone C is: {Solar_Radiation_15} W.m^-2")
 		sleep(1)
 except KeyboardInterrupt:
