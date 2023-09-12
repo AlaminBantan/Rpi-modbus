@@ -112,5 +112,5 @@ except KeyboardInterrupt:
 	#	print("--------------------------------")
 	#	print(f"Slave ID is: {Slave_2} and the Baud rate is {Baud_2}")
 	#	print(f"Solar radiation in zone C is: {Solar_Radiation_15} W.m^-2")
-		print(f"Slave Id of pyranometer in zone C is: {slave_15} and Baud rate is {Baud_15}")
-		print("------------------------------------------")
+	#	print(f"Slave Id of pyranometer in zone C is: {slave_15} and Baud rate is {Baud_15}")
+	#	print("------------------------------------------")
