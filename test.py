@@ -1,7 +1,7 @@
 import minimalmodbus 
 from time import sleep
 
-
+#configuration of first Par sensor
 PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1, debug=False)	
 PAR_1.serial.baudrate = 19200 
 PAR_1.serial.bytesize = 8					
@@ -10,6 +10,7 @@ PAR_1.serial.stopbits = 1
 PAR_1.serial.timeout  = 0.5				
 PAR_1.mode = minimalmodbus.MODE_RTU				
 
+#configuration of second Par sensor
 PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0', 2, debug=False)	
 PAR_2.serial.baudrate = 19200 				
 PAR_2.serial.bytesize = 8					
@@ -18,15 +19,16 @@ PAR_2.serial.stopbits = 1
 PAR_2.serial.timeout  = 0.5					
 PAR_2.mode = minimalmodbus.MODE_RTU				
 
+#configuration of first pyranometer
 Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 10, debug=False)	
-Solar_10.serial.baudrate = 19200 
-Solar_10.serial.baudrate = 19200 	
+Solar_10.serial.baudrate = 19200 Solar_10.serial.baudrate = 19200 	
 Solar_10.serial.bytesize = 8					
 Solar_10.serial.parity = minimalmodbus.serial.PARITY_EVEN	
 Solar_10.serial.stopbits = 1					
 Solar_10.serial.timeout  = 0.5					
 Solar_10.mode = minimalmodbus.MODE_RTU					
 
+#configuration of second pyranometer
 Solar_15 = minimalmodbus.Instrument('/dev/ttyUSB0', 15, debug=False)		
 Solar_15.serial.baudrate = 19200 	
 Solar_15.serial.bytesize = 8					
@@ -59,7 +61,6 @@ try:
 		sleep(1)
 except KeyboardInterrupt:
 	PAR_1.serial.close()
-
 	
 try:
 	while True:
@@ -79,7 +80,7 @@ try:
 		print(f"Solar radiation in zone B is: {Solar_Radiation_10} W.m^-2")
 		sleep(1)
 except KeyboardInterrupt:
-	Solar_15.serial.close()
+	Solar_10.serial.close()
 
 try:
 	while True:
@@ -87,20 +88,19 @@ try:
 		slave_15 = Solar_15.read_float(16,3,2,0)
 		Baud_15 = Solar_15.read_float(22,3,2,0)
 		print(f"Solar radiation in zone C is: {Solar_Radiation_15} W.m^-2")
-
 		sleep(1)
-	
 except KeyboardInterrupt:
-	PAR_1.serial.close()
-	PAR_2.serial.close()
 	Solar_15.serial.close()
-	Solar_10.serial.close()
 	print("Ports Now Closed")
 
 
 
 
 	
+
+
+
+
 	#	print("\n"*20)
 	#	print("Sensor Data in Zone B:")
 	#	print("--------------------------------")
