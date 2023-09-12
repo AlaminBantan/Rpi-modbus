@@ -14,9 +14,9 @@ try:
 	while True:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
-		PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0) 
+		PAR_intensity_1 = PAR_1.read_float(0,3,2,0) 
 		Slave_1 = PAR_1.read_float(16,3,2,0)
-		Baud_1=PAR_1.read_float(22, 3, 2  0)
+		Baud_1=PAR_1.read_float(22,3,2,0)
 	
 		
 		print("\n"*50)
