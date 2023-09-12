@@ -1,6 +1,7 @@
 import minimalmodbus 
 from time import sleep
-
+import csv
+from datetime import datetime
 
 PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1, debug=False)	
 PAR_1.serial.baudrate = 19200 
