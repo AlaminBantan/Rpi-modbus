@@ -2,10 +2,10 @@ import minimalmodbus
 from time import sleep
 
 
-PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0',1)	# Make an "instrument" object called PAR_1 (port name, slave address (in decimal))
+PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1, debug=False)	# Make an "instrument" object called PAR_1 (port name, slave address (in decimal))
 PAR_1.serial.baudrate = 19200 
 
-PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0',2)	# Make an "instrument" object called PAR_2 (port name, slave address (in decimal))
+PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0', 2, debug=False)	# Make an "instrument" object called PAR_2 (port name, slave address (in decimal))
 PAR_2.serial.baudrate = 19200 			
 
 Solar_15 = minimalmodbus.Instrument('/dev/ttyUSB0', 15, debug=False)	# Make an "instrument" object called Solar_15 (port name, slave address (in decimal))
