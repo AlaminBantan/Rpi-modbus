@@ -36,19 +36,19 @@ try:
 		PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0) 
 		Slave_1 = PAR_1.read_float(16,3,2,0)
 		Baud_1 = PAR_1.read_float(22,3,2,0)
-		
+		sleep(1)
 		PAR_intensity_2 = PAR_2.read_float(0, 3, 2, 0) 
 		Slave_2 = PAR_2.read_float(16,3,2,0)
 		Baud_2 = PAR_2.read_float(22,3,2,0)
-
+		sleep(1)
 		Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
 		slave_10 = Solar_10.read_float(16,3,2,0)
 		Baud_10 = Solar_10.read_float(22,3,2,0)
-		
+		sleep(1)
 		Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
 		slave_15 = Solar_15.read_float(16,3,2,0)
 		Baud_15 = Solar_15.read_float(22,3,2,0)
-	
+		sleep(1)	
 		
 		print("\n"*20)
 		print("Sensor Data in Zone B:")
