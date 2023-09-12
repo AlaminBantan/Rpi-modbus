@@ -37,19 +37,34 @@ try:
 		Slave_1 = PAR_1.read_float(16,3,2,0)
 		Baud_1 = PAR_1.read_float(22,3,2,0)
 		sleep(1)
+except KeyboardInterrupt:
+		# Piece of mind close out
+	PAR_1.serial.close()
+	
+try:
+	while True:
 		PAR_intensity_2 = PAR_2.read_float(0, 3, 2, 0) 
 		Slave_2 = PAR_2.read_float(16,3,2,0)
 		Baud_2 = PAR_2.read_float(22,3,2,0)
 		sleep(1)
+except KeyboardInterrupt:
+	PAR_2.serial.close()
+
+try:
+	while True:
 		Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
 		slave_10 = Solar_10.read_float(16,3,2,0)
 		Baud_10 = Solar_10.read_float(22,3,2,0)
 		sleep(1)
+except KeyboardInterrupt:
+	Solar_10.serial.close()
+
+try:
+	while True:
 		Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
 		slave_15 = Solar_15.read_float(16,3,2,0)
 		Baud_15 = Solar_15.read_float(22,3,2,0)
-		sleep(1)	
-		
+
 		print("\n"*20)
 		print("Sensor Data in Zone B:")
 		print("--------------------------------")
@@ -73,7 +88,6 @@ try:
 		sleep(1)
 	
 except KeyboardInterrupt:
-		# Piece of mind close out
 	PAR_1.serial.close()
 	PAR_2.serial.close()
 	Solar_15.serial.close()
