@@ -6,7 +6,13 @@ mb_address = 10 # Modbus address of sensor
 
 Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', mb_address, debug=False)	# Make an "instrument" object called Solar_10 (port name, slave address (in decimal))
 
-Solar_10.serial.baudrate = 19200 		
+Solar_10.serial.baudrate = 19200 	
+Solar_10.serial.bytesize = 8					# Number of data bits to be requested
+Solar_10.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+Solar_10.serial.stopbits = 1					# Number of stop bits
+Solar_10.serial.timeout  = 0.5					# Timeout time in seconds
+Solar_10.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
+
 
 
 # Good practice to clean up before and after each execution
