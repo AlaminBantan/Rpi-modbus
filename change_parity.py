@@ -14,4 +14,4 @@ Solar_15.clear_buffers_before_each_transaction = True
 Solar_15.close_port_after_each_call = True
 
 
-Solar_15.write_register(52,2, 0, 16, False)
+Solar_15.write_register(52,0, 0, 16, False)
