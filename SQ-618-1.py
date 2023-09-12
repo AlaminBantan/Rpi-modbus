@@ -1,17 +1,9 @@
 import minimalmodbus # Don't forget to import the library!!
 from time import sleep
 
+PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0',1)	# Make an "instrument" object called PAR_1 (port name, slave address (in decimal))
 
-mb_address = 1 # Modbus address of sensor
-
-PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0',mb_address)	# Make an "instrument" object called PAR_1 (port name, slave address (in decimal))
-
-PAR_1.serial.baudrate = 19200 				# BaudRate
-PAR_1.serial.bytesize = 8					# Number of data bits to be requested
-PAR_1.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
-PAR_1.serial.stopbits = 1					# Number of stop bits
-PAR_1.serial.timeout  = 0.5					# Timeout time in seconds
-PAR_1.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
+PAR_1.serial.baudrate = 19200 	
 
 # Good practice to clean up before and after each execution
 PAR_1.clear_buffers_before_each_transaction = True
@@ -22,14 +14,15 @@ try:
 	while True:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
-		PAR_intensity = PAR_1.read_float(0, 3, 2, 0) 
-		Slave = PAR_1.read_float(16,3,2,0)
+		PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0) 
+		Slave_1 = PAR_1.read_float(16,3,2,0)
+		Baud_1=PAR_1.read_float(22, 3, 2  0)
 	
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
-		print(f"PAR Intensity is: {PAR_intensity} umol.m^-2.s^-1")
-		print(f"Slave ID is: {Slave}")
+		print(f"PAR Intensity is: {PAR_intensity_1} umol.m^-2.s^-1")
+		print(f"Slave ID is: {Slave_1}, baud rate is {Baud_1}")
 		print("------------------------------------------")
 		
 		

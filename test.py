@@ -30,16 +30,14 @@ Solar_15.close_port_after_each_call = True
 
 
 try:
-	while True:
-		
-		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
+	while True: 
 		PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0) 
 		Slave_1 = PAR_1.read_float(16,3,2,0)
 		Baud_1 = PAR_1.read_float(22,3,2,0)
 		sleep(1)
 except KeyboardInterrupt:
-		# Piece of mind close out
 	PAR_1.serial.close()
+
 	
 try:
 	while True:
@@ -57,7 +55,7 @@ try:
 		Baud_10 = Solar_10.read_float(22,3,2,0)
 		sleep(1)
 except KeyboardInterrupt:
-	Solar_10.serial.close()
+	Solar_15.serial.close()
 
 try:
 	while True:
