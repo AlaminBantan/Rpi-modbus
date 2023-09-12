@@ -54,6 +54,16 @@ except KeyboardInterrupt:
 
 try:
 	while True:
+		Solar_Radiation_15 = Solar_15.read_float(0,3,2,0)
+
+		print(f"Solar radiation in zone C is: {Solar_Radiation_15} W.m^-2")
+		sleep(1)
+except KeyboardInterrupt:
+	Solar_15.serial.close()
+	print("Ports Now Closed")
+
+try:
+	while True:
 		Solar_Radiation_10 = Solar_10.read_float(0,3,2,0)
 
 		print(f"Solar radiation in zone B is: {Solar_Radiation_10} W.m^-2")
@@ -69,17 +79,10 @@ try:
 		sleep(1)
 except KeyboardInterrupt:
 	PAR_2.serial.close()
-
-
-try:
-	while True:
-		Solar_Radiation_15 = Solar_15.read_float(0,3,2,0)
-
-		print(f"Solar radiation in zone C is: {Solar_Radiation_15} W.m^-2")
-		sleep(1)
-except KeyboardInterrupt:
-	Solar_15.serial.close()
 	print("Ports Now Closed")
+
+
+
 
 
 
