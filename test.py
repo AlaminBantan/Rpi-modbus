@@ -2,17 +2,38 @@ import minimalmodbus
 from time import sleep
 
 
-PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1, debug=False)	# Make an "instrument" object called PAR_1 (port name, slave address (in decimal))
+PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1, debug=False)	
 PAR_1.serial.baudrate = 19200 
+PAR_1.serial.bytesize = 8					
+PAR_1.serial.parity = minimalmodbus.serial.PARITY_EVEN	
+PAR_1.serial.stopbits = 1				
+PAR_1.serial.timeout  = 0.5				
+PAR_1.mode = minimalmodbus.MODE_RTU				
 
-PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0', 2, debug=False)	# Make an "instrument" object called PAR_2 (port name, slave address (in decimal))
-PAR_2.serial.baudrate = 19200 			
+PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0', 2, debug=False)	
+PAR_2.serial.baudrate = 19200 				
+PAR_2.serial.bytesize = 8					
+PAR_2.serial.parity = minimalmodbus.serial.PARITY_EVEN	
+PAR_2.serial.stopbits = 1					
+PAR_2.serial.timeout  = 0.5					
+PAR_2.mode = minimalmodbus.MODE_RTU				
 
-Solar_15 = minimalmodbus.Instrument('/dev/ttyUSB0', 15, debug=False)	# Make an "instrument" object called Solar_15 (port name, slave address (in decimal))
-Solar_15.serial.baudrate = 19200 		
+Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 10, debug=False)	
+Solar_10.serial.baudrate = 19200 
+Solar_10.serial.baudrate = 19200 	
+Solar_10.serial.bytesize = 8					
+Solar_10.serial.parity = minimalmodbus.serial.PARITY_EVEN	
+Solar_10.serial.stopbits = 1					
+Solar_10.serial.timeout  = 0.5					
+Solar_10.mode = minimalmodbus.MODE_RTU					
 
-Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 10, debug=False)	# Make an "instrument" object called Solar_10 (port name, slave address (in decimal))
-Solar_10.serial.baudrate = 19200 		
+Solar_15 = minimalmodbus.Instrument('/dev/ttyUSB0', 15, debug=False)		
+Solar_15.serial.baudrate = 19200 	
+Solar_15.serial.bytesize = 8					
+Solar_15.serial.parity = minimalmodbus.serial.PARITY_EVEN	
+Solar_15.serial.stopbits = 1					
+Solar_15.serial.timeout  = 0.5					
+Solar_15.mode = minimalmodbus.MODE_RTU				
 
 
 # Good practice to clean up before and after each execution

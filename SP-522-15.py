@@ -6,7 +6,13 @@ mb_address = 15 # Modbus address of sensor
 
 Solar_15 = minimalmodbus.Instrument('/dev/ttyUSB0', mb_address, debug=False)	# Make an "instrument" object called Solar_15 (port name, slave address (in decimal))
 
-Solar_15.serial.baudrate = 19200 		
+Solar_15.serial.baudrate = 19200 	
+Solar_15.serial.bytesize = 8					# Number of data bits to be requested
+Solar_15.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+Solar_15.serial.stopbits = 1					# Number of stop bits
+Solar_15.serial.timeout  = 0.5					# Timeout time in seconds
+Solar_15.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
+
 
 
 # Good practice to clean up before and after each execution
@@ -21,7 +27,16 @@ try:
 		Solar_Radiation = Solar_15.read_float(0, 3, 2, 0)
 		slave = Solar_15.read_float(16,3,2,0)
 		Baud = Solar_15.read_float(22,3,2,0)
+		Parity = Solar_15.read_float(24,3,2,0)
+		Stopbit = Solar_15.read_float(26,3,2,0)
 	
+		
+		print("\n"*50)
+		print("Sensor Data--------------------------------")
+		print(f"Solar radiation is: {Solar_Radiation} W.m^-2")
+		print(f"slaveid={slave}, Baud={Baud}, Parit={Parity}, Stopbit={Stopbit}")
+
+		print("------------------------------------------")
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
