@@ -51,15 +51,6 @@ try:
 		sleep(1)
 except KeyboardInterrupt:
 	PAR_1.serial.close()
-	
-try:
-	while True:
-		PAR_intensity_2 = PAR_2.read_float(0,3,2,0) 
-
-		print(f"PAR Intensity in Zone C is: {PAR_intensity_2} umol.m^-2.s^-1")		
-		sleep(1)
-except KeyboardInterrupt:
-	PAR_2.serial.close()
 
 try:
 	while True:
@@ -69,6 +60,16 @@ try:
 		sleep(1)
 except KeyboardInterrupt:
 	Solar_10.serial.close()
+
+try:
+	while True:
+		PAR_intensity_2 = PAR_2.read_float(0,3,2,0) 
+
+		print(f"PAR Intensity in Zone C is: {PAR_intensity_2} umol.m^-2.s^-1")		
+		sleep(1)
+except KeyboardInterrupt:
+	PAR_2.serial.close()
+
 
 try:
 	while True:
