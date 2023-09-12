@@ -4,7 +4,7 @@ from time import sleep
 
 #configuration of first pyranometer
 Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 10, debug=False)	
-Solar_10.serial.baudrate = 19200 Solar_10.serial.baudrate = 19200 	
+Solar_10.serial.baudrate = 19200
 Solar_10.serial.bytesize = 8					
 Solar_10.serial.parity = minimalmodbus.serial.PARITY_EVEN	
 Solar_10.serial.stopbits = 1					
