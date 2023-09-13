@@ -2,9 +2,9 @@ import minimalmodbus # Don't forget to import the library!!
 from time import sleep
 
 
-mb_address = 2 # Modbus address of sensor
 
-PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0',mb_address)	# Make an "instrument" object called PAR_2 (port name, slave address (in decimal))
+# Make an "instrument" object called PAR_2 (port name, slave address (in decimal))
+PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0',2)	
 
 PAR_2.serial.baudrate = 19200 				# BaudRate
 PAR_2.serial.bytesize = 8					# Number of data bits to be requested
