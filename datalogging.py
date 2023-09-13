@@ -58,7 +58,7 @@ def get_datetime():
     return now.strftime("%m/%d/%Y"), now.strftime("%H:%M")
 
 # Define the file path for the CSV file
-/home/cdacea/Sensors_modbus/Rpi-modbus = "Light_comparison.csv"
+csv_file_path = "/home/cdacea/Sensors_modbus/Rpi-modbus/Light_comparison.csv"
 
 try:
     with open(csv_file_path, mode='w', newline='') as csv_file:
