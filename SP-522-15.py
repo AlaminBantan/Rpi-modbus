@@ -20,17 +20,17 @@ try:
 	while True:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
-		Solar_Radiation = Solar_15.read_float(0, 3, 2, 0)
-		slave = Solar_15.read_float(16,3,2,0)
-		Baud = Solar_15.read_float(22,3,2,0)
-		Parity = Solar_15.read_float(24,3,2,0)
-		Stopbit = Solar_15.read_float(26,3,2,0)
+		Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
+		slave_15 = Solar_15.read_float(16,3,2,0)
+		Baud_15 = Solar_15.read_float(22,3,2,0)
+		Parity_15 = Solar_15.read_float(24,3,2,0)
+		Stopbit_15 = Solar_15.read_float(26,3,2,0)
 	
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
-		print(f"Solar radiation is: {Solar_Radiation} W.m^-2")
-		print(f"slaveid={slave}, Baud={Baud}, Parit={Parity}, Stopbit={Stopbit}")
+		print(f"Solar radiation is: {Solar_Radiation_15} W.m^-2")
+		print(f"slaveid={slave_15}, Baud={Baud_15}, Parit={Parity_15}, Stopbit={Stopbit_15}")
 
 		print("------------------------------------------")
 		

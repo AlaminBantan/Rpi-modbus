@@ -19,23 +19,25 @@ try:
 	while True:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
-		PAR_intensity_1 = PAR_1.read_float(0,3,2,0) 
-		Slave_1 = PAR_1.read_float(16,3,2,0)
-		Baud_1=PAR_1.read_float(22,3,2,0)
+		PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
+		slave_1 = PAR_1.read_float(16,3,2,0)
+		Baud_1 = PAR_1.read_float(22,3,2,0)
+		Parity_1 = PAR_1.read_float(24,3,2,0)
+		Stopbit_1 = PAR_1.read_float(26,3,2,0)
 	
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
-		print(f"PAR Intensity is: {PAR_intensity_1} umol.m^-2.s^-1")
-		print(f"Slave ID is: {Slave_1}, baud rate is {Baud_1}")
+		print(f"Solar radiation is: {PAR_intensity_1} W.m^-2")
+		print(f"slaveid={slave_1}, Baud={Baud_1}, Parit={Parity_1}, Stopbit={Stopbit_1}")
+
 		print("------------------------------------------")
-		
-		
 		
 		print("")
 		print("")
 		print("")
 		sleep(1)
+	
 	
 except KeyboardInterrupt:
 	
