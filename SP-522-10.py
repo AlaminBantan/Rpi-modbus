@@ -2,7 +2,7 @@ import minimalmodbus # Don't forget to import the library!!
 from time import sleep
 
 
-Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 15, debug=False)
+Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 10, debug=False)
 Solar_10.serial.baudrate = 19200 	
 Solar_10.serial.bytesize = 8					# Number of data bits to be requested
 Solar_10.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
