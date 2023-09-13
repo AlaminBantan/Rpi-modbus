@@ -5,7 +5,7 @@ from time import sleep
 mb_address = 10 # Modbus address of sensor
 
 Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', mb_address, debug=False)	# Make an "instrument" object called Solar_10 (port name, slave address (in decimal))
-
+Solar_10.serial.baudrate = 1920
 
 
 # Good practice to clean up before and after each execution

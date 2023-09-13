@@ -55,7 +55,6 @@ except KeyboardInterrupt:
 try:
 	while True:
 		Solar_Radiation_15 = Solar_15.read_float(0,3,2,0)
-
 		print(f"Solar radiation in zone C is: {Solar_Radiation_15} W.m^-2")
 		sleep(1)
 except KeyboardInterrupt:
