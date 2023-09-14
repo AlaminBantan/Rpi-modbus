@@ -56,7 +56,7 @@ sender_password = "muzomvmpwxiczzmo"
 receiver_email = "alamin.bantan@kaust.edu.sa"
 
 # Initialize yagmail
-yag = yagmail.SMTP(sender_email, password)
+yag = yagmail.SMTP(sender_email, sender_password)
 
 # Function to send an email
 def send_email():
