@@ -67,25 +67,37 @@ try:
         while True:
             date, time = get_datetime()
 
-            # Read data from PAR_1
-            PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
-            sleep(10)
-            writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B': PAR_intensity_1})
+            try:
+                # Read data from PAR_1
+                PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
+                sleep(10)
+                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B': PAR_intensity_1})
+            except Exception as e:
+                print(f"Error reading PAR_1: {e}")
 
-            # Read data from PAR_2
-            PAR_intensity_2 = PAR_2.read_float(0, 3, 2, 0)
-            sleep(10)
-            writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C': PAR_intensity_2})
+            try:
+                # Read data from PAR_2
+                PAR_intensity_2 = PAR_2.read_float(0, 3, 2, 0)
+                sleep(10)
+                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C': PAR_intensity_2})
+            except Exception as e:
+                print(f"Error reading PAR_2: {e}")
 
-            # Read data from Solar_10
-            Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
-            sleep(10)
-            writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B': Solar_Radiation_10})
+            try:
+                # Read data from Solar_10
+                Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
+                sleep(10)
+                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B': Solar_Radiation_10})
+            except Exception as e:
+                print(f"Error reading Solar_10: {e}")
 
-            # Read data from Solar_15
-            Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
-            sleep(10)
-            writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C': Solar_Radiation_15})
+            try:
+                # Read data from Solar_15
+                Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
+                sleep(10)
+                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C': Solar_Radiation_15})
+            except Exception as e:
+                print(f"Error reading Solar_15: {e}")
 
             sleep(60)
 
