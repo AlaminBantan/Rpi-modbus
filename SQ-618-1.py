@@ -28,7 +28,7 @@ try:
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
-		print(f"Solar radiation is: {PAR_intensity_1} W.m^-2")
+		print(f"PAR intensity is: {PAR_intensity_1} umol.m^-2")
 		print(f"slaveid={slave_1}, Baud={Baud_1}, Parit={Parity_1}, Stopbit={Stopbit_1}")
 
 		print("------------------------------------------")
