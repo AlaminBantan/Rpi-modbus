@@ -99,7 +99,7 @@ try:
             except Exception as e:
                 print(f"Error reading Solar_15: {e}")
 
-            sleep(60)
+
 
 except KeyboardInterrupt:
     # Piece of mind close out
