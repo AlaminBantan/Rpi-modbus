@@ -9,7 +9,7 @@ subject = 'Reading of the zones'
 body = 'These are the light data from zones b and c'
 
 # Attach the file
-attachment = "/home/cdacea/Sensors_modbus/Rpi-modbus/Light_comparison1.csv"
+attachment = "/home/cdacea/Sensors_modbus/Rpi-modbus/Light_comparison.csv"
 
 # Send the email
 yag.send(to, subject, [body, attachment])
