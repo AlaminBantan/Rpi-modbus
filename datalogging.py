@@ -72,6 +72,7 @@ try:
                 PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
                 sleep(10)
                 writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B': PAR_intensity_1})
+
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_1 at {now[1]} on {now[0]}: {e}")
@@ -102,7 +103,7 @@ try:
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_15 at {now[1]} on {now[0]}: {e}")
-
+    
 
 except KeyboardInterrupt:
     # Piece of mind close out
