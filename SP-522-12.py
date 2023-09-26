@@ -3,7 +3,7 @@ from time import sleep
 
 
 Solar_12 = minimalmodbus.Instrument('/dev/ttyUSB0', 12)
-Solar_12.serial.baudrate = 19200 	
+Solar_12.serial.baudrate = 9600
 Solar_12.serial.bytesize = 8					# Number of data bits to be requested
 Solar_12.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
 Solar_12.serial.stopbits = 1					# Number of stop bits
