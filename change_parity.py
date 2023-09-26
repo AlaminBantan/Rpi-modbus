@@ -4,8 +4,8 @@ from time import sleep
 
 
 
-Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 10)	# Make an "instrument" object called Solar_10 (port name, slave address (in decimal))
-Solar_10.serial.baudrate = 19200 
+Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 12)	# Make an "instrument" object called Solar_10 (port name, slave address (in decimal))
+Solar_10.serial.baudrate = 9600
 
 
 # Good practice to clean up before and after each execution
