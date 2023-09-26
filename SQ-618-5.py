@@ -1,7 +1,7 @@
 import minimalmodbus # Don't forget to import the library!!
 from time import sleep
 
-PAR_5 = minimalmodbus.Instrument('/dev/ttyUSB0',4)	# Make an "instrument" object called PAR_5 (port name, slave address (in decimal))
+PAR_5 = minimalmodbus.Instrument('/dev/ttyUSB0',5)	# Make an "instrument" object called PAR_5 (port name, slave address (in decimal))
 
 PAR_5.serial.baudrate = 19200 	
 PAR_5.serial.bytesize = 8					# Number of data bits to be requested
