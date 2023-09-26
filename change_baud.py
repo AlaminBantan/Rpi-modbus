@@ -1,16 +1,11 @@
-import minimalmodbus # Don't forget to import the library!!
+import minimalmodbus
 from time import sleep
 
+id = 12
+time_it = 10
+c = 0
+n_inst = minimalmodbus.Instrument('/dev/ttyUSB0', id, debug=False)  # port name, slave address (in decimal)
+n_inst.serial.baudrate = 9600
 
 
-
-Solar_10 = minimalmodbus.Instrument('/dev/ttyUSB0', 12)	# Make an "instrument" object called Solar_10 (port name, slave address (in decimal))
-Solar_10.serial.baudrate = 9600
-
-
-# Good practice to clean up before and after each execution
-Solar_10.clear_buffers_before_each_transaction = True
-Solar_10.close_port_after_each_call = True
-
-
-Solar_10.write_register(51,3,0,16, False)
+n_inst.write_register(51,3,0,16, False)
