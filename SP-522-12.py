@@ -2,8 +2,13 @@ import minimalmodbus # Don't forget to import the library!!
 from time import sleep
 
 
-Solar_12 = minimalmodbus.Instrument('/dev/ttyUSB0', 12, debug=False)
+Solar_12 = minimalmodbus.Instrument('/dev/ttyUSB0', 12)
 Solar_12.serial.baudrate = 19200 	
+Solar_12.serial.bytesize = 8					# Number of data bits to be requested
+Solar_12.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+Solar_12.serial.stopbits = 1					# Number of stop bits
+Solar_12.serial.timeout  = 0.5					# Timeout time in seconds
+Solar_12.mode = minimalmodbus.MODE_RTU			
 
 
 # Good practice to clean up before and after each execution
@@ -39,13 +44,3 @@ except KeyboardInterrupt:
 	# Piece of mind close out
 	Solar_12.serial.close()
 	print("Ports Now Closed")
-
-
-
-
-
-#Solar_12.serial.bytesize = 8					# Number of data bits to be requested
-#Solar_12.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
-#Solar_12.serial.stopbits = 1					# Number of stop bits
-#Solar_12.serial.timeout  = 0.5					# Timeout time in seconds
-#Solar_12.mode = minimalmodbus.MODE_RTU			
