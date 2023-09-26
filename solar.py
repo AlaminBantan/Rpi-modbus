@@ -7,7 +7,7 @@ id = 12
 time_it = 10
 c = 0
 n_inst = minimalmodbus.Instrument('/dev/ttyUSB0', id, debug=False)  # port name, slave address (in decimal)
-n_inst.serial.baudrate = 19200
+n_inst.serial.baudrate = 9600
 #n_inst.serial.parity = minimalmodbus.serial.PARITY_EVEN
 
 
