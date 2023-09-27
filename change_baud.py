@@ -1,7 +1,8 @@
 import minimalmodbus
 from time import sleep
 
-id = 11
+id = 14
+
 time_it = 10
 c = 0
 n_inst = minimalmodbus.Instrument('/dev/ttyUSB0', id, debug=False)  # port name, slave address (in decimal)
