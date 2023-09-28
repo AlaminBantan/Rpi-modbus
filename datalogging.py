@@ -159,7 +159,7 @@ try:
             try:
                 # Read data from PAR_1
                 PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B (1)': PAR_intensity_1})
 
             except Exception as e:
@@ -169,7 +169,7 @@ try:
             try:
                 # Read data from PAR_2
                 PAR_intensity_2 = PAR_2.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B (2)': PAR_intensity_2})
             except Exception as e:
                 now = get_datetime()
@@ -178,7 +178,7 @@ try:
             try:
                 # Read data from PAR_3
                 PAR_intensity_3 = PAR_3.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B (3)': PAR_intensity_3})
             except Exception as e:
                 now = get_datetime()
@@ -188,7 +188,7 @@ try:
             try:
                 # Read data from PAR_4
                 PAR_intensity_4 = PAR_4.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C (1)': PAR_intensity_4})
             except Exception as e:
                 now = get_datetime()
@@ -198,7 +198,7 @@ try:
             try:
                 # Read data from PAR_5
                 PAR_intensity_5 = PAR_5.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C (2)': PAR_intensity_5})
             except Exception as e:
                 now = get_datetime()
@@ -208,7 +208,7 @@ try:
             try:
                 # Read data from PAR_6
                 PAR_intensity_6 = PAR_6.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C (3)': PAR_intensity_6})
             except Exception as e:
                 now = get_datetime()
@@ -218,7 +218,7 @@ try:
             try:
                 # Read data from Solar_10
                 Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B (1)': Solar_Radiation_10})
             except Exception as e:
                 now = get_datetime()
@@ -228,7 +228,7 @@ try:
             try:
                 # Read data from Solar_11
                 Solar_Radiation_11 = Solar_11.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B (2)': Solar_Radiation_11})
             except Exception as e:
                 now = get_datetime()
@@ -238,7 +238,7 @@ try:
             try:
                 # Read data from Solar_12
                 Solar_Radiation_12 = Solar_12.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B (3)': Solar_Radiation_12})
             except Exception as e:
                 now = get_datetime()
@@ -248,7 +248,7 @@ try:
             try:
                 # Read data from Solar_13
                 Solar_Radiation_13 = Solar_13.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C (1)': Solar_Radiation_13})
             except Exception as e:
                 now = get_datetime()
@@ -258,7 +258,7 @@ try:
             try:
                 # Read data from Solar_14
                 Solar_Radiation_14 = Solar_14.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C (2)': Solar_Radiation_14})
             except Exception as e:
                 now = get_datetime()
@@ -268,7 +268,7 @@ try:
             try:
                 # Read data from Solar_15
                 Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
-                sleep(10)
+                sleep(4)
                 writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C (3)': Solar_Radiation_15})
             except Exception as e:
                 now = get_datetime()
