@@ -12,15 +12,25 @@ df['Date'] = df['Date'].dt.date
 df['Time'] = df['Time'].apply(lambda x: x.strftime('%H:%M'))
 
 # Replace negative values with 0 in specific columns
-cols_to_replace = ['PAR Intensity Zone B', 'PAR Intensity Zone C', 'Solar Radiation Zone B', 'Solar Radiation Zone C']
+cols_to_replace = ['PAR Intensity Zone B (1)', 'PAR Intensity Zone C (1)', 'Solar Radiation Zone B (1)', 'Solar Radiation Zone C (1)', 'PAR Intensity Zone B (2)', 'PAR Intensity Zone C (2)', 'Solar Radiation Zone B (2)', 'Solar Radiation Zone C (2)', 'PAR Intensity Zone B (3)', 'PAR Intensity Zone C (3)', 'Solar Radiation Zone B (3)', 'Solar Radiation Zone C (3)']
 df[cols_to_replace] = df[cols_to_replace].apply(lambda x: x.clip(lower=0))
+
 
 # Group by minute and aggregate the values
 df_minute = df.groupby(['Date', 'Time']).agg({
-    'PAR Intensity Zone B': 'mean',
-    'PAR Intensity Zone C': 'mean',
-    'Solar Radiation Zone B': 'mean',
-    'Solar Radiation Zone C': 'mean'
+    'PAR Intensity Zone B (1)': 'mean',
+    'PAR Intensity Zone B (2)': 'mean',
+    'PAR Intensity Zone B (3)': 'mean',
+    'PAR Intensity Zone C (1)': 'mean',
+    'PAR Intensity Zone C (2)': 'mean',
+    'PAR Intensity Zone C (3)': 'mean',
+    'Solar Radiation Zone B (1)': 'mean',
+    'Solar Radiation Zone B (2)': 'mean',
+    'Solar Radiation Zone B (3)': 'mean',
+    'Solar Radiation Zone C (1)': 'mean',
+    'Solar Radiation Zone C (2)': 'mean',
+    'Solar Radiation Zone C (3)': 'mean',
+
 }).reset_index()
 
 # Save the consolidated data as a CSV file
