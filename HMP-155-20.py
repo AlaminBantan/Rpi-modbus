@@ -3,11 +3,7 @@ from time import sleep
 
 
 Thum_20 = minimalmodbus.Instrument('/dev/ttyUSB0', 240, debug=True)
-Thum_20.serial.baudrate = 4800
-Thum_20.serial.bytesize = 7					# Number of data bits to be requested
-Thum_20.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
-Thum_20.serial.stopbits = 1					# Number of stop bits
-Thum_20.mode = minimalmodbus.MODE_RTU	
+Thum_20.serial.baudrate = 19200
 
 try:
 	while True:
