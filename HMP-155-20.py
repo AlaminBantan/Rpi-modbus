@@ -2,7 +2,7 @@ import minimalmodbus # Don't forget to import the library!!
 from time import sleep
 
 
-Thum_20 = minimalmodbus.Instrument('/dev/ttyACM0', 240, debug=False)
+Thum_20 = minimalmodbus.Instrument('/dev/ttyACM0', 1, debug=False)
 Thum_20.serial.baudrate = 19200
 
 
