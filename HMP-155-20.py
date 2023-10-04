@@ -3,10 +3,10 @@ from time import sleep
 
 
 Thum_20 = minimalmodbus.Instrument('/dev/ttyUSB0', 240, debug=True)
-Thum_20.serial.baudrate = 19200
-Thum_20.serial.parity = minimalmodbus.serial.PARITY_NONE
-Thum_20.serial.bytesize = 8
-Thum_20.serial.stopbits = 2
+Thum_20.serial.baudrate = 4800
+Thum_20.serial.parity = minimalmodbus.serial.PARITY_EVEN
+Thum_20.serial.bytesize = 7
+Thum_20.serial.stopbits = 1
 
 try:
 	while True:
