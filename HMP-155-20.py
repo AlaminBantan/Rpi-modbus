@@ -4,13 +4,16 @@ from time import sleep
 
 Thum_20 = minimalmodbus.Instrument('/dev/ttyUSB0', 240, debug=True)
 Thum_20.serial.baudrate = 19200
+Thum_20.serial.parity = minimalmodbus.serial.PARITY_NONE
+Thum_20.serial.bytesize = 8
+Thum_20.serial.stopbits = 2
 
 try:
 	while True:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
 		Relative_humidity_20 = Thum_20.read_float(1, 3, 2, 0)
-		Temperature_20 = Thum_20.read_float(3,3,2,0)
+		Temperature_20 = Thum_20.read_float(3, 3, 2, 0)
 
 	
 		
