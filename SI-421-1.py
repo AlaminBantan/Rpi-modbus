@@ -26,7 +26,7 @@ try:
         IR_1.flush()
         time.sleep(1)
         if len(data.split('+'))> 1:
-            print("Temperature of the surface is:", {data.split('+')[1]} "degrees celcius")
+            print(f"Temperature of the surface is: {data.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Ports Now Closed")
