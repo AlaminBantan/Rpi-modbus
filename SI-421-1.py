@@ -1,30 +1,33 @@
-import minimalmodbus # Don't forget to import the library!!
-from time import sleep
+import serial
+import time
+import io
+import csv
+from datetime import datetime
 
-
-IR_1 = minimalmodbus.Instrument('/dev/ttyACM0', 1, debug=True)
-IR_1.serial.baudrate = 1200
-IR_1.serial.parity = minimalmodbus.serial.PARITY_EVEN
-IR_1.serial.bytesize = 7
-IR_1.serial.stopbits = 1
-
+IR_1 = serial.Serial("/dev/ttyACM0",
+                   baudrate=9600,
+                   bytesize=serial.EIGHTBITS,
+                   parity=serial.PARITY_NONE,
+                   stopbits=serial.STOPBITS_ONE,
+                   xonxoff=False,
+                   timeout=1)
+IR_1 = io.TextIOWrapper(io.BufferedRWPair(IR_1, IR_1))
 try:
-	while True:
-		
-		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
-		IR = IR_1.read_float(1, 3, 2, 0)
-	
+    while True:
+        # Command is the Slave ID + M!, to take measurement
+        command = "1M!\r"
+        IR_1.write(command)
+        IR_1.flush()
+        time.sleep(1)
+        # read bit
+        data_str ="1D0!\r"
+        IR_1.write(data_str)
+        data = IR_1.readline()
+        IR_1.flush()
+        time.sleep(1)
+        if len(data.split('+'))> 1:
+            print("measure:", data.split('+')[1])
 
-	
-		
-		print("\n"*50)
-		print(f"IR is:{IR}")
-
-	
 except KeyboardInterrupt:
-	
-	# Piece of mind close out
-	IR_1.serial.close()
-	print("Ports Now Closed")
-
-
+    # Clean up when interrupted
+    print("Ports Now Closed")
