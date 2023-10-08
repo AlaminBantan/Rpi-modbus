@@ -26,7 +26,7 @@ try:
         data = sio.readline()
         sio.flush()
         time.sleep(1)
-        print("measure:", data)
+        print("measure:", data_str)
 
 except KeyboardInterrupt:
     # Clean up when interrupted
