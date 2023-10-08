@@ -21,7 +21,7 @@ try:
         sio.flush()
         time.sleep(1)
         # read bit
-        data_str = str(1)+"D0!\r"
+        data_str = "D0!\r"
         sio.write(data_str)
         data = sio.readline()
         sio.flush()
