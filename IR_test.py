@@ -4,7 +4,7 @@ import io
 import csv
 from datetime import datetime
 
-se = serial.Serial("/dev/ttyUSB0",
+se = serial.Serial("/dev/ttyACM0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
