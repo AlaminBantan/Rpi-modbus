@@ -26,7 +26,7 @@ try:
         data = sio.readline()
         sio.flush()
         time.sleep(1)
-        if len(data.split('+'))> 0:
+        if len(data.split('+'))> 1:
             print("measure:", data.split('+')[1])
 
 except KeyboardInterrupt:
