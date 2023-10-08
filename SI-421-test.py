@@ -78,7 +78,8 @@ try:
             print(f"Temperature of the surface 0 is: {data_0.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
-    print("Ports Now Closed")
+    IR_0.serial.close()
+    print("Port 0 Now Closed")
 
 try:
     while True:
@@ -98,7 +99,8 @@ try:
             print(f"Temperature of the surface is: {data_1.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
-    print("Ports Now Closed")
+    IR_1.serial.close()
+    print("Port 1 Now Closed")
 
 try:
     while True:
@@ -117,7 +119,8 @@ try:
             print(f"Temperature of the surface is: {data_2.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
-    print("Ports Now Closed")
+    IR_2.serial.close()
+    print("Port 2 Now Closed")
 
 try:
     while True:
@@ -136,7 +139,8 @@ try:
             print(f"Temperature of the surface 3 is: {data_3.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
-    print("Ports Now Closed")
+    IR_3.serial.close()
+    print("Port 3 Now Closed")
 
 
 try:
@@ -156,7 +160,8 @@ try:
             print(f"Temperature of the surface 4 is: {data_4.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
-    print("Ports Now Closed")
+    IR_4.serial.close()
+    print("Port 4 Now Closed")
 
 
 try:
@@ -176,4 +181,5 @@ try:
             print(f"Temperature of the surface 5 is: {data_5.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
-    print("Ports Now Closed")
+    IR_5.serial.close()
+    print("Port 5 Now Closed")
