@@ -14,19 +14,19 @@ IR_2 = serial.Serial("/dev/ttyACM0",
 IR_2 = io.TextIOWrapper(io.BufferedRWPair(IR_2, IR_2))
 try:
     while True:
-        # Command is the Slave ID + M!, to take measurement
-        command = "2M!\r"
-        IR_2.write(command)
+        # command_2 is the Slave ID + M!, to take measurement
+        command_2 = "2M!\r"
+        IR_2.write(command_2)
         IR_2.flush()
         time.sleep(1)
         # read bit
-        data_str ="2D0!\r"
-        IR_2.write(data_str)
-        data = IR_2.readline()
+        data_str_2 ="2D0!\r"
+        IR_2.write(data_str_2)
+        data_2 = IR_2.readline()
         IR_2.flush()
         time.sleep(1)
-        if len(data.split('+'))> 1:
-            print(f"Temperature of the surface is: {data.split('+')[1]} degrees celcius")
+        if len(data_2.split('+'))> 1:
+            print(f"Temperature of the surface is: {data_2.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Ports Now Closed")
