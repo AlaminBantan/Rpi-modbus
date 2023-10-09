@@ -215,26 +215,16 @@ csv_file_path = "/home/cdacea/Sensors_modbus/Rpi-modbus/Light_comparison.csv"
 
 try:
     with open(csv_file_path, mode='w', newline='') as csv_file:
-        fieldnames = ['Date',\
+        fieldnames = ['Date',
                        'Time',
-                        'PAR Intensity Zone B (1)',
-                        'PAR Intensity Zone B (2)',
-                        'PAR Intensity Zone B (3)',
-                        'PAR Intensity Zone C (1)',
-                        'PAR Intensity Zone C (2)', 
-                        'PAR Intensity Zone C (3)', 
-                        'Solar Radiation Zone B (1)',
-                        'Solar Radiation Zone B (2)', 
-                        'Solar Radiation Zone B (3)', 
-                        'Solar Radiation Zone C (1)', 
-                        'Solar Radiation Zone C (2)', 
-                        'Solar Radiation Zone C (3)',
-                        'Surface Temp Zone B (1)',
-                        'Surface Temp Zone B (2)',
-                        'Surface Temp Zone B (3)',
-                        'Surface Temp Zone C (1)',
-                        'Surface Temp Zone C (2)',
-                        'Surface Temp Zone C (3)']
+                       'Zone',
+                       'Subzone',
+                       'PAR',
+                       'Solar radiation',
+                       'Surface temperature',
+                       'Ambient temperature',
+                       'Relative humidity',
+                       'CO2 Concentration']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -245,7 +235,7 @@ try:
                 # Read data from PAR_1
                 PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B (1)': PAR_intensity_1})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'PAR': PAR_intensity_1})
 
             except Exception as e:
                 now = get_datetime()
@@ -255,7 +245,7 @@ try:
                 # Read data from PAR_2
                 PAR_intensity_2 = PAR_2.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B (2)': PAR_intensity_2})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'PAR': PAR_intensity_2})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_2 at {now[1]} on {now[0]}: {e}")
@@ -264,7 +254,7 @@ try:
                 # Read data from PAR_3
                 PAR_intensity_3 = PAR_3.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone B (3)': PAR_intensity_3})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "3", 'PAR': PAR_intensity_3})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_3 at {now[1]} on {now[0]}: {e}")
@@ -274,7 +264,7 @@ try:
                 # Read data from PAR_4
                 PAR_intensity_4 = PAR_4.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C (1)': PAR_intensity_4})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'PAR': PAR_intensity_4})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_4 at {now[1]} on {now[0]}: {e}")
@@ -284,7 +274,7 @@ try:
                 # Read data from PAR_5
                 PAR_intensity_5 = PAR_5.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C (2)': PAR_intensity_5})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'PAR': PAR_intensity_5})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_5 at {now[1]} on {now[0]}: {e}")
@@ -294,7 +284,7 @@ try:
                 # Read data from PAR_6
                 PAR_intensity_6 = PAR_6.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'PAR Intensity Zone C (3)': PAR_intensity_6})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "3", 'PAR': PAR_intensity_6})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_2 at {now[1]} on {now[0]}: {e}")
@@ -304,7 +294,7 @@ try:
                 # Read data from Solar_10
                 Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B (1)': Solar_Radiation_10})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Solar radiation': Solar_Radiation_10})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_10 at {now[1]} on {now[0]}: {e}")
@@ -314,7 +304,7 @@ try:
                 # Read data from Solar_11
                 Solar_Radiation_11 = Solar_11.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B (2)': Solar_Radiation_11})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'Solar radiation': Solar_Radiation_11})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_11 at {now[1]} on {now[0]}: {e}")
@@ -324,7 +314,7 @@ try:
                 # Read data from Solar_12
                 Solar_Radiation_12 = Solar_12.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone B (3)': Solar_Radiation_12})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "3", 'Solar radiation': Solar_Radiation_12})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_12 at {now[1]} on {now[0]}: {e}")
@@ -334,7 +324,7 @@ try:
                 # Read data from Solar_13
                 Solar_Radiation_13 = Solar_13.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C (1)': Solar_Radiation_13})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'Solar radiation': Solar_Radiation_13})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_13 at {now[1]} on {now[0]}: {e}")
@@ -344,7 +334,7 @@ try:
                 # Read data from Solar_14
                 Solar_Radiation_14 = Solar_14.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C (2)': Solar_Radiation_14})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'Solar radiation': Solar_Radiation_14})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_14 at {now[1]} on {now[0]}: {e}")
@@ -354,7 +344,7 @@ try:
                 # Read data from Solar_15
                 Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Solar Radiation Zone C (3)': Solar_Radiation_15})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "3", 'Solar radiation': Solar_Radiation_15})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_15 at {now[1]} on {now[0]}: {e}")
@@ -373,7 +363,7 @@ try:
                 IR_0.flush()
                 time.sleep(1)
                 if len(data_0.split('+'))> 1:
-                    writer.writerow({'Date': date, 'Time': time, 'Surface Temp Zone B (1)': data_0})
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Surface temperature': data_0})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading IR_0 at {now[1]} on {now[0]}: {e}")
@@ -391,7 +381,7 @@ try:
                 IR_1.flush()
                 time.sleep(1)
                 if len(data_1.split('+'))> 1:
-                    writer.writerow({'Date': date, 'Time': time, 'Surface Temp Zone B (2)': data_1})
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'Surface temperature': data_1})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading IR_1 at {now[1]} on {now[0]}: {e}")
@@ -409,7 +399,7 @@ try:
                 IR_2.flush()
                 time.sleep(2)
                 if len(data_2.split('+'))> 1:
-                    writer.writerow({'Date': date, 'Time': time, 'Surface Temp Zone B (3)': data_2})
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "3", 'Surface temperature': data_2})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading IR_2 at {now[0]} on {now[1]}: {e}")
@@ -427,7 +417,7 @@ try:
                 IR_3.flush()
                 time.sleep(3)
                 if len(data_3.split('+'))> 1:
-                    writer.writerow({'Date': date, 'Time': time, 'Surface Temp Zone C (1)': data_3})
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'Surface temperature': data_3})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading IR_3 at {now[0]} on {now[1]}: {e}")
@@ -445,7 +435,7 @@ try:
                 IR_4.flush()
                 time.sleep(4)
                 if len(data_4.split('+'))> 1:
-                    writer.writerow({'Date': date, 'Time': time, 'Surface Temp Zone C (2)': data_4})
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'Surface temperature': data_4})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading IR_4 at {now[0]} on {now[1]}: {e}")
@@ -463,7 +453,7 @@ try:
                 IR_5.flush()
                 time.sleep(5)
                 if len(data_5.split('+'))> 1:
-                    writer.writerow({'Date': date, 'Time': time, 'Surface Temp Zone C (3)': data_5})
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "3", 'Surface temperature': data_5})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading IR_5 at {now[0]} on {now[1]}: {e}")
