@@ -19,11 +19,13 @@ def relay1_off(pin):
 if __name__ == '__main__':
     try:
         relay1_on(channel)
-        time.sleep(1)
+        time.sleep(5)
         relay1_off(channel)
-        time.sleep(4)
+        time.sleep(10)
         relay1_on(channel)
-        time.sleep(1)
+        time.sleep(10)
+        relay1_off(channel)
+        time.sleep(10)
         GPIO.cleanup()
     except KeyboardInterrupt:
         GPIO.cleanup()
