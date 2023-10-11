@@ -10,14 +10,16 @@ GPIO.setup(channel, GPIO.OUT)
 
 def relay1_on(pin):
     GPIO.output(pin, GPIO.HIGH)  # Turn relay on
+    print(f"Relay {pin} ON")
 
 def relay1_off(pin):
     GPIO.output(pin, GPIO.LOW)  # Turn relay off
+    print(f"Relay {pin} OFF")
 
 try:
     # Define target times
-    target_on_time = datetime.combine(datetime.today(), dt_time(16, 55))
-    target_off_time = datetime.combine(datetime.today(), dt_time(16, 57))
+    target_on_time = datetime.combine(datetime.today(), dt_time(16, 56))
+    target_off_time = datetime.combine(datetime.today(), dt_time(16, 58))
     
     while True:
         current_time = datetime.now()
