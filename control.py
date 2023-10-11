@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+from datetime import datetime, time as dt_time
 
 channel = 2 
 
@@ -7,21 +8,26 @@ channel = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.OUT)
 
+def relay1_on(pin):
+    GPIO.output(pin, GPIO.HIGH)  # Turn relay on
 
-def motor_on(pin):
-    GPIO.output(pin, GPIO.HIGH)  # Turn motor on
+def relay1_off(pin):
+    GPIO.output(pin, GPIO.LOW)  # Turn relay off
 
-
-def motor_off(pin):
-    GPIO.output(pin, GPIO.LOW)  # Turn motor off
-
-
-if __name__ == '__main__':
-    try:
-        motor_on(channel)
+try:
+    # Define target times
+    target_on_time = datetime.combine(datetime.today(), dt_time(16, 55))
+    target_off_time = datetime.combine(datetime.today(), dt_time(16, 57))
+    
+    while True:
+        current_time = datetime.now()
+        
+        if current_time >= target_on_time and current_time < target_off_time:
+            relay1_on(channel)
+        else:
+            relay1_off(channel)
+            
         time.sleep(1)
-        motor_off(channel)
-        time.sleep(1)
-        GPIO.cleanup()
-    except KeyboardInterrupt:
-        GPIO.cleanup()
+        
+except KeyboardInterrupt:
+    GPIO.cleanup()
