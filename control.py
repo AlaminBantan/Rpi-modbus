@@ -23,13 +23,13 @@ if __name__ == '__main__':
             relay1_on(channel)
 
         while True:
-            time.sleep(60)  # Check time every minute
+            time.sleep(10)  
 
             current_time = time.localtime(time.time())
             current_hour = current_time.tm_hour
             current_minute = current_time.tm_min
 
-            if current_hour == 17 and current_minute >= 11 and current_minute <= 13:
+            if current_hour == 17 and current_minute >= 18 and current_minute <= 19:
                 relay1_off(channel)
             else:
                 relay1_on(channel)
