@@ -15,6 +15,16 @@ def relay1_off(pin):
 
 if __name__ == '__main__':
     try:
+        current_time = time.localtime(time.time())
+        current_hour = current_time.tm_hour
+        current_minute = current_time.tm_min
+
+        # Calculate the time remaining until the first cycle at 6:20 am
+        time_until_first_cycle = (6 - current_hour) * 60 + (20 - current_minute)
+        if time_until_first_cycle > 0:
+            print(f"Waiting for {time_until_first_cycle} minutes until the first cycle starts.")
+            time.sleep(time_until_first_cycle * 60)
+
         while True:
             current_time = time.localtime(time.time())
             current_hour = current_time.tm_hour
@@ -23,10 +33,10 @@ if __name__ == '__main__':
                 relay1_off(channel)
                 time.sleep(30)
                 relay1_on(channel)
-                time.sleep(60)
+                time.sleep(1170)
             else:
                 relay1_on(channel)
-                time.sleep(60)
+                time.sleep(1170)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
