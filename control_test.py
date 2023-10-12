@@ -18,15 +18,12 @@ if __name__ == '__main__':
         while True:
             current_time = time.localtime(time.time())
             current_hour = current_time.tm_hour
-            current_minute = current_time.tm_min
 
             if current_hour >= 6 and current_hour < 18:  # Changed to run from 6 am to 6 pm
-                if current_minute < 30:
-                    relay1_off(channel)
-                    time.sleep(30)
-                else:
-                    relay1_on(channel)
-                    time.sleep(60)
+                relay1_off(channel)
+                time.sleep(30)
+                relay1_on(channel)
+                time.sleep(60)
             else:
                 relay1_on(channel)
                 time.sleep(60)
