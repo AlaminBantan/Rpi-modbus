@@ -7,10 +7,10 @@ channel = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.OUT)
 
-def mist_off(pin):
+def mist_on(pin):
     GPIO.output(pin, GPIO.HIGH)  # Turn mist on
 
-def mist_on(pin):
+def mist_off(pin):
     GPIO.output(pin, GPIO.LOW)  # Turn mist off
 
 try:
