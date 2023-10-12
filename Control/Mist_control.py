@@ -20,12 +20,12 @@ try:
         current_minute = current_time.tm_min
 
         if (current_hour == 6 and current_minute >= 20) and (current_hour < 18 and current_minute >= 00):
-            mist_on(channel)
-            time.sleep(30)
             mist_off(channel)
+            time.sleep(30)
+            mist_on(channel)
             time.sleep(1170)
         else:
-            mist_off(channel)
+            mist_on(channel)
             time.sleep(1)
 
 except KeyboardInterrupt:
