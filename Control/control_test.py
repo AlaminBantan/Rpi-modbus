@@ -7,11 +7,11 @@ channel = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.OUT)
 
-def relay1_on(pin):
-    GPIO.output(pin, GPIO.HIGH)  # Turn relay1 on
+def mist_off(pin):
+    GPIO.output(pin, GPIO.HIGH)  # Turn mist on
 
-def relay1_off(pin):
-    GPIO.output(pin, GPIO.LOW)  # Turn relay1 off
+def mist_on(pin):
+    GPIO.output(pin, GPIO.LOW)  # Turn mist off
 
 try:
     while True:
@@ -19,13 +19,13 @@ try:
         current_hour = current_time.tm_hour
         current_minute = current_time.tm_min
 
-        if (current_hour == 11 and current_minute >= 30) and (current_hour < 18 and current_minute >= 00):
-            relay1_off(channel)
+        if (current_hour == 6 and current_minute >= 20) and (current_hour < 18 and current_minute >= 00):
+            mist_on(channel)
             time.sleep(30)
-            relay1_on(channel)
+            mist_off(channel)
             time.sleep(1170)
         else:
-            relay1_on(channel)
+            mist_off(channel)
             time.sleep(1)
 
 except KeyboardInterrupt:
