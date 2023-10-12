@@ -20,7 +20,7 @@ if __name__ == '__main__':
             current_hour = current_time.tm_hour
             current_minute = current_time.tm_min
 
-            if current_hour >= 6 and current_hour < 10:
+            if current_hour >= 6 and current_hour < 18:
                 if current_minute < 30:
                     relay1_off(channel)
                     time.sleep(30)
