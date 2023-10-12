@@ -19,14 +19,14 @@ try:
         current_hour = current_time.tm_hour
         current_minute = current_time.tm_min
 
-        if (current_hour == 11 and current_minute > 4) and (current_hour < 18 and current_minute >= 00):
+        if (current_hour == 11 and current_minute >= 30) and (current_hour < 18 and current_minute >= 00):
             relay1_off(channel)
             time.sleep(30)
             relay1_on(channel)
             time.sleep(1170)
         else:
             relay1_on(channel)
-            time.sleep(1170)
+            time.sleep(1)
 
 except KeyboardInterrupt:
     GPIO.cleanup()
