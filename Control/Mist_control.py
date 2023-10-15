@@ -7,26 +7,25 @@ channel = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.OUT)
 
-def fan1_on(pin):
-    GPIO.output(pin, GPIO.HIGH)  
+def mist_on(pin):
+    GPIO.output(pin, GPIO.HIGH)  # Turn mist on
 
-def fan1_off(pin):
-    GPIO.output(pin, GPIO.LOW)  
+def mist_off(pin):
+    GPIO.output(pin, GPIO.LOW)  # Turn mist off
 
 try:
     while True:
         current_time = time.localtime(time.time())
         current_hour = current_time.tm_hour
         current_minute = current_time.tm_min
-        current_second = current_time.tm_sec
 
-        if (current_hour == 6 and current_minute >= 00 and current_second >= 45) and (current_hour < 18 and current_minute >= 00):
-            fan1_on(channel)
+        if (current_hour == 6 and current_minute >= 20) and (current_hour < 18 and current_minute >= 00):
+            mist_off(channel)
             time.sleep(30)
-            fan1_off(channel)
+            mist_on(channel)
             time.sleep(1170)
         else:
-            fan1_off(channel)
+            mist_on(channel)
             time.sleep(1)
 
 except KeyboardInterrupt:
