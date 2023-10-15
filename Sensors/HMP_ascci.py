@@ -9,17 +9,7 @@ Thum_240.serial.bytesize = 7
 Thum_240.serial.stopbits = 1
 Thum_240.mode = minimalmodbus.MODE_ASCII		
 
-try:
-	while True:
-
-		SMODE RUN
+SMODE RUN
 		
-
-	
-except KeyboardInterrupt:
-	
-	# Piece of mind close out
-	Thum_240.serial.close()
-	print("Ports Now Closed")
 
 
