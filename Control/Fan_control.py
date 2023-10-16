@@ -1,33 +1,44 @@
 import RPi.GPIO as GPIO
-import time
+from datetime import datetime, time
+import time as t
 
 channel = 2
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)  # Suppress GPIO warnings
 GPIO.setup(channel, GPIO.OUT)
 
-def fan1_on(pin):
+def mist_off(pin):
     GPIO.output(pin, GPIO.HIGH)  
 
-def fan1_off(pin):
+def mist_on(pin):
     GPIO.output(pin, GPIO.LOW)  
 
 try:
     while True:
-        current_time = time.localtime(time.time())
-        current_hour = current_time.tm_hour
-        current_minute = current_time.tm_min
-        current_second = current_time.tm_sec
+      
+        # Get the current time
+        current_time = datetime.now().time()
 
-        if (current_hour == 6 and current_minute >= 00 and current_second >= 45) and (current_hour < 18):
-            fan1_on(channel)
-            time.sleep(1140)
-            fan1_off(channel)
-            time.sleep(60)
+        # Define the start and end times
+        start_time = time(6, 20, 45)
+        end_time = time(18, 0)
+
+        # Check if the current time is between 6:20 AM and 6:00 PM
+        if start_time <= current_time <= end_time:
+            print("The current time is between 6:00 AM and 6:00 PM.")
+            print("fan is on")
+            mist_on(channel)
+            t.sleep(1140)
+            print("turnoff")
+            mist_off(channel)
+            t.sleep(60)
         else:
-            fan1_off(channel)
-            time.sleep(1)
+            print("its night time, go and rest")
+            mist_off(channel)
+            t.sleep(1)
+
 
 except KeyboardInterrupt:
     GPIO.cleanup()
