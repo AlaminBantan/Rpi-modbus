@@ -9,10 +9,10 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)  # Suppress GPIO warnings
 GPIO.setup(channel, GPIO.OUT)
 
-def mist_on(pin):
+def mist_off(pin):
     GPIO.output(pin, GPIO.HIGH)  
 
-def mist_off(pin):
+def mist_on(pin):
     GPIO.output(pin, GPIO.LOW)  
 
 try:
