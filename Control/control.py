@@ -19,7 +19,7 @@ try:
         current_minute = current_time.tm_min
         current_second = current_time.tm_sec
 
-        if (current_hour == 6 and current_minute >= 00 and current_second >= 45) and (current_hour < 18 and current_minute >= 00):
+        if (current_hour == 6 and current_minute >= 00 and current_second >= 45) and (current_hour < 18):
             relay1_off(channel)
             time.sleep(10)
             relay1_on(channel)
