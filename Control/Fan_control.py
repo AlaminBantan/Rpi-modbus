@@ -9,10 +9,10 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)  # Suppress GPIO warnings
 GPIO.setup(channel, GPIO.OUT)
 
-def mist_off(pin):
+def fan_off(pin):
     GPIO.output(pin, GPIO.HIGH)  
 
-def mist_on(pin):
+def fan_on(pin):
     GPIO.output(pin, GPIO.LOW)  
 
 try:
@@ -29,14 +29,14 @@ try:
         if start_time <= current_time <= end_time:
             print("The current time is between 6:00 AM and 6:00 PM.")
             print("fan is on")
-            mist_on(channel)
+            fan_on(channel)
             t.sleep(1140)
             print("turnoff")
-            mist_off(channel)
+            fan_off(channel)
             t.sleep(60)
         else:
             print("its night time, go and rest")
-            mist_off(channel)
+            fan_off(channel)
             t.sleep(1)
 
 
