@@ -14,7 +14,7 @@ THUM_240 = serial.Serial("/dev/ttyACM0",
 THUM_240 = io.TextIOWrapper(io.BufferedRWPair(THUM_240, THUM_240))
 try:
     while True:
-        THUM_240.write("r")
+        THUM_240.write("\r")
         data=THUM_240.readline()
         print(f"{data}")
 
