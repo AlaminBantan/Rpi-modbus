@@ -24,7 +24,7 @@ try:
             time.sleep(10)
             relay1_on(channel)
             time.sleep(10)
-        else
+        else:
             relay1_on(channel)
             time.sleep(1)           
 except KeyboardInterrupt:
