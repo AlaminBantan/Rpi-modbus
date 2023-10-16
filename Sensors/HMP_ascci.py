@@ -15,9 +15,8 @@ THUM_240 = io.TextIOWrapper(io.BufferedRWPair(THUM_240, THUM_240))
 try:
     while True:
         data ="r"
-        THUM_240.write(data)
-        data_2 = THUM_240.readline()
-        print(f'{data_2}')
+        THUM_240.read(data)
+
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Ports Now Closed")
