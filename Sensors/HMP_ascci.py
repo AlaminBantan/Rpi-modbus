@@ -16,6 +16,7 @@ try:
     while True:
         THUM_240.write("R")
         data=THUM_240.readline()
+        
         print(f"{data}")
 
 except KeyboardInterrupt:

@@ -16,16 +16,20 @@ def mist_off(pin):
 try:
     while True:
        current_time = time.localtime(time.time())
+       print(current_time)
        current_hour = current_time.tm_hour
        current_minute = current_time.tm_min
        current_second = current_time.tm_sec
 
        if (current_hour == 6 and current_minute >= 00 and current_second >= 45) and (current_hour == 6 and current_minute < 19):
+            print("working")
             mist_on(channel)
             time.sleep(30)
+            print("turnoff")
             mist_off(channel)
             time.sleep(1170)
        else:
+            print("its night time to go and rest")
             mist_off(channel)
             time.sleep(1)
 
