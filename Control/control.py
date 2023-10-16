@@ -15,18 +15,9 @@ def relay1_off(pin):
 
 try:
     while True:
-        current_time = time.localtime(time.time())
-        current_hour = current_time.tm_hour
-        current_minute = current_time.tm_min
-
-        if (current_hour == 10 and current_minute >= 42) and (current_hour < 18 and current_minute >= 00):
             relay1_off(channel)
-            time.sleep(30)
+            time.sleep(10)
             relay1_on(channel)
-            time.sleep(1170)
-        else:
-            relay1_on(channel)
-            time.sleep(1170)
-
+            time.sleep(10)
 except KeyboardInterrupt:
     GPIO.cleanup()
