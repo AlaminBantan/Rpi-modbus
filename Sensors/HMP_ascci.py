@@ -12,3 +12,11 @@ THUM_240 = serial.Serial("/dev/ttyACM0",
                    xonxoff=False,
                    timeout=1)
 THUM_240 = io.TextIOWrapper(io.BufferedRWPair(THUM_240, THUM_240))
+try:
+    while True:
+        data ="r"
+        THUM_240.write(data)
+        data_2 = THUM_240.readline()
+except KeyboardInterrupt:
+    # Clean up when interrupted
+    print("Ports Now Closed")
