@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import time
+from datetime import datetime, time
 
 channel = 2
 
@@ -15,20 +15,23 @@ def mist_off(pin):
 
 try:
     while True:
-       current_time = time.localtime(time.time())
-       print(current_time)
-       current_hour = current_time.tm_hour
-       current_minute = current_time.tm_min
-       current_second = current_time.tm_sec
+      
+        # Get the current time
+        current_time = datetime.now().time()
 
-       if (current_hour == 6 and current_minute >= 00 and current_second >= 45) and (current_hour == 6 and current_minute < 19):
-            print("working")
+        # Define the start and end times
+        start_time = time(6, 20)
+        end_time = time(18, 0)
+
+        # Check if the current time is between 6:20 AM and 6:00 PM
+        if start_time <= current_time <= end_time:
+            print("The current time is between 6:20 AM and 6:00 PM.")
             mist_on(channel)
             time.sleep(30)
             print("turnoff")
             mist_off(channel)
             time.sleep(1170)
-       else:
+        else:
             print("its night time to go and rest")
             mist_off(channel)
             time.sleep(1)
