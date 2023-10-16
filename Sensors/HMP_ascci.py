@@ -1,15 +1,14 @@
-import minimalmodbus 
-from time import sleep
+import serial
+import time
+import io
+import csv
+from datetime import datetime
 
-
-Thum_240 = minimalmodbus.Instrument('/dev/ttyACM0', 240, debug=True)
-Thum_240.serial.baudrate = 4800
-Thum_240.serial.parity = minimalmodbus.serial.PARITY_EVEN
-Thum_240.serial.bytesize = 7
-Thum_240.serial.stopbits = 1
-Thum_240.mode = minimalmodbus.MODE_ASCII		
-
-SMODE RUN
-		
-
-
+THUM_240 = serial.Serial("/dev/ttyACM0",
+                   baudrate=4800,
+                   bytesize=serial.SEVENBITS,
+                   parity=serial.PARITY_EVEN,
+                   stopbits=serial.STOPBITS_ONE,
+                   xonxoff=False,
+                   timeout=1)
+THUM_240 = io.TextIOWrapper(io.BufferedRWPair(THUM_240, THUM_240))
