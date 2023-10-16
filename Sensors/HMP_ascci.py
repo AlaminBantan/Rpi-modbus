@@ -17,6 +17,7 @@ try:
         data ="r"
         THUM_240.write(data)
         data_2 = THUM_240.readline()
+        print(f'{data_2}')
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Ports Now Closed")
