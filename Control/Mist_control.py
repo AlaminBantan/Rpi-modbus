@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from datetime import datetime, time
+import time
 
 channel = 2
 
