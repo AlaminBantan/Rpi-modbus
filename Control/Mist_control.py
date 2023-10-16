@@ -21,8 +21,8 @@ try:
         current_time = datetime.now().time()
 
         # Define the start and end times
-        start_time = time(6, 20)
-        end_time = time(18, 0)
+        start_time = datetime.time(6, 20)
+        end_time = datetime.time(18, 0)
 
         # Check if the current time is between 6:20 AM and 6:00 PM
         if start_time <= current_time <= end_time:
