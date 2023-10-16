@@ -12,9 +12,14 @@ def relay1_on(pin):
 
 def relay1_off(pin):
     GPIO.output(pin, GPIO.LOW)  # Turn relay1 off
-
 try:
     while True:
+        current_time = time.localtime(time.time())
+        current_hour = current_time.tm_hour
+        current_minute = current_time.tm_min
+        current_second = current_time.tm_sec
+
+        if (current_hour == 6 and current_minute >= 00 and current_second >= 45) and (current_hour < 18 and current_minute >= 00):
             relay1_off(channel)
             time.sleep(10)
             relay1_on(channel)
