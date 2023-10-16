@@ -28,6 +28,7 @@ try:
         # Check if the current time is between 6:20 AM and 6:00 PM
         if start_time <= current_time <= end_time:
             print("The current time is between 6:20 AM and 6:00 PM.")
+            print("mist is on")
             mist_on(channel)
             t.sleep(30)
             print("turnoff")
