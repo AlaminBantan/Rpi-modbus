@@ -22,6 +22,10 @@ try:
         humidity = float(parts[2])  # Extract humidity value
         temperature = float(parts[5])  # Extract temperature value
 
+        # Remove units from humidity and temperature values
+        humidity = humidity[:-3]
+        temperature = temperature[:-2]
+
         print(f"The humidity is {humidity} and the temperature is {temperature} °C")
 
 except KeyboardInterrupt:
