@@ -21,12 +21,12 @@ try:
         parts = data.split()
         
         # Extract humidity and temperature strings
-        humidity_str = parts[2]
-        temperature_str = parts[5]
+        humidity_str = parts[1]
+        temperature_str = parts[3]
 
-        # Remove units
-        humidity = float(humidity_str[:-3])
-        temperature = float(temperature_str[:-2])
+        # Remove units and convert to float
+        humidity = float(humidity_str[3:])
+        temperature = float(temperature_str[3:])
 
         print(f"The humidity is {humidity} and the temperature is {temperature} °C")
 
