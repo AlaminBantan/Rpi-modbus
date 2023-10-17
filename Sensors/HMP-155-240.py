@@ -19,12 +19,14 @@ try:
         
         # Assuming the response format is "RH= 54.4 %RH Ta= 26.8 'C"
         parts = data.split()
-        humidity = float(parts[2])  # Extract humidity value
-        temperature = float(parts[5])  # Extract temperature value
+        
+        # Extract humidity and temperature strings
+        humidity_str = parts[2]
+        temperature_str = parts[5]
 
-        # Remove units from humidity and temperature values
-        humidity = humidity[:-3]
-        temperature = temperature[:-2]
+        # Remove units
+        humidity = float(humidity_str[:-3])
+        temperature = float(temperature_str[:-2])
 
         print(f"The humidity is {humidity} and the temperature is {temperature} °C")
 
