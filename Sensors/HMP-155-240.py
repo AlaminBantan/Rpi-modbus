@@ -20,15 +20,15 @@ try:
         # Assuming the response format is "RH= 54.4 %RH Ta= 26.8 'C"
         parts = data.split()
         
-        # Extract humidity and temperature strings
-        humidity_str = parts[1]
-        temperature_str = parts[3]
+        # Check if the response format is correct
+        if len(parts) >= 6 and parts[0] == 'RH=' and parts[2] == '%RH' and parts[3] == 'Ta=' and parts[5] == "'C":
+            # Extract humidity and temperature values
+            humidity = float(parts[1])
+            temperature = float(parts[4])
 
-        # Remove units and convert to float
-        humidity = float(humidity_str[3:])
-        temperature = float(temperature_str[3:])
-
-        print(f"The humidity is {humidity} and the temperature is {temperature} °C")
+            print(f"The humidity is {humidity} and the temperature is {temperature} °C")
+        else:
+            print("Invalid response format")
 
 except KeyboardInterrupt:
     # Clean up when interrupted
