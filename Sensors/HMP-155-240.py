@@ -29,7 +29,7 @@ try:
         # Get current date and time
         current_datetime = datetime.now()
         date = current_datetime.strftime('%Y-%m-%d')
-        time = current_datetime.strftime('%H:%M:%S')
+        current_time = current_datetime.strftime('%H:%M:%S')  # Renamed variable to avoid conflict
 
         # Check if the response format is correct
         if len(parts) >= 6 and parts[0] == 'RH=' and parts[2] == '%RH' and parts[3] == 'Ta=' and parts[5] == "'C":
@@ -38,11 +38,11 @@ try:
             temperature = float(parts[4])
 
             # Log data to CSV
-            csv_writer.writerow([date, time, humidity, temperature])
+            csv_writer.writerow([date, current_time, humidity, temperature])
 
         else:
             # Log invalid response to CSV
-            print(f"Invalid response format at {date} {time}")
+            print(f"Invalid response format at {date} {current_time}")
 
         # Wait for 60 seconds (1 minute)
         time.sleep(60)
