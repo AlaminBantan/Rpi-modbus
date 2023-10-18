@@ -6,7 +6,6 @@ channel = 2 #change channel based on relay
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)  # Suppress GPIO warnings
 GPIO.setup(channel, GPIO.OUT)
 
 def pump_off(pin):

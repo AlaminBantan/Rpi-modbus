@@ -11,15 +11,17 @@ GPIO.setup(channel, GPIO.OUT)
 def motor_on(pin):
     GPIO.output(pin, GPIO.HIGH)  # Turn motor on
 
-
 def motor_off(pin):
     GPIO.output(pin, GPIO.LOW)  # Turn motor off
 
+print(f"GPIO identified, channel{channel}")
 
 if __name__ == '__main__':
     try:
+        print("motor on")
         motor_on(channel)
         time.sleep(5)
+        print("motor off")
         motor_off(channel)
         time.sleep(5)
         GPIO.cleanup()
