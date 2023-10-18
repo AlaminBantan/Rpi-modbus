@@ -44,7 +44,7 @@ try:
             mist_off(channel)
             t.sleep(1770)            
         else:
-            print("Its night time to go and rest")
+            print("Its night time go and rest")
             mist_off(channel)
             t.sleep(1)
 
