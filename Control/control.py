@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-channel = 26
+channel = 21
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
