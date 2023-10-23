@@ -2,12 +2,12 @@ import RPi.GPIO as GPIO
 from datetime import datetime, time
 import time as t
 
-channel = 2 #change channel based on relay
+channel_16 = 16 #change channel_16 based on relay
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)  # Suppress GPIO warnings
-GPIO.setup(channel, GPIO.OUT)
+GPIO.setup(channel_16, GPIO.OUT)
 
 def shade_ret_off(pin):
     GPIO.output(pin, GPIO.HIGH)  
@@ -29,11 +29,11 @@ try:
         if start_time_shade_ret <= current_time <= end_time_shade_ret:
             print("The current time is 1:30, shades will be retracted now")
             print("shade is retracting now")
-            shade_ret_on(channel)
+            shade_ret_on(channel_16)
             t.sleep(180)
         else:
             print("no change to shading now")
-            shade_ret_off(channel)
+            shade_ret_off(channel_16)
             t.sleep(1)
 
 

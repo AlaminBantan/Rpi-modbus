@@ -2,17 +2,17 @@ import RPi.GPIO as GPIO
 from datetime import datetime, time
 import time as t
 
-channel = 2 #change channel based on relay
+channel_21 = 21 #change channel_21 based on relay
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)  # Suppress GPIO warnings
-GPIO.setup(channel, GPIO.OUT)
+GPIO.setup(channel_21, GPIO.OUT)
 
-def fan_off(pin):
+def fan1_off(pin):
     GPIO.output(pin, GPIO.HIGH)  
 
-def fan_on(pin):
+def fan1_on(pin):
     GPIO.output(pin, GPIO.LOW)  
 
 try:
@@ -29,24 +29,24 @@ try:
         # Check if the current time is between 6:00:45 AM and 6:00 PM
         if start_time_f1 <= current_time <= morning_time_f1:
             print("The current time is between 6:00 AM and 10:00 PM.")
-            print("fan is on")
-            fan_on(channel)
+            print("fan1 is on")
+            fan1_on(channel_21)
             t.sleep(1140)
-            print("fan is off")
-            fan_off(channel)
+            print("fan1 is off")
+            fan1_off(channel_21)
             t.sleep(60)
         elif morning_time_f1 <= current_time <= end_time_f1:
             print("The current time is between 10:00 AM and 6:00 PM.")
-            print("fan is off")
-            fan_off(channel)
+            print("fan1 is off")
+            fan1_off(channel_21)
             t.sleep(60)
-            print("fan is on")
-            fan_on(channel)
+            print("fan1 is on")
+            fan1_on(channel_21)
             t.sleep(1740)
 
         else:
             print("its night time, go and rest")
-            fan_off(channel)
+            fan1_off(channel_21)
             t.sleep(1)
 
 

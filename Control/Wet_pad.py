@@ -2,11 +2,11 @@ import RPi.GPIO as GPIO
 from datetime import datetime, time
 import time as t
 
-channel = 2 #change channel based on relay
+channel_13 = 13 #change channel_13 based on relay
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.OUT)
+GPIO.setup(channel_13, GPIO.OUT)
 
 def pump_off(pin):
     GPIO.output(pin, GPIO.HIGH)  
@@ -28,11 +28,11 @@ try:
         if start_time_pump <= current_time <= end_time_pump:
             print("The current time is between 6 AM and 6 PM")
             print("Fan in zone C is on now")
-            pump_on(channel)
+            pump_on(channel_13)
             t.sleep(180)
         else:
             print("no change to shading now")
-            pump_off(channel)
+            pump_off(channel_13)
             t.sleep(1)
 
 

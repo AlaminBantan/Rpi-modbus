@@ -2,12 +2,12 @@ import RPi.GPIO as GPIO
 from datetime import datetime, time
 import time as t
 
-channel = 2 #change channel based on relay
+channel_26 = 26 #change channel_26 based on relay
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)  # Suppress GPIO warnings
-GPIO.setup(channel, GPIO.OUT)
+GPIO.setup(channel_26, GPIO.OUT)
 
 def mist_off(pin):
     GPIO.output(pin, GPIO.HIGH)  
@@ -30,22 +30,22 @@ try:
         if start_time_m <= current_time <= morning_time_m:
             print("The current time is between 6:20 AM and 10:00 AM.")
             print("mist is on")
-            mist_on(channel)
+            mist_on(channel_26)
             t.sleep(30)
             print("turnoff")
-            mist_off(channel)
+            mist_off(channel_26)
             t.sleep(1170)
         elif morning_time_m <= current_time <= end_time_m:
             print("The current time is between 10:00 AM and 6:00 PM.")
             print("mist is on")
-            mist_on(channel)
+            mist_on(channel_26)
             t.sleep(30)
             print("turnoff")
-            mist_off(channel)
+            mist_off(channel_26)
             t.sleep(1770)            
         else:
             print("Its night time go and rest")
-            mist_off(channel)
+            mist_off(channel_26)
             t.sleep(1)
 
 
