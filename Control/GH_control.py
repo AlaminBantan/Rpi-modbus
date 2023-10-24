@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from datetime import datetime, time
+import threading
 import time as t
 
 # Define GPIO channels
@@ -57,11 +58,11 @@ def shade_ret_off(pin):
 def shade_ret_on(pin):
     GPIO.output(pin, GPIO.LOW)
 
-try:
+# Define functions to control devices in threads
+def mist_thread():
     while True:
         current_time = datetime.now().time()
 
-        # Mist
         if (time(8, 0) <= current_time <= time(16, 0)):
             mist_on(channel_mist)
             t.sleep(8)
@@ -70,7 +71,10 @@ try:
         else:
             mist_off(channel_mist)
 
-        # Fan 1
+def fan1_thread():
+    while True:
+        current_time = datetime.now().time()
+
         if (time(6, 0) <= current_time <= time(7, 59, 49)) or ((time(16, 0) <= current_time <= time(18,0))):
             fan1_on(channel_fan1)
         elif (time(7,59,50) <= current_time <= time(16,0)):
@@ -81,7 +85,10 @@ try:
         else:
             fan1_off(channel_fan1)
 
-        # Fan 2
+def fan2_thread():
+    while True:
+        current_time = datetime.now().time()
+
         if (time(6, 0) <= current_time <= time(7, 59, 49)) or ((time(16, 0) <= current_time <= time(18,0))):
             fan2_on(channel_fan2)
         elif (time(7,59,55) <= current_time <= time(16,0)):
@@ -90,26 +97,47 @@ try:
             fan2_on(channel_fan2)
             t.sleep(1410)
         else:
-            fan1_off(channel_fan1)
+            fan2_off(channel_fan2)
 
-        # Wet pad pump
+def pump_thread():
+    while True:
+        current_time = datetime.now().time()
+
         if time(6, 0) <= current_time <= time(18, 0):
             pump_on(channel_pump)
         else:
             pump_off(channel_pump)
 
-        # Shade Extends
+def shade_ex_thread():
+    while True:
+        current_time = datetime.now().time()
+
         if time(10, 30) <= current_time <= time(10, 33):
             shade_ex_on(channel_shade_ex)
         else:
             shade_ex_off(channel_shade_ex)
 
-        # Shade Retract
+def shade_ret_thread():
+    while True:
+        current_time = datetime.now().time()
+
         if time(1, 30) <= current_time <= time(1, 33):
             shade_ret_on(channel_shade_ret)
         else:
             shade_ret_off(channel_shade_ret)
 
+try:
+    # Start threads for each device
+    threading.Thread(target=mist_thread).start()
+    threading.Thread(target=fan1_thread).start()
+    threading.Thread(target=fan2_thread).start()
+    threading.Thread(target=pump_thread).start()
+    threading.Thread(target=shade_ex_thread).start()
+    threading.Thread(target=shade_ret_thread).start()
+
+    # Keep the main thread running
+    while True:
+        pass
+
 except KeyboardInterrupt:
     GPIO.cleanup()
-
