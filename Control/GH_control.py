@@ -13,6 +13,12 @@ channel_shade_ret = 16
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
+GPIO.setup(channel_mist, GPIO.OUT)
+GPIO.setup(channel_fan1, GPIO.OUT)
+GPIO.setup(channel_fan2, GPIO.OUT)
+GPIO.setup(channel_pump, GPIO.OUT)
+GPIO.setup(channel_shade_ex, GPIO.OUT)
+GPIO.setup(channel_shade_ret, GPIO.OUT)
 
 # Define functions for each device
 def mist_off(pin):
