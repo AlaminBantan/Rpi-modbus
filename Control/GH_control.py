@@ -64,8 +64,10 @@ def mist_thread():
         current_time = datetime.now().time()
 
         if (time(8, 0) <= current_time <= time(16, 0)):
+            print("mist is on")
             mist_on(channel_mist)
             t.sleep(8)
+            print("mist is off")
             mist_off(channel_mist)
             t.sleep(1432)
         else:
@@ -78,8 +80,11 @@ def fan1_thread():
         if (time(6, 0) <= current_time <= time(7, 59, 49)) or ((time(16, 0) <= current_time <= time(18,0))):
             fan1_on(channel_fan1)
         elif (time(7,59,50) <= current_time <= time(16,0)):
+            print("The current time is between 8:00 AM and 16:00 AM.")
+            print("mist is on, fan 1 is off")
             fan1_off(channel_fan1)
             t.sleep(30)
+            print("mist is off, fan 1 is on")
             fan1_on(channel_fan1)
             t.sleep(1410)
         else:
@@ -92,8 +97,10 @@ def fan2_thread():
         if (time(6, 0) <= current_time <= time(7, 59, 49)) or ((time(16, 0) <= current_time <= time(18,0))):
             fan2_on(channel_fan2)
         elif (time(7,59,55) <= current_time <= time(16,0)):
+            print("mist is on, fan 2 is off")
             fan2_off(channel_fan2)
             t.sleep(30)
+            print("mist is off, fan 2 is on")
             fan2_on(channel_fan2)
             t.sleep(1410)
         else:
