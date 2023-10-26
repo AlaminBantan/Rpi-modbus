@@ -92,8 +92,10 @@ def fan1_thread():
 
         if fan1_time:
             fan1_on(channel_fan1)
+            t.sleep(1)
         else:
             fan1_off(channel_fan1)
+            t.sleep(5)
 
 
 def fan2_thread():
