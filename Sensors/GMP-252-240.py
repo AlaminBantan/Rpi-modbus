@@ -1,5 +1,5 @@
 import minimalmodbus # Don't forget to import the library!!
-from time import sleep
+
 
 
 
@@ -22,23 +22,15 @@ try:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
 		carbon_conc = carbo_240.read_float(1, 3, 2, 0)
-		slave_2 = carbo_240.read_float(769,3,2,0)
-		Baud_2 = carbo_240.read_float(770,3,2,0)
-		Parity_2 = carbo_240.read_float(771,3,2,0)
-		
 	
 		
 		print("\n"*50)
 		print("Sensor Data--------------------------------")
 		print(f"CO2 concentration is: {carbon_conc} ppm")
-		print(f"slaveid={slave_2}, Baud={Baud_2}, Parit={Parity_2}, Stopbit={Stopbit_2}")
-
 		print("------------------------------------------")
-		
 		print("")
 		print("")
 		print("")
-		sleep(1)
 	
 except KeyboardInterrupt:
 	
