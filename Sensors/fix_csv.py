@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Assuming 'C:\\Users\\bantanam\\Downloads\\Light_comparison.csv' is the file containing your data
-df = pd.read_csv('C:\\Users\\bantanam\\Downloads\\Light_comparison.csv')
+df = pd.read_csv('C:\\Users\\bantanam\\Downloads\\Light_comparison11.csv')
 
 # Convert 'Date' and 'Time' columns to datetime format
 df['Date'] = pd.to_datetime(df['Date'])
@@ -34,4 +34,4 @@ df_minute = df.groupby(['Date', 'Time']).agg({
 }).reset_index()
 
 # Save the consolidated data as a CSV file
-df_minute.to_csv('C:\\Users\\bantanam\\Downloads\\updated_Light_comparison.csv', index=False)
+df_minute.to_csv('C:\\Users\\bantanam\\Downloads\\Light_comparison_28_September.csv', index=False)
