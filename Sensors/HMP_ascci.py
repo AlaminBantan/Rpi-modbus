@@ -5,8 +5,8 @@ import csv
 from datetime import datetime
 
 THUM_240 = serial.Serial("/dev/ttyACM0",
-                   baudrate=4800,
-                   bytesize=serial.SEVENBITS,
+                   baudrate=19200,
+                   bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_EVEN,
                    stopbits=serial.STOPBITS_ONE,
                    xonxoff=False,
@@ -15,6 +15,7 @@ THUM_240 = io.TextIOWrapper(io.BufferedRWPair(THUM_240, THUM_240))
 try:
     while True:
         THUM_240.write("OPEN 33")
+        time.sleep(1)
         THUM_240.write("SEND 33")
         data=THUM_240.readline()
         
