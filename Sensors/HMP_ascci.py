@@ -5,8 +5,8 @@ import csv
 from datetime import datetime
 
 THUM_240 = serial.Serial("/dev/ttyACM0",
-                   baudrate=4800,
-                   bytesize=serial.SEVENBITS,
+                   baudrate=19200,
+                   bytesize=serial.EIGHTBITSBITS,
                    parity=serial.PARITY_EVEN,
                    stopbits=serial.STOPBITS_ONE,
                    xonxoff=False,
