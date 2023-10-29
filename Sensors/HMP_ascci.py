@@ -6,7 +6,7 @@ from datetime import datetime
 
 THUM_240 = serial.Serial("/dev/ttyACM0",
                    baudrate=19200,
-                   bytesize=serial.EIGHTBITSBITS,
+                   bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_EVEN,
                    stopbits=serial.STOPBITS_ONE,
                    xonxoff=False,
