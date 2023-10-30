@@ -28,11 +28,11 @@ try:
         if start_time_pump <= current_time <= end_time_pump:
             print("The current time is between 6 AM and 6 PM")
             print("Fan in zone C is on now")
-            pump_on(channel_13)
+            pump_off(channel_13)
             t.sleep(180)
         else:
             print("no change to shading now")
-            pump_off(channel_13)
+            pump_on(channel_13)
             t.sleep(1)
 
 
