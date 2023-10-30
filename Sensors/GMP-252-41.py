@@ -4,7 +4,7 @@ from time import sleep
 
 
 # Make an "instrument" object called carbo_240 (port name, slave address (in decimal))
-carbo_240 = minimalmodbus.Instrument('/dev/ttyACM0', 41, debug=True)	
+carbo_240 = minimalmodbus.Instrument('/dev/ttyACM0', 41, debug=False)	
 
 carbo_240.serial.baudrate = 19200 				# BaudRate
 carbo_240.serial.bytesize = 8					# Number of data bits to be requested
