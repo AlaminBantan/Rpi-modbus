@@ -19,7 +19,7 @@ try:
             print("GPIO is low")
             pump_on(channel_16)
             t.sleep(5)
-            print("GPIO is low")
+            print("GPIO is high")
             pump_off(channel_16)
             t.sleep(5)
 except KeyboardInterrupt:
