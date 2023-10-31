@@ -13,20 +13,20 @@ GPIO.setup(channel_16, GPIO.OUT)
 GPIO.setup(channel_14, GPIO.OUT)
 GPIO.setup(channel_15, GPIO.OUT)
 
-def pump_off(pin):
+def motor_off(pin):
     GPIO.output(pin, GPIO.HIGH)
 
-def pump_on(pin):
+def motor_on(pin):
     GPIO.output(pin, GPIO.LOW)
 
 def motor_thread(pin, name):
     try:
         while True:
             print(f"Motor {name} is low")
-            pump_on(pin)
+            motor_on(pin)
             t.sleep(5)
             print(f"Motor {name} is high")
-            pump_off(pin)
+            motor_off(pin)
             t.sleep(5)
     except KeyboardInterrupt:
         GPIO.cleanup()
