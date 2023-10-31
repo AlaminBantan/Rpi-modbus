@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from datetime import datetime, time
 import time as t
 
-channel_13 = 13 #change channel_13 based on relay
+channel_13 = 21 #change channel_13 based on relay
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
