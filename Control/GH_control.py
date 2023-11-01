@@ -4,12 +4,12 @@ import threading
 import time as t
 
 # Define GPIO channels
-channel_fan1 = 21 #connect the set 1 of fans from zone B and C to relay1 (147,179)
-channel_fan2 = 26 #connect the set 2 of fans from zone B and C to relay2 (148,180)
-channel_mist = 20 #connect the misting pump to relay 3 (221)
-channel_shade_ret = 19 #connect the shade retraction motor from zones B and C to relay 4 (125,158)
-channel_shade_ex = 16 #connect the shade extension motor from zones B and C to relay 5 (126,159)
-channel_pump = 13 #connect the wet pad pump from zones B and C to relay 6 (129,152)
+channel_fan1 = 25 #connect the set 1 of fans from zone B and C to relay1 (147,179)
+channel_fan2 = 24 #connect the set 2 of fans from zone B and C to relay2 (148,180)
+channel_mist = 23 #connect the misting pump to relay 3 (221)
+channel_shade_ret = 18 #connect the shade retraction motor from zones B and C to relay 4 (125,158)
+channel_shade_ex = 15 #connect the shade extension motor from zones B and C to relay 5 (126,159)
+channel_pump = 14 #connect the wet pad pump from zones B and C to relay 6 (129,152)
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
@@ -202,8 +202,8 @@ try:
     threading.Thread(target=fan1_thread).start()
     threading.Thread(target=fan2_thread).start()
     threading.Thread(target=pump_thread).start()
-    threading.Thread(target=shade_ex_thread).start()
-    threading.Thread(target=shade_ret_thread).start()
+    # threading.Thread(target=shade_ex_thread).start()
+    # threading.Thread(target=shade_ret_thread).start()
 
     # Keep the main thread running
     while True:
