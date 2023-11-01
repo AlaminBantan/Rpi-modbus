@@ -165,7 +165,6 @@ def pump_thread():
             
             
 
-
 try:
     # Start threads for each device
     threading.Thread(target=fan1_thread).start()
@@ -173,6 +172,10 @@ try:
     threading.Thread(target=mist_thread).start()
     threading.Thread(target=pump_thread).start()
 
+
+    # Keep the main thread running
+    while True:
+        pass
 
 except KeyboardInterrupt:
     GPIO.cleanup()
