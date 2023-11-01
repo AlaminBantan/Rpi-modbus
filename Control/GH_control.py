@@ -166,7 +166,6 @@ def mist_thread():
             print("mist is on")
             mist_on(channel_mist)
         else:
-            print("mist is off.")
             mist_off(channel_mist)
 
 def pump_thread():
