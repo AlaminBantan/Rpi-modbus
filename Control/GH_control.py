@@ -48,17 +48,17 @@ def pump_on(pin):
     GPIO.output(pin, GPIO.LOW)
 
 #shade extension
-def shade_ex_off(pin):
-    GPIO.output(pin, GPIO.HIGH)
-def shade_ex_on(pin):
-    GPIO.output(pin, GPIO.LOW)
+#def shade_ex_off(pin):
+#    GPIO.output(pin, GPIO.HIGH)
+#def shade_ex_on(pin):
+#    GPIO.output(pin, GPIO.LOW)
 
 #shade retraction
-def shade_ret_off(pin):
-    GPIO.output(pin, GPIO.HIGH)
-def shade_ret_on(pin):
-    GPIO.output(pin, GPIO.LOW)
-
+#def shade_ret_off(pin):
+#    GPIO.output(pin, GPIO.HIGH)
+#def shade_ret_on(pin):
+#    GPIO.output(pin, GPIO.LOW)
+#
 # Define functions to control devices in threads
 def fan1_thread():
     while True:
@@ -177,24 +177,26 @@ def pump_thread():
             pump_on(channel_pump)
         else:
             pump_off(channel_pump)
+            
+            
+#def shade_ex_thread():
+#    while True:
+#        current_time = datetime.now().time()
+#
+#       if time(10, 30) <= current_time <= time(10, 33):
+#            shade_ex_on(channel_shade_ex)
+#        else:
+#            shade_ex_off(channel_shade_ex)
 
-def shade_ex_thread():
-    while True:
-        current_time = datetime.now().time()
+#def shade_ret_thread():
+#    while True:
+#        current_time = datetime.now().time()
+#
+#       if time(1, 30) <= current_time <= time(1, 33):
+#            shade_ret_on(channel_shade_ret)
+#        else:
+#            shade_ret_off(channel_shade_ret)
 
-        if time(10, 30) <= current_time <= time(10, 33):
-            shade_ex_on(channel_shade_ex)
-        else:
-            shade_ex_off(channel_shade_ex)
-
-def shade_ret_thread():
-    while True:
-        current_time = datetime.now().time()
-
-        if time(1, 30) <= current_time <= time(1, 33):
-            shade_ret_on(channel_shade_ret)
-        else:
-            shade_ret_off(channel_shade_ret)
 
 try:
     # Start threads for each device
