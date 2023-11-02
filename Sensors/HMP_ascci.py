@@ -12,12 +12,16 @@ THUM_240 = serial.Serial("/dev/ttyACM0",
 THUM_240 = io.TextIOWrapper(io.BufferedRWPair(THUM_240, THUM_240))
 try:
     while True:
-        THUM_240.write("Open 34")
-        sleep(3)
-        THUM_240.write("send 34")
+        open_34 = "open34"
+        THUM_240.write(open_34)
+        sleep(1)
+        send_34 = "send 34"
+        THUM_240.write(send_34)
+        sleep(1)
         data=THUM_240.readline()
         print(f"{data}")
-        THUM_240.write("close")
+        close_34 = "close"
+        THUM_240.write(close_34)
 
 except KeyboardInterrupt:
     # Clean up when interrupted
