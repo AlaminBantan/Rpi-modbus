@@ -14,12 +14,14 @@ try:
     while True:
         open_34 = "OPEN 34"
         THUM_240.write(open_34)
+        THUM_240.flush()
         sleep(2)
         send_34 = "SEND 34"
         THUM_240.write(send_34)
-        sleep(2)
         data=THUM_240.readline()
         print(f"{data}")
+        THUM_240.flush()
+        sleep(2)
         close_34 = "CLOSE"
         THUM_240.write(close_34)
 
