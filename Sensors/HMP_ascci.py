@@ -12,10 +12,10 @@ THUM_34 = serial.Serial("/dev/ttyACM0",
 HUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
 try:
     while True:
-        HUM_34.write(b"open 34\n")
+        HUM_34.write("open 34\n")
         HUM_34.flush()
         sleep(0.5)
-        HUM_34.write(b"send 34\n")
+        HUM_34.write("send 34\n")
         data=THUM_34.readline()
         #print(f"{data}")
         print(str(data))
