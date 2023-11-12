@@ -16,28 +16,31 @@ def initialize_sensor(port, sensor_number):
     try:
         while True:
             hum_sensor.write(f"open {sensor_number}")
-            print("open")
+            print(f"Sensor {sensor_number}: open")
             hum_sensor.flush()
             sleep(1)
             hum_sensor.write("send")
-            print("send")
+            print(f"Sensor {sensor_number}: send")
             hum_sensor.flush()
             sleep(1)
             data = hum_sensor.readline()
-            print(f"data is: {data}")
+            print(f"Sensor {sensor_number}: data is {data}")
             hum_sensor.flush()
             sleep(1)
             hum_sensor.write("close")
-            print("close")
+            print(f"Sensor {sensor_number}: close")
             sleep(2)
 
     except KeyboardInterrupt:
         # Clean up when interrupted
         print(f"Sensor {sensor_number} Port Closed")
 
+# List of sensor numbers in the desired order
+sensor_numbers = [31, 32, 33, 34]
 
-# Example usage for sensors 34, 33, 32, 31
-initialize_sensor("/dev/ttyACM0", 34)
-initialize_sensor("/dev/ttyACM0", 33)
-initialize_sensor("/dev/ttyACM0", 32)
-initialize_sensor("/dev/ttyACM0", 31)
+# Serial port for all sensors
+port = "/dev/ttyACM0"
+
+# Loop through the sensors
+for sensor_number in sensor_numbers:
+    initialize_sensor(port, sensor_number)
