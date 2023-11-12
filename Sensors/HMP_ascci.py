@@ -8,19 +8,20 @@ THUM_34 = serial.Serial("/dev/ttyACM0",
                    bytesize=serial.SEVENBITS,
                    parity=serial.PARITY_EVEN,
                    stopbits=serial.STOPBITS_ONE,
-                   xonxoff=False)
-HUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
+                   xonxoff=False,
+                   timeout=1)
+THUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
 try:
     while True:
-        HUM_34.write("open 34\n")
-        HUM_34.flush()
+        THUM_34.write("open 34\n")
+        THUM_34.flush()
         sleep(0.5)
-        HUM_34.write("send\n")
+        THUM_34.write("send\n")
         data=THUM_34.readline()
         print(f"{data}")
-        HUM_34.flush()
+        THUM_34.flush()
         sleep(0.5)
-        HUM_34.write("close\n")
+        THUM_34.write("close\n")
 
 except KeyboardInterrupt:
     # Clean up when interrupted
