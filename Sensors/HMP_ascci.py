@@ -23,12 +23,13 @@ try:
         print("send")
         HUM_34.flush()
         sleep(1)
-        data=HUM_34.readline()
+        data = HUM_34.readline()
         print(f"data is: {data}")
         HUM_34.flush()
         sleep(1)
         HUM_34.write("close")
         print("close")
+        sleep(2)
 
 except KeyboardInterrupt:
     # Clean up when interrupted
