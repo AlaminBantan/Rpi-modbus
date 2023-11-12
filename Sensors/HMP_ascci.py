@@ -23,7 +23,7 @@ try:
         print("send")
         HUM_34.flush()
         sleep(1)
-        data=HUM_34.readline().decode('utf-8')
+        data=HUM_34.readline()
         print(f"data is: {data}")
         HUM_34.flush()
         sleep(1)
