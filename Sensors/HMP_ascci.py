@@ -11,7 +11,7 @@ THUM_34 = serial.Serial("/dev/ttyACM0",
                    xonxoff=False,
                    timeout=2)
 
-HUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34), encoding='utf-8', newline='\r\n')
+HUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
 
 try:
     while True:
