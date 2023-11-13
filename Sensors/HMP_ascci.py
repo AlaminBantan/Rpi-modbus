@@ -15,10 +15,6 @@ HUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
 
 try:
     while True:
-        HUM_34.write("open 34")
-        print("open")
-        HUM_34.flush()
-        sleep(1)
         HUM_34.write("send")
         print("send")
         HUM_34.flush()
@@ -26,9 +22,6 @@ try:
         data = HUM_34.readline()
         print(f"data is: {data}")
         HUM_34.flush()
-        sleep(1)
-        HUM_34.write("close")
-        print("close")
         sleep(2)
 
 except KeyboardInterrupt:
