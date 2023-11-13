@@ -11,17 +11,17 @@ THUM_34 = serial.Serial("/dev/ttyACM0",
                    xonxoff=False,
                    timeout=2)
 
-HUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
+THUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
 
 try:
     while True:
-        HUM_34.write("send")
+        THUM_34.write("send")
         print("send")
-        HUM_34.flush()
+        THUM_34.flush()
         sleep(1)
-        data = HUM_34.readline()
-        print(f"data is: {data}")
-        HUM_34.flush()
+        data_34 = THUM_34.readline()
+        print(f"data is: {data_34}")
+        THUM_34.flush()
         sleep(2)
 
 except KeyboardInterrupt:
