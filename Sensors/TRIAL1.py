@@ -11,13 +11,13 @@ def read_device(serial_wrapper, device_number, csv_writer):
         serial_wrapper.write(f"OPEN {device_number}\r\n")
         serial_wrapper.flush()
         print(f"Device {device_number} is opened")
-        sleep(5)
+        sleep(3)
 
         # Send the data request
         serial_wrapper.write("SEND\r\n")
         serial_wrapper.flush()
         print("Send")
-        sleep(10)
+        sleep(3)
 
         # Read and print the data
         data = serial_wrapper.readlines()
@@ -48,7 +48,7 @@ def read_device(serial_wrapper, device_number, csv_writer):
         serial_wrapper.write("CLOSE\r\n")
         serial_wrapper.flush()
         print(f"Device {device_number} closed")
-        sleep(5)
+        sleep(3)
 
 # Define device numbers and corresponding CSV column headers
 device_columns = {
