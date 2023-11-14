@@ -25,7 +25,7 @@ def get_datetime():
     return now.strftime("%m/%d/%Y"), now.strftime("%H:%M")
 
 # Define the file path for the CSV file
-Temp_RH_csv_file_path = "/home/cdacea/Temp_RH_Data.csv"
+Temp_RH_csv_file_path = "/home/cdacea/GH_data/Temp_RH.csv"
 
 try:
     with open(Temp_RH_csv_file_path, mode='w', newline='') as csv_file:
@@ -66,7 +66,7 @@ try:
 
                     THUM_31.write("CLOSE\r\n")
                     print("closed")
-                    sleep(3)
+                    sleep(10)
             except Exception as e:
                 # Handle specific exceptions if needed
                 print(f"Error for THUM_31: {str(e)}")
@@ -101,7 +101,7 @@ try:
 
                     THUM_32.write("CLOSE\r\n")
                     print("closed")
-                    sleep(3)
+                    sleep(10)
             except Exception as e:
                 # Handle specific exceptions if needed
                 print(f"Error for THUM_32: {str(e)}")
@@ -116,7 +116,7 @@ try:
                 THUM_33.write("SEND\r\n")
                 THUM_33.flush()
                 print("send")
-                sleep(3)
+                sleep(10)
             
                 data_33 = THUM_33.readlines()
                 # Extract RH and Ta from the data
@@ -136,7 +136,7 @@ try:
 
                     THUM_33.write("CLOSE\r\n")
                     print("closed")
-                    sleep(3)
+                    sleep(10)
             except Exception as e:
                 # Handle specific exceptions if needed
                 print(f"Error for THUM_33: {str(e)}")
@@ -166,12 +166,12 @@ try:
                     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
                     # Print the data
-                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Ambient temperature': ta_value, 'Relative humidity': rh_value})
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'Ambient temperature': ta_value, 'Relative humidity': rh_value})
                     sleep(3)
 
                     THUM_34.write("CLOSE\r\n")
                     print("closed")
-                    sleep(3)
+                    sleep(10)
             except Exception as e:
                 # Handle specific exceptions if needed
                 print(f"Error for THUM_34: {str(e)}")
