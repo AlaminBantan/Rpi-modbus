@@ -12,6 +12,7 @@ serial_THUM = serial.Serial("/dev/ttyACM0",
                    timeout=2)
 
 THUM_33 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
+THUM_34 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
 
 try:
     while True:
