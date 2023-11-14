@@ -3,7 +3,7 @@ import io
 from time import sleep
 from datetime import datetime
 
-THUM_34 = serial.Serial("/dev/ttyACM0",
+serial_THUM = serial.Serial("/dev/ttyACM0",
                    baudrate=4800,
                    bytesize=serial.SEVENBITS,
                    parity=serial.PARITY_EVEN,
@@ -11,18 +11,23 @@ THUM_34 = serial.Serial("/dev/ttyACM0",
                    xonxoff=False,
                    timeout=2)
 
-THUM_34 = io.TextIOWrapper(io.BufferedRWPair(THUM_34, THUM_34))
+THUM_33 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
 
 try:
+    THUM_33.write("open 33\r\n")
+    THUM_33.flush()
+    print("33 is opened")
     while True:
-        THUM_34.write("send")
+        THUM_33.write("send\r\n")
         print("send")
-        THUM_34.flush()
+        THUM_33.flush()
         sleep(1)
-        data_34 = THUM_34.readline()
-        print(f"data is: {data_34}")
-        THUM_34.flush()
+        data_33 = THUM_33.readline()
+        print(f"data is: {data_33}")
+        THUM_33.flush()
         sleep(2)
+        THUM_33.write("close\r\n")
+        print("closed")
 
 except KeyboardInterrupt:
     # Clean up when interrupted
