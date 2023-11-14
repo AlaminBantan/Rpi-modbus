@@ -1,46 +1,69 @@
 import serial
 import io
+import threading
 from time import sleep
+from datetime import datetime
 
-def initialize_sensor(port, sensor_number):
+def read_sensor(port, sensor_number):
     serial_sensor = serial.Serial(port,
                                   baudrate=4800,
                                   bytesize=serial.SEVENBITS,
                                   parity=serial.PARITY_EVEN,
                                   stopbits=serial.STOPBITS_ONE,
                                   xonxoff=False,
-                                  timeout=2)
-
+                                  timeout=5)
     hum_sensor = io.TextIOWrapper(io.BufferedRWPair(serial_sensor, serial_sensor))
 
     try:
+        hum_sensor.write(f"open {sensor_number}\r\n")  # Open a connection to the sensor
+        hum_sensor.flush()
+        print(f"Sensor {sensor_number}: opened connection")
+        sleep(2)  # Allow time for the sensor to initialize
+
+        hum_sensor.write("R\r\n")  # Start continuous output
+        hum_sensor.flush()
+        print(f"Sensor {sensor_number}: started continuous output")
+        sleep(2)  # Allow time for the sensor to start continuous output
+
         while True:
-            hum_sensor.write(f"open {sensor_number}\r\n")
-            print(f"Sensor {sensor_number}: open")
+            hum_sensor.write("SEND\r\n")  # Request a reading
             hum_sensor.flush()
-            sleep(2)
-            hum_sensor.write(f"send {sensor_number}\r\n")
-            print(f"Sensor {sensor_number}: send")
-            hum_sensor.flush()
-            sleep(1)
-            data = hum_sensor.readline()
-            print(f"Sensor {sensor_number}: data is {data}")
-            hum_sensor.flush()
-            sleep(1)
-            hum_sensor.write("close\r\n")
-            print(f"Sensor {sensor_number}: close")
-            sleep(2)
+            data = hum_sensor.readline().strip()
+            
+            # Get the current timestamp
+            timestamp = datetime.now().strftime("%I:%M:%S %p")
+            
+            print(f"Sensor {sensor_number}: data is {data} at {timestamp}")
+
+            # Optional: Stop continuous output if needed
+            # hum_sensor.write("S\r\n")
+            # hum_sensor.flush()
+
+            sleep(5)  # Adjust as needed based on your interval requirements
 
     except KeyboardInterrupt:
         # Clean up when interrupted
         print(f"Sensor {sensor_number} Port Closed")
+    finally:
+        # Close the serial port to ensure clean termination
+        serial_sensor.close()
 
 # List of sensor numbers in the desired order
-sensor_numbers = [31, 32, 33, 34]
+sensor_numbers = [33, 32]
 
 # Serial port for all sensors
 port = "/dev/ttyACM0"
 
-# Loop through the sensors
+# Create threads for each sensor
+threads = []
 for sensor_number in sensor_numbers:
-    initialize_sensor(port, sensor_number)
+    thread = threading.Thread(target=read_sensor, args=(port, sensor_number))
+    threads.append(thread)
+    thread.start()
+    
+    # Introduce a small delay before starting the next thread
+    sleep(10)  # Adjust the delay time as needed
+
+# Wait for all threads to complete
+for thread in threads:
+    thread.join()
