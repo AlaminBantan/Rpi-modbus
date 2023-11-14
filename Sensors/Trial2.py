@@ -25,10 +25,10 @@ def get_datetime():
     return now.strftime("%m/%d/%Y"), now.strftime("%H:%M")
 
 # Define the file path for the CSV file
-csv_file_path = "/home/cdacea/Temp_RH_Data.csv"
+Temp_RH_csv_file_path = "/home/cdacea/Temp_RH_Data.csv"
 
 try:
-    with open(csv_file_path, mode='w', newline='') as csv_file:
+    with open(Temp_RH_csv_file_path, mode='w', newline='') as csv_file:
         fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'Ambient temperature', 'Relative humidity']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
