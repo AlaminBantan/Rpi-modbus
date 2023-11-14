@@ -1,45 +1,31 @@
-import serial
-import io
-import threading
-from time import sleep
-from datetime import datetime
+                # Read data from THUM_34
+                THUM_34.write("OPEN 34\r\n")
+                THUM_34.flush()
+                print("34 is opened")
+                sleep(3)
 
-port = "/dev/ttyACM0"
-def read_sensor(port, 33):
-    serial_sensor = serial.Serial(port,
-                                  baudrate=4800,
-                                  bytesize=serial.SEVENBITS,
-                                  parity=serial.PARITY_EVEN,
-                                  stopbits=serial.STOPBITS_ONE,
-                                  xonxoff=False,
-                                  timeout=5)
-    hum_sensor = io.TextIOWrapper(io.BufferedRWPair(serial_sensor, serial_sensor))
+                THUM_34.write("SEND\r\n")
+                THUM_34.flush()
+                print("send")
+                sleep(3)
+        
+                data_34 = THUM_34.readlines()
+                # Extract RH and Ta from the data
+                rh_match = re.search(r'RH= (\d+\.\d+)', data_34[-1])
+                ta_match = re.search(r'Ta= (\d+\.\d+)', data_34[-1])
 
-    try:
-        hum_sensor.write(f"open 33\r\n")  # Open a connection to the sensor
-        hum_sensor.flush()
-        print(f"Sensor 33: opened connection")
-        sleep(2)  # Allow time for the sensor to initialize
+                if rh_match and ta_match:
+                    rh_value = rh_match.group(1)
+                    ta_value = ta_match.group(1)
 
-        while True:
-            hum_sensor.write("SEND\r\n")  # Request a reading
-            hum_sensor.flush()
-            data = hum_sensor.readline().strip()
-            
-            # Get the current timestamp
-            timestamp = datetime.now().strftime("%I:%M:%S %p")
-            
-            print(f"Sensor 33: data is {data} at {timestamp}")
+                    # Get current date and time
+                    now = datetime.now()
+                    current_datetime = now.strftime("%Y-%m-%d %H:%M:%S")
 
-            # Optional: Stop continuous output if needed
-            # hum_sensor.write("S\r\n")
-            # hum_sensor.flush()
+                    # Print the data
+                    writer.writerow({'Date': date, 'Time': time, 'Zone' : "B", 'Subzone': "1", 'Ambient temperature': ta_value, 'Relative humidity': rh_value})
+                    sleep(3)
 
-            sleep(5)  # Adjust as needed based on your interval requirements
-
-    except KeyboardInterrupt:
-        # Clean up when interrupted
-        print(f"Sensor 33 Port Closed")
-    finally:
-        # Close the serial port to ensure clean termination
-        serial_sensor.close()
+                    THUM_34.write("CLOSE\r\n")
+                    print("closed")
+                    sleep(3)

@@ -21,9 +21,6 @@ def read_device(serial_wrapper, device_number):
         print(f"Data from Device {device_number}: {data}")
         sleep(3)
 
-    except KeyboardInterrupt:
-        # Handle Ctrl+C gracefully
-        print(f"Ctrl+C received. Closing Device {device_number}")
     finally:
         # Close the device
         serial_wrapper.write("CLOSE\r\n")
