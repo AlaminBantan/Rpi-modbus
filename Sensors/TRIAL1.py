@@ -59,7 +59,7 @@ device_columns = {
 }
 
 # Create and open the CSV file
-csv_filename = "Temp/RH.csv"
+csv_filename = "Temp_RH.csv"
 with open(csv_filename, mode='w', newline='') as csv_file:
     csv_writer = csv.writer(csv_file)
     
