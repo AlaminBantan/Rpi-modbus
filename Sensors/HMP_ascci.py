@@ -17,17 +17,17 @@ try:
     THUM_33.write("open 33\r\n")
     THUM_33.flush()
     print("33 is opened")
-    while True:
-        THUM_33.write("send\r\n")
-        print("send")
-        THUM_33.flush()
-        sleep(1)
-        data_33 = THUM_33.readline()
-        print(f"data is: {data_33}")
-        THUM_33.flush()
-        sleep(2)
-        THUM_33.write("close\r\n")
-        print("closed")
+    sleep(2)
+    THUM_33.write("send\r\n")
+    print("send")
+    THUM_33.flush()
+    sleep(1)
+    data_33 = THUM_33.readline()
+    print(f"data is: {data_33}")
+    THUM_33.flush()
+    sleep(2)
+    THUM_33.write("close\r\n")
+    print("closed")
 
 except KeyboardInterrupt:
     # Clean up when interrupted
