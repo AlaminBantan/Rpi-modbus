@@ -25,7 +25,7 @@ try:
         print("send")
         sleep(10)
         
-        data_33 = THUM_33.readline()
+        data_33 = THUM_33.readlines()
         print(f"data is: {data_33}")
         sleep(3)
 
