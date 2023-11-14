@@ -15,12 +15,12 @@ THUM_33 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
 
 try:
     while True:
-        THUM_33.write("OPEN 33")
+        THUM_33.write("OPEN 33\r\n")
         THUM_33.flush()
         print("33 is opened")
         sleep(5)
 
-        THUM_33.write("SEND")
+        THUM_33.write("SEND\r\n")
         THUM_33.flush()
         print("send")
         sleep(10)
@@ -29,7 +29,7 @@ try:
         print(f"data is: {data_33}")
         sleep(3)
 
-        THUM_33.write("CLOSE")
+        THUM_33.write("CLOSE\r\n")
         print("closed")
         sleep(5)
 
