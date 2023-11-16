@@ -122,6 +122,7 @@ Solar_csv_file_path = "/home/cdacea/GH_data/Solar.csv"
 Carbon_csv_file_path = "/home/cdacea/GH_data/Carbon.csv"
 
 try:
+
     with open(PAR_csv_file_path, mode='a', newline='') as csv_file:
         fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'PAR']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)

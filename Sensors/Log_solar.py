@@ -60,7 +60,7 @@ def get_datetime():
 Solar_csv_file_path = "/home/cdacea/GH_data/Solar.csv"
 
 try:
-    with open(Solar_csv_file_path, mode='w', newline='') as csv_file:
+    with open(Solar_csv_file_path, mode='a', newline='') as csv_file:
         fieldnames = ['Date',
                        'Time',
                        'Zone',

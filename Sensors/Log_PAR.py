@@ -64,7 +64,7 @@ def get_datetime():
 PAR_carbon_csv_file_path = "/home/cdacea/GH_data/PAR.csv"
 
 try:
-    with open(PAR_carbon_csv_file_path, mode='w', newline='') as csv_file:
+    with open(PAR_carbon_csv_file_path, mode='a', newline='') as csv_file:
         fieldnames = ['Date',
                        'Time',
                        'Zone',

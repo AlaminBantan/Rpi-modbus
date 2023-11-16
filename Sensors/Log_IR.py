@@ -58,7 +58,7 @@ def get_datetime():
 IR_csv_file_path = "/home/cdacea/GH_data/IR.csv"
 
 try:
-    with open(IR_csv_file_path, mode='w', newline='') as csv_file:
+    with open(IR_csv_file_path, mode='a', newline='') as csv_file:
         fieldnames = ['Date',
                        'Time',
                        'Zone',

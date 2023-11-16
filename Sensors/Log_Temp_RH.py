@@ -28,7 +28,7 @@ def get_datetime():
 Temp_RH_csv_file_path = "/home/cdacea/GH_data/Temp_RH.csv"
 
 try:
-    with open(Temp_RH_csv_file_path, mode='w', newline='') as csv_file:
+    with open(Temp_RH_csv_file_path, mode='a', newline='') as csv_file:
         fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'Ambient temperature', 'Relative humidity']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()

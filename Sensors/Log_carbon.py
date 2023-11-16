@@ -35,7 +35,7 @@ def get_datetime():
 Carbon_csv_file_path = "/home/cdacea/GH_data/Carbon.csv"
 
 try:
-    with open(Carbon_csv_file_path, mode='w', newline='') as csv_file:
+    with open(Carbon_csv_file_path, mode='a', newline='') as csv_file:
         fieldnames = ['Date',
                        'Time',
                        'Zone',
