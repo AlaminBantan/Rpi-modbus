@@ -4,7 +4,7 @@ import io
 import csv
 from datetime import datetime
 
-IR_1 = serial.Serial("/dev/ttyACM1",
+IR_1 = serial.Serial("/dev/ttyACM0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
@@ -22,11 +22,12 @@ try:
         # read bit
         data_str_1 ="1D0!\r"
         IR_1.write(data_str_1)
-        data_1 = IR_1.readlines()
+        data_1 = IR_1.readline()
         
         IR_1.flush()
         time.sleep(1)
-        print(data_1)
+        if len(data_1.split('+'))> 1:
+            print(f"Temperature of the surface is: {data_1.split('+')[1]} degrees celcius")
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Ports Now Closed")
