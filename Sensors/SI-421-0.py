@@ -1,10 +1,9 @@
 import serial
 import time
 import io
-import csv
 from datetime import datetime
 
-IR_0 = serial.Serial("/dev/ttyUSB0",
+IR_0 = serial.Serial("/dev/ttyACM0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
