@@ -22,7 +22,7 @@ try:
         # read bit
         data_str_1 ="1D0!\r"
         IR_1.write(data_str_1)
-        data_1 = IR_1.readline()
+        data_1 = IR_1.readlines()
         
         IR_1.flush()
         time.sleep(1)
