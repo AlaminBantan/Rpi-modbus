@@ -3,7 +3,7 @@ import time
 import io
 
 #configuration of SI-421 ID=0
-IR_0 = serial.Serial("/dev/ttyACM0",
+IR_0 = serial.Serial("/dev/ttyUSB0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
@@ -13,7 +13,7 @@ IR_0 = serial.Serial("/dev/ttyACM0",
 IR_0 = io.TextIOWrapper(io.BufferedRWPair(IR_0, IR_0))
 
 #configuration of SI-421 ID=1
-IR_1 = serial.Serial("/dev/ttyACM0",
+IR_1 = serial.Serial("/dev/ttyUSB0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
@@ -23,7 +23,7 @@ IR_1 = serial.Serial("/dev/ttyACM0",
 IR_1 = io.TextIOWrapper(io.BufferedRWPair(IR_1, IR_1))
 
 #configuration of SI-421 ID=2
-IR_2 = serial.Serial("/dev/ttyACM0",
+IR_2 = serial.Serial("/dev/ttyUSB0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
@@ -33,7 +33,7 @@ IR_2 = serial.Serial("/dev/ttyACM0",
 IR_2 = io.TextIOWrapper(io.BufferedRWPair(IR_2, IR_2))
 
 #configuration of SI-421 ID=3
-IR_3 = serial.Serial("/dev/ttyACM0",
+IR_3 = serial.Serial("/dev/ttyUSB0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
@@ -43,7 +43,7 @@ IR_3 = serial.Serial("/dev/ttyACM0",
 IR_3 = io.TextIOWrapper(io.BufferedRWPair(IR_3, IR_3))
 
 #configuration of SI-421 ID=4
-IR_4 = serial.Serial("/dev/ttyACM0",
+IR_4 = serial.Serial("/dev/ttyUSB0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
@@ -53,7 +53,7 @@ IR_4 = serial.Serial("/dev/ttyACM0",
 IR_4 = io.TextIOWrapper(io.BufferedRWPair(IR_4, IR_4))
 
 #configuration of SI-421 ID=5
-IR_5 = serial.Serial("/dev/ttyACM0",
+IR_5 = serial.Serial("/dev/ttyUSB0",
                    baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
