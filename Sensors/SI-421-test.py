@@ -76,8 +76,8 @@ try:
         data_0 = IR_0.readline()
         IR_0.flush()
         time.sleep(1)
-        if len(data_0.split('+'))> 1:
-            print(f"Temperature of the surface 0 is: {data_0.split('+')[1]} degrees celcius")
+        print(f"data at sensor 0 is {data_0}")
+
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -99,8 +99,7 @@ try:
         
         IR_1.flush()
         time.sleep(1)
-        if len(data_1.split('+'))> 1:
-            print(f"Temperature of the surface 1 is: {data_1.split('+')[1]} degrees celcius")
+        print(f"data at sensor 1 is {data_1}")
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -121,8 +120,7 @@ try:
         print("read measurement 2")
         IR_2.flush()
         time.sleep(1)
-        if len(data_2.split('+'))> 1:
-            print(f"Temperature of the surface 2 is: {data_2.split('+')[1]} degrees celcius")
+        print(f"data at sensor 2 is {data_2}")
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -137,14 +135,13 @@ try:
         IR_3.flush()
         time.sleep(1)
         # read bit
-        data_str ="3D0!\r"
-        IR_3.write(data_str)
+        data_str_3 ="3D0!\r"
+        IR_3.write(data_str_3)
         data_3 = IR_3.readline()
         print("read measurement 3")
         IR_3.flush()
         time.sleep(1)
-        if len(data_3.split('+'))> 1:
-            print(f"Temperature of the surface 3 is: {data_3.split('+')[1]} degrees celcius")
+        print(f"data at sensor 3 is {data_3}")
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Port 3 Now Closed")
@@ -159,14 +156,13 @@ try:
         IR_4.flush()
         time.sleep(1)
         # read bit
-        data_str ="4D0!\r"
-        IR_4.write(data_str)
+        data_str_4 ="4D0!\r"
+        IR_4.write(data_str_4)
         data_4 = IR_4.readline()
         print("read measurement 4")
         IR_4.flush()
         time.sleep(1)
-        if len(data_4.split('+'))> 1:
-            print(f"Temperature of the surface 4 is: {data_4.split('+')[1]} degrees celcius")
+        print(f"data at sensor 4 is {data_4}")
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -182,14 +178,13 @@ try:
         IR_5.flush()
         time.sleep(1)
         # read bit
-        data_str ="5D0!\r"
-        IR_5.write(data_str)
+        data_str_5 ="5D0!\r"
+        IR_5.write(data_str_5)
         data_5 = IR_5.readline()
         print("read measurement 5")
         IR_5.flush()
         time.sleep(1)
-        if len(data_5.split('+'))> 1:
-            print(f"Temperature of the surface 5 is: {data_5.split('+')[1]} degrees celcius")
+        print(f"data at sensor 5 is {data_5}")
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Port 5 Now Closed")
