@@ -12,20 +12,20 @@ def configure_sensor(port, sensor_id):
                            parity=serial.PARITY_NONE,
                            stopbits=serial.STOPBITS_ONE,
                            xonxoff=False,
-                           timeout=1)
+                           timeout=3)
     sensor = io.TextIOWrapper(io.BufferedRWPair(sensor, sensor))
 
     logging.info(f"Configured sensor {sensor_id} on port {port}")
     return sensor
 
 def communicate_with_sensor(sensor, sensor_id):
-    command = f"{sensor_id}M!\r"
+    command = f"{sensor_id}M!"
     sensor.write(command)
     logging.info(f"Take measurement {sensor_id}")
     sensor.flush()
     time.sleep(1)
 
-    data_str = f"{sensor_id}D0!\r"
+    data_str = f"{sensor_id}D0!"
     sensor.write(data_str)
     sensor.flush()
     logging.info(f"Read measurement {sensor_id}")
@@ -38,12 +38,12 @@ def communicate_with_sensor(sensor, sensor_id):
     time.sleep(2)
 
 # Configure sensors
-IR_0 = configure_sensor("/dev/ttyACM0", 0)
-IR_1 = configure_sensor("/dev/ttyACM0", 1)
-IR_2 = configure_sensor("/dev/ttyACM0", 2)
-IR_3 = configure_sensor("/dev/ttyACM0", 3)
-IR_4 = configure_sensor("/dev/ttyACM0", 4)
-IR_5 = configure_sensor("/dev/ttyACM0", 5)
+IR_0 = configure_sensor("/dev/ttyUSB0", 0)
+IR_1 = configure_sensor("/dev/ttyUSB0", 1)
+IR_2 = configure_sensor("/dev/ttyUSB0", 2)
+IR_3 = configure_sensor("/dev/ttyUSB0", 3)
+IR_4 = configure_sensor("/dev/ttyUSB0", 4)
+IR_5 = configure_sensor("/dev/ttyUSB0", 5)
 
 try:
     while True:
