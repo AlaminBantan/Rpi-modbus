@@ -19,13 +19,13 @@ def configure_sensor(port, sensor_id):
     return sensor
 
 def communicate_with_sensor(sensor, sensor_id):
-    command = f"{sensor_id}M!"
+    command = f"{sensor_id}M!\r"
     sensor.write(command)
     logging.info(f"Take measurement {sensor_id}")
     sensor.flush()
     time.sleep(1)
 
-    data_str = f"{sensor_id}D0!"
+    data_str = f"{sensor_id}D0!\r"
     sensor.write(data_str)
     sensor.flush()
     logging.info(f"Read measurement {sensor_id}")
