@@ -39,11 +39,11 @@ def communicate_with_sensor(sensor, sensor_id):
 
 # Configure sensors
 IR_0 = configure_sensor("/dev/ttyACM0", 0)
-IR_1 = configure_sensor("/dev/ttyACM1", 1)
-IR_2 = configure_sensor("/dev/ttyACM2", 2)
-IR_3 = configure_sensor("/dev/ttyACM3", 3)
-IR_4 = configure_sensor("/dev/ttyACM4", 4)
-IR_5 = configure_sensor("/dev/ttyACM5", 5)
+IR_1 = configure_sensor("/dev/ttyACM0", 1)
+IR_2 = configure_sensor("/dev/ttyACM0", 2)
+IR_3 = configure_sensor("/dev/ttyACM0", 3)
+IR_4 = configure_sensor("/dev/ttyACM0", 4)
+IR_5 = configure_sensor("/dev/ttyACM0", 5)
 
 try:
     while True:
