@@ -61,6 +61,7 @@ IR_5 = serial.Serial("/dev/ttyACM0",
                    xonxoff=False,
                    timeout=1)
 IR_5 = io.TextIOWrapper(io.BufferedRWPair(IR_5, IR_5))
+
 try:
     while True:
         # command_command_5 is the Slave ID + M!, to take measurement
@@ -72,12 +73,13 @@ try:
         # read bit
         data_str_0 ="0D0!\r"
         IR_0.write(data_str_0)
+        IR_0.flush()
         print("read measurement 0")
-        data_0 = IR_0.readline()
+        data_0 = IR_0.readlines()
         IR_0.flush()
         time.sleep(1)
         print(f"data at sensor 0 is {data_0}")
-
+        time.sleep(2)
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -94,12 +96,14 @@ try:
         # read bit
         data_str_1 ="1D0!\r"
         IR_1.write(data_str_1)
+        IR_1.flush()
         print("read measurement 1")
-        data_1 = IR_1.readline()
+        data_1 = IR_1.readlines()
         
         IR_1.flush()
         time.sleep(1)
         print(f"data at sensor 1 is {data_1}")
+        time.sleep(2)
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -116,11 +120,13 @@ try:
         # read bit
         data_str_2 ="2D0!\r"
         IR_2.write(data_str_2)
-        data_2 = IR_2.readline()
+        IR_2.flush()
+        data_2 = IR_2.readlines()
         print("read measurement 2")
         IR_2.flush()
         time.sleep(1)
         print(f"data at sensor 2 is {data_2}")
+        time.sleep(2)
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -137,11 +143,13 @@ try:
         # read bit
         data_str_3 ="3D0!\r"
         IR_3.write(data_str_3)
-        data_3 = IR_3.readline()
+        IR_3.flush()
+        data_3 = IR_3.readlines()
         print("read measurement 3")
         IR_3.flush()
         time.sleep(1)
         print(f"data at sensor 3 is {data_3}")
+        time.sleep(2)
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Port 3 Now Closed")
@@ -158,11 +166,13 @@ try:
         # read bit
         data_str_4 ="4D0!\r"
         IR_4.write(data_str_4)
-        data_4 = IR_4.readline()
+        IR_4.flush()
+        data_4 = IR_4.readlines()
         print("read measurement 4")
         IR_4.flush()
         time.sleep(1)
         print(f"data at sensor 4 is {data_4}")
+        time.sleep(2)
 except KeyboardInterrupt:
     # Clean up when interrupted
 
@@ -180,11 +190,13 @@ try:
         # read bit
         data_str_5 ="5D0!\r"
         IR_5.write(data_str_5)
-        data_5 = IR_5.readline()
+        IR_5.flush()
+        data_5 = IR_5.readlines()
         print("read measurement 5")
         IR_5.flush()
         time.sleep(1)
         print(f"data at sensor 5 is {data_5}")
+        time.sleep(2)
 except KeyboardInterrupt:
     # Clean up when interrupted
     print("Port 5 Now Closed")
