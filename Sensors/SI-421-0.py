@@ -4,7 +4,7 @@ import io
 from datetime import datetime
 
 IR_0 = serial.Serial("/dev/ttyUSB0",
-                   baudrate=9600,
+                   baudrate=19200,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
                    stopbits=serial.STOPBITS_ONE,
