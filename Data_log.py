@@ -227,12 +227,44 @@ try:
             try:
                 carbon_conc_42 = carbo_42.read_float(1, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CCO2 conc': carbon_conc_42})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CO2 conc': carbon_conc_42})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
             try:
+                THUM_33.write("OPEN 33\r\n")
+                THUM_33.flush()
+                print("33 is opened")
+                sleep(1)
+
+                THUM_33.write("SEND\r\n")
+                THUM_33.flush()
+                print("send")
+                sleep(2)
                 
+                data_33 = THUM_33.readlines()
+
+                last_line = data_33[-1]
+                rh_index = last_line.find('RH=')
+                temp_index = last_line.find("Ta=")
+
+                if rh_index != -1 and temp_index != -1:
+                    rh_value = float(last_line[rh_index + 3:last_line.find('%RH')])
+                    temp_value = float(last_line[temp_index + 3:last_line.find("'C")])
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Temp': temp_value:.1f, 'Humidity': rh_value:.1f})
+
+
+                    print(f"RH= {rh_value} %RH")
+                    print(f"Temp= {temp_value} 'C")
+
+                sleep(3)
+
+                THUM_33.write("CLOSE\r\n")
+                print("closed")
+                sleep(2)
+            except Exception as e:
+                now = get_datetime()
+                print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
 
 except KeyboardInterrupt:
     # Close serial ports only if they are open
