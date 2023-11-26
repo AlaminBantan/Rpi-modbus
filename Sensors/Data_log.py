@@ -72,7 +72,7 @@ Solar_12.clear_buffers_before_each_transaction = True
 Solar_12.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=13
-Solar_13 = minimalmodbus.Instrument'/dev/ttyACM0', 13, debug=False)
+Solar_13 = minimalmodbus.Instrument('/dev/ttyACM0', 13, debug=False)
 Solar_13.serial.baudrate = 19200
 Solar_13.serial.bytesize = 8
 Solar_13.serial.parity = minimalmodbus.serial.PARITY_EVEN
