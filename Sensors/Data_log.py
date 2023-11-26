@@ -140,6 +140,8 @@ try:
     with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
         fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'PAR', 'Solar radiation', 'Temp', 'Humidity', 'CO2 conc']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+
 
         while True:
             date, time = get_datetime()
@@ -228,7 +230,7 @@ try:
             try:
                 carbon_conc_42 = carbo_42.read_float(1, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CO2 conc': carbon_conc_42})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'CO2 conc': carbon_conc_42})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
@@ -236,20 +238,15 @@ try:
             try:
                 THUM_31.write("OPEN 31\r\n")
                 THUM_31.flush()
-                print("31 is opened")
                 sleep(1)
-
                 THUM_31.write("SEND\r\n")
                 THUM_31.flush()
                 print("send")
-                sleep(2)
-                
+                sleep(1)
                 data_31 = THUM_31.readlines()
-
                 last_line_31 = data_31[-1]
                 rh_index_31 = last_line_31.find('RH=')
                 temp_index_31 = last_line_31.find("Ta=")
-
                 if rh_index_31 != -1 and temp_index_31 != -1:
                     rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
                     temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
@@ -265,20 +262,14 @@ try:
             try:
                 THUM_32.write("OPEN 32\r\n")
                 THUM_32.flush()
-                print("32 is opened")
                 sleep(1)
-
                 THUM_32.write("SEND\r\n")
                 THUM_32.flush()
-                print("send")
                 sleep(2)
-                
                 data_32 = THUM_32.readlines()
-
                 last_line_32 = data_32[-1]
                 rh_index_32 = last_line_32.find('RH=')
                 temp_index_32 = last_line_32.find("Ta=")
-
                 if rh_index_32 != -1 and temp_index_32 != -1:
                     rh_value_32 = float(last_line_32[rh_index_32 + 3:last_line_32.find('%RH')])
                     temp_value_32 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
