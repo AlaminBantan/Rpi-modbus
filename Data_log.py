@@ -2,6 +2,8 @@ import minimalmodbus
 from time import sleep
 import datetime
 import csv
+import serial
+import io
 
 # Configuration of SQ-618 ID=1
 PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1)
@@ -111,20 +113,32 @@ carbo_42.mode = minimalmodbus.MODE_RTU
 carbo_42.clear_buffers_before_each_transaction = True
 carbo_42.close_port_after_each_call = True
 
+# Configuration of HMP-155
+serial_THUM = serial.Serial("/dev/ttyACM0",
+                   baudrate=4800,
+                   bytesize=serial.SEVENBITS,
+                   parity=serial.PARITY_EVEN,
+                   stopbits=serial.STOPBITS_ONE,
+                   xonxoff=False,
+                   timeout=2)
+
+THUM_31 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
+THUM_32 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
+THUM_33 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
+THUM_34 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
+
+
 # Define a function to get the current date and time in the required format
 def get_datetime():
     now = datetime.datetime.now()
     return now.strftime("%m/%d/%Y"), now.strftime("%H:%M")
 
 # Define the file path for the CSV file
-PAR_csv_file_path = "/home/cdacea/GH_data/PAR.csv"
-Solar_csv_file_path = "/home/cdacea/GH_data/Solar.csv"
-Carbon_csv_file_path = "/home/cdacea/GH_data/Carbon.csv"
-
+Climatic_data_pathway = "/home/cdacea/GH_data"
 try:
 
-    with open(PAR_csv_file_path, mode='a', newline='') as csv_file:
-        fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'PAR']
+    with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
+        fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'PAR', 'Solar radiation', 'Temp', 'Humidity', 'CO2 conc']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
         while True:
@@ -167,13 +181,6 @@ try:
                 now = get_datetime()
                 print(f"Error reading PAR_4 at {now[1]} on {now[0]}: {e}")
 
-    with open(Solar_csv_file_path, mode='a', newline='') as csv_file:
-        fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'Solar radiation']
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-        while True:
-            date, time = get_datetime()
-
             try:
                 # Read data from Solar_11
                 Solar_Radiation_11 = Solar_11.read_float(0, 3, 2, 0)
@@ -210,26 +217,22 @@ try:
                 now = get_datetime()
                 print(f"Error reading Solar_14 at {now[1]} on {now[0]}: {e}")
 
-    with open(Carbon_csv_file_path, mode='a', newline='') as csv_file:
-        fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'CO2 ppm']
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-        while True:
-            date, time = get_datetime()
             try:
                 carbon_conc_41 = carbo_41.read_float(1, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CO2 ppm': carbon_conc_41})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CO2 conc': carbon_conc_41})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_41 at {now[1]} on {now[0]}: {e}")
             try:
                 carbon_conc_42 = carbo_42.read_float(1, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CO2 ppm': carbon_conc_42})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CCO2 conc': carbon_conc_42})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
+            try:
+                
 
 except KeyboardInterrupt:
     # Close serial ports only if they are open

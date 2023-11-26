@@ -32,7 +32,7 @@ def read_device(serial_wrapper, device_number):
 device_numbers = ["31", "32", "33", "34"]
 
 # Serial configuration for all devices
-serial_devices = [serial.Serial("/dev/ttyACM0",
+serial_devices = [serial.Serial("/dev/ttyACM1",
                                 baudrate=4800,
                                 bytesize=serial.SEVENBITS,
                                 parity=serial.PARITY_EVEN,
