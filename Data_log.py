@@ -6,7 +6,7 @@ import serial
 import io
 
 # Configuration of SQ-618 ID=1
-PAR_1 = minimalmodbus.Instrument('/dev/ttyUSB0', 1)
+PAR_1 = minimalmodbus.Instrument('/dev/ttyACM0', 1)
 PAR_1.serial.baudrate = 19200
 PAR_1.serial.bytesize = 8
 PAR_1.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -17,7 +17,7 @@ PAR_1.clear_buffers_before_each_transaction = True
 PAR_1.close_port_after_each_call = True
 
 # Configuration of SQ-618 ID=2
-PAR_2 = minimalmodbus.Instrument('/dev/ttyUSB0', 2)
+PAR_2 = minimalmodbus.Instrument('/dev/ttyACM0', 2)
 PAR_2.serial.baudrate = 19200
 PAR_2.serial.bytesize = 8
 PAR_2.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -28,7 +28,7 @@ PAR_2.clear_buffers_before_each_transaction = True
 PAR_2.close_port_after_each_call = True
 
 # Configuration of SQ-618 ID=3
-PAR_3 = minimalmodbus.Instrument('/dev/ttyUSB0', 3)
+PAR_3 = minimalmodbus.Instrument('/dev/ttyACM0', 3)
 PAR_3.serial.baudrate = 19200
 PAR_3.serial.bytesize = 8
 PAR_3.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -39,7 +39,7 @@ PAR_3.clear_buffers_before_each_transaction = True
 PAR_3.close_port_after_each_call = True
 
 # Configuration of SQ-618 ID=4
-PAR_4 = minimalmodbus.Instrument('/dev/ttyUSB0', 4)
+PAR_4 = minimalmodbus.Instrument('/dev/ttyACM0', 4)
 PAR_4.serial.baudrate = 19200
 PAR_4.serial.bytesize = 8
 PAR_4.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -50,7 +50,7 @@ PAR_4.clear_buffers_before_each_transaction = True
 PAR_4.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=11
-Solar_11 = minimalmodbus.Instrument('/dev/ttyUSB0', 11, debug=False)
+Solar_11 = minimalmodbus.Instrument('/dev/ttyACM0', 11, debug=False)
 Solar_11.serial.baudrate = 19200
 Solar_11.serial.bytesize = 8
 Solar_11.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -61,7 +61,7 @@ Solar_11.clear_buffers_before_each_transaction = True
 Solar_11.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=12
-Solar_12 = minimalmodbus.Instrument('/dev/ttyUSB0', 12, debug=False)
+Solar_12 = minimalmodbus.Instrument('/dev/ttyACM0', 12, debug=False)
 Solar_12.serial.baudrate = 19200
 Solar_12.serial.bytesize = 8
 Solar_12.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -72,7 +72,7 @@ Solar_12.clear_buffers_before_each_transaction = True
 Solar_12.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=13
-Solar_13 = minimalmodbus.Instrument('/dev/ttyUSB0', 13, debug=False)
+Solar_13 = minimalmodbus.Instrument'/dev/ttyACM0', 13, debug=False)
 Solar_13.serial.baudrate = 19200
 Solar_13.serial.bytesize = 8
 Solar_13.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -83,7 +83,7 @@ Solar_13.clear_buffers_before_each_transaction = True
 Solar_13.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=14
-Solar_14 = minimalmodbus.Instrument('/dev/ttyUSB0', 14, debug=False)
+Solar_14 = minimalmodbus.Instrument('/dev/ttyACM0', 14, debug=False)
 Solar_14.serial.baudrate = 19200
 Solar_14.serial.bytesize = 8
 Solar_14.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -94,7 +94,7 @@ Solar_14.clear_buffers_before_each_transaction = True
 Solar_14.close_port_after_each_call = True
 
 # Configuration of GMP-252 ID=41
-carbo_41 = minimalmodbus.Instrument('/dev/ttyUSB0', 41)
+carbo_41 = minimalmodbus.Instrument('/dev/ttyACM0', 41)
 carbo_41.serial.baudrate = 19200
 carbo_41.serial.bytesize = 8
 carbo_41.serial.parity = minimalmodbus.serial.PARITY_NONE
@@ -104,7 +104,7 @@ carbo_41.clear_buffers_before_each_transaction = True
 carbo_41.close_port_after_each_call = True
 
 # Configuration of GMP-252 ID=42
-carbo_42 = minimalmodbus.Instrument('/dev/ttyUSB0', 42)
+carbo_42 = minimalmodbus.Instrument('/dev/ttyACM0', 42)
 carbo_42.serial.baudrate = 19200
 carbo_42.serial.bytesize = 8
 carbo_42.serial.parity = minimalmodbus.serial.PARITY_NONE
@@ -134,7 +134,7 @@ def get_datetime():
     return now.strftime("%m/%d/%Y"), now.strftime("%H:%M")
 
 # Define the file path for the CSV file
-Climatic_data_pathway = "/home/cdacea/GH_data"
+Climatic_data_pathway = "/home/cdacea/GH_data/climatic_data.csv"
 try:
 
     with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
@@ -224,6 +224,7 @@ try:
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_41 at {now[1]} on {now[0]}: {e}")
+
             try:
                 carbon_conc_42 = carbo_42.read_float(1, 3, 2, 0)
                 sleep(4)
@@ -231,6 +232,7 @@ try:
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
+
             try:
                 THUM_31.write("OPEN 31\r\n")
                 THUM_31.flush()
