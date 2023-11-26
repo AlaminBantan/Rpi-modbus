@@ -232,6 +232,64 @@ try:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
             try:
+                THUM_31.write("OPEN 31\r\n")
+                THUM_31.flush()
+                print("31 is opened")
+                sleep(1)
+
+                THUM_31.write("SEND\r\n")
+                THUM_31.flush()
+                print("send")
+                sleep(2)
+                
+                data_31 = THUM_31.readlines()
+
+                last_line_31 = data_31[-1]
+                rh_index_31 = last_line_31.find('RH=')
+                temp_index_31 = last_line_31.find("Ta=")
+
+                if rh_index_31 != -1 and temp_index_31 != -1:
+                    rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
+                    temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Temp': temp_value_31, 'Humidity': rh_value_31})
+                sleep(1)
+                THUM_31.write("CLOSE\r\n")
+                print("closed")
+                sleep(1)
+            except Exception as e:
+                now = get_datetime()
+                print(f"Error reading THUM_31 at {now[1]} on {now[0]}: {e}")
+                
+            try:
+                THUM_32.write("OPEN 32\r\n")
+                THUM_32.flush()
+                print("32 is opened")
+                sleep(1)
+
+                THUM_32.write("SEND\r\n")
+                THUM_32.flush()
+                print("send")
+                sleep(2)
+                
+                data_32 = THUM_32.readlines()
+
+                last_line_32 = data_32[-1]
+                rh_index_32 = last_line_32.find('RH=')
+                temp_index_32 = last_line_32.find("Ta=")
+
+                if rh_index_32 != -1 and temp_index_32 != -1:
+                    rh_value_32 = float(last_line_32[rh_index_32 + 3:last_line_32.find('%RH')])
+                    temp_value_32 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'Temp': temp_value_32, 'Humidity': rh_value_32})
+                sleep(1)
+                THUM_32.write("CLOSE\r\n")
+                print("closed")
+                sleep(1)
+            except Exception as e:
+                now = get_datetime()
+                print(f"Error reading THUM_32 at {now[1]} on {now[0]}: {e}")
+
+            try:
                 THUM_33.write("OPEN 33\r\n")
                 THUM_33.flush()
                 print("33 is opened")
@@ -244,27 +302,50 @@ try:
                 
                 data_33 = THUM_33.readlines()
 
-                last_line = data_33[-1]
-                rh_index = last_line.find('RH=')
-                temp_index = last_line.find("Ta=")
+                last_line_33 = data_33[-1]
+                rh_index_33 = last_line_33.find('RH=')
+                temp_index_33 = last_line_33.find("Ta=")
 
-                if rh_index != -1 and temp_index != -1:
-                    rh_value = float(last_line[rh_index + 3:last_line.find('%RH')])
-                    temp_value = float(last_line[temp_index + 3:last_line.find("'C")])
-                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Temp': temp_value:.1f, 'Humidity': rh_value:.1f})
-
-
-                    print(f"RH= {rh_value} %RH")
-                    print(f"Temp= {temp_value} 'C")
-
-                sleep(3)
-
+                if rh_index_33 != -1 and temp_index_33 != -1:
+                    rh_value_33 = float(last_line_33[rh_index_33 + 3:last_line_33.find('%RH')])
+                    temp_value_33 = float(last_line_33[temp_index_33 + 3:last_line_33.find("'C")])
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'Temp': temp_value_33, 'Humidity': rh_value_33})
+                sleep(1)
                 THUM_33.write("CLOSE\r\n")
                 print("closed")
-                sleep(2)
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
-                print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
+                print(f"Error reading THUM_33 at {now[1]} on {now[0]}: {e}")
+
+            try:
+                THUM_34.write("OPEN 34\r\n")
+                THUM_34.flush()
+                print("34 is opened")
+                sleep(1)
+
+                THUM_34.write("SEND\r\n")
+                THUM_34.flush()
+                print("send")
+                sleep(2)
+                
+                data_34 = THUM_34.readlines()
+
+                last_line_34 = data_34[-1]
+                rh_index_34 = last_line_34.find('RH=')
+                temp_index_34 = last_line_34.find("Ta=")
+
+                if rh_index_34 != -1 and temp_index_34 != -1:
+                    rh_value_34 = float(last_line_34[rh_index_34 + 3:last_line_34.find('%RH')])
+                    temp_value_34 = float(last_line_34[temp_index_34 + 3:last_line_34.find("'C")])
+                    writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'Temp': temp_value_34, 'Humidity': rh_value_34})
+                sleep(1)
+                THUM_34.write("CLOSE\r\n")
+                print("closed")
+                sleep(1)
+            except Exception as e:
+                now = get_datetime()
+                print(f"Error reading THUM_34 at {now[1]} on {now[0]}: {e}")
 
 except KeyboardInterrupt:
     # Close serial ports only if they are open
