@@ -5,7 +5,7 @@ PAR_1 = minimalmodbus.Instrument('/dev/ttyACM0',1)	# Make an "instrument" object
 
 PAR_1.serial.baudrate = 19200 	
 PAR_1.serial.bytesize = 8					# Number of data bits to be requested
-PAR_1.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+PAR_1.serial.parity = minimalmodbus.serial.PARITY_NONE	# Parity Setting here is NONE but can be ODD or EVEN
 PAR_1.serial.stopbits = 1					# Number of stop bits
 PAR_1.serial.timeout  = 0.5					# Timeout time in seconds
 PAR_1.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
