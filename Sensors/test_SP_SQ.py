@@ -5,7 +5,7 @@ from time import sleep
 Solar_11 = minimalmodbus.Instrument('/dev/ttyACM0', 11, debug=False)
 Solar_11.serial.baudrate = 19200 	
 Solar_11.serial.bytesize = 8					# Number of data bits to be requested
-Solar_11.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+Solar_11.serial.parity = minimalmodbus.serial.PARITY_NONE	# Parity Setting here is NONE but can be ODD or EVEN
 Solar_11.serial.stopbits = 1					# Number of stop bits
 Solar_11.serial.timeout  = 0.5					# Timeout time in seconds
 Solar_11.mode = minimalmodbus.MODE_RTU			
@@ -17,7 +17,7 @@ Solar_11.close_port_after_each_call = True
 Solar_13 = minimalmodbus.Instrument('/dev/ttyACM0', 13, debug=False)
 Solar_13.serial.baudrate = 19200 	
 Solar_13.serial.bytesize = 8					# Number of data bits to be requested
-Solar_13.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+Solar_13.serial.parity = minimalmodbus.serial.PARITY_NONE	# Parity Setting here is NONE but can be ODD or EVEN
 Solar_13.serial.stopbits = 1					# Number of stop bits
 Solar_13.serial.timeout  = 0.5					# Timeout time in seconds
 Solar_13.mode = minimalmodbus.MODE_RTU			
@@ -29,7 +29,7 @@ Solar_13.close_port_after_each_call = True
 PAR_1 = minimalmodbus.Instrument('/dev/ttyACM0',1)	# Make an "instrument" object called PAR_1 (port name, slave address (in decimal))
 PAR_1.serial.baudrate = 19200 	
 PAR_1.serial.bytesize = 8					# Number of data bits to be requested
-PAR_1.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+PAR_1.serial.parity = minimalmodbus.serial.PARITY_NONE	# Parity Setting here is NONE but can be ODD or EVEN
 PAR_1.serial.stopbits = 1					# Number of stop bits
 PAR_1.serial.timeout  = 0.5					# Timeout time in seconds
 PAR_1.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
@@ -40,7 +40,7 @@ PAR_1.close_port_after_each_call = True
 PAR_2 = minimalmodbus.Instrument('/dev/ttyACM0',3)	
 PAR_2.serial.baudrate = 19200 				# BaudRate
 PAR_2.serial.bytesize = 8					# Number of data bits to be requested
-PAR_2.serial.parity = minimalmodbus.serial.PARITY_EVEN	# Parity Setting here is NONE but can be ODD or EVEN
+PAR_2.serial.parity = minimalmodbus.serial.PARITY_NONE	# Parity Setting here is NONE but can be ODD or EVEN
 PAR_2.serial.stopbits = 1					# Number of stop bits
 PAR_2.serial.timeout  = 0.5					# Timeout time in seconds
 PAR_2.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
