@@ -16,11 +16,11 @@ sio = io.TextIOWrapper(io.BufferedRWPair(se,se))
 try:
     while True:
     #Command is the Slave ID + M!, to take measurement
-        command = "?1"
+        command = "?!\r\n"
         print(f"{command} sent")
         sio.write(command)
         sio.flush()
-        time.sleep(0.2)
+        time.sleep(1)
         data = sio.readlines()
         print(data)
         time.sleep(2)
