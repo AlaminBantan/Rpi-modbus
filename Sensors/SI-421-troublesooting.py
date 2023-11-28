@@ -24,5 +24,5 @@ try:
         data = sio.readlines()
         print(data)
         time.sleep(2)
-except KeyboardInterrupt
-print("closed")
+except KeyboardInterrupt:
+    print("closed")
