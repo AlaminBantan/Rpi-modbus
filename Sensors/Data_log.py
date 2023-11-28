@@ -169,7 +169,7 @@ try:
                 # Read data from PAR_3
                 PAR_intensity_3 = PAR_3.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "3", 'PAR': PAR_intensity_3})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'PAR': PAR_intensity_3})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_3 at {now[1]} on {now[0]}: {e}")
@@ -178,7 +178,7 @@ try:
                 # Read data from PAR_4
                 PAR_intensity_4 = PAR_4.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'PAR': PAR_intensity_4})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'PAR': PAR_intensity_4})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_4 at {now[1]} on {now[0]}: {e}")
@@ -187,7 +187,7 @@ try:
                 # Read data from Solar_11
                 Solar_Radiation_11 = Solar_11.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'Solar radiation': Solar_Radiation_11})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Solar radiation': Solar_Radiation_11})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_11 at {now[1]} on {now[0]}: {e}")
@@ -196,7 +196,7 @@ try:
                 # Read data from Solar_12
                 Solar_Radiation_12 = Solar_12.read_float(0, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "3", 'Solar radiation': Solar_Radiation_12})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'Solar radiation': Solar_Radiation_12})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_12 at {now[1]} on {now[0]}: {e}")
