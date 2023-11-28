@@ -230,7 +230,7 @@ try:
             try:
                 carbon_conc_42 = carbo_42.read_float(1, 3, 2, 0)
                 sleep(4)
-                writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'CO2 conc': carbon_conc_42})
+                writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'CO2 conc': carbon_conc_42})
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
