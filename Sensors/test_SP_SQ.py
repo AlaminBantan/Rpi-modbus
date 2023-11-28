@@ -144,7 +144,7 @@ try:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
 		Solar_Radiation_12 = Solar_12.read_float(0, 3, 2, 0)
-		slave_12 = Solar_12.read_float(126,3,2,0)
+		slave_12 = Solar_12.read_float(16,3,2,0)
 		Baud_12 = Solar_12.read_float(22,3,2,0)
 		Parity_12 = Solar_12.read_float(24,3,2,0)
 		Stopbit_12 = Solar_12.read_float(26,3,2,0)
@@ -201,7 +201,7 @@ try:
 		
 		# ~ read_float(registeraddress: int, functioncode: int = 3, number_of_registers: int = 2, byteorder: int = 0) 
 		Solar_Radiation_14 = Solar_14.read_float(0, 3, 2, 0)
-		slave_14 = Solar_14.read_float(146,3,2,0)
+		slave_14 = Solar_14.read_float(16,3,2,0)
 		Baud_14 = Solar_14.read_float(22,3,2,0)
 		Parity_14 = Solar_14.read_float(24,3,2,0)
 		Stopbit_14 = Solar_14.read_float(26,3,2,0)
