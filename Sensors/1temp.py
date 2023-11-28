@@ -1,28 +1,10 @@
-            try:
-                THUM_34.write("OPEN 34\r\n")
-                THUM_34.flush()
-                print("34 is opened")
-                sleep(1)
-
-                THUM_34.write("SEND\r\n")
-                THUM_34.flush()
-                print("send")
-                sleep(2)
-                
-                data_34 = THUM_34.readlines()
-
-                last_line_34 = data_34[-1]
-                rh_index_34 = last_line_34.find('RH=')
-                temp_index_34 = last_line_34.find("Ta=")
-
-                if rh_index_34 != -1 and temp_index_34 != -1:
-                    rh_value_34 = float(last_line_34[rh_index_34 + 3:last_line_34.find('%RH')])
-                    temp_value_34 = float(last_line_34[temp_index_34 + 3:last_line_34.find("'C")])
-                    writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Temp': temp_value_34, 'Humidity': rh_value_34})
-                sleep(1)
-                THUM_34.write("CLOSE\r\n")
-                print("closed")
-                sleep(1)
-            except Exception as e:
-                now = get_datetime()
-                print(f"Error reading THUM_34 at {now[1]} on {now[0]}: {e}")
+#configuration of SQ-618 ID=4
+PAR_4 = minimalmodbus.Instrument('/dev/ttyACM0',4)	
+PAR_4.serial.baudrate = 19400 				# BaudRate
+PAR_4.serial.bytesize = 8					# Number of data bits to be requested
+PAR_4.serial.parity = minimalmodbus.serial.PARITY_NONE	# Parity Setting here is NONE but can be ODD or EVEN
+PAR_4.serial.stopbits = 1					# Number of stop bits
+PAR_4.serial.timeout  = 0.5					# Timeout time in seconds
+PAR_4.mode = minimalmodbus.MODE_RTU				# Mode to be used (RTU or ascii mode)
+PAR_4.clear_buffers_before_each_transaction = True
+PAR_4.close_port_after_each_call = True
