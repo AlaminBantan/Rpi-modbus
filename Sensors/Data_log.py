@@ -149,9 +149,9 @@ try:
             try:
                 # Read data from PAR_1
                 PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'PAR': PAR_intensity_1})
-
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_1 at {now[1]} on {now[0]}: {e}")
@@ -159,8 +159,9 @@ try:
             try:
                 # Read data from PAR_2
                 PAR_intensity_2 = PAR_2.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'PAR': PAR_intensity_2})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_2 at {now[1]} on {now[0]}: {e}")
@@ -168,8 +169,9 @@ try:
             try:
                 # Read data from PAR_3
                 PAR_intensity_3 = PAR_3.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'PAR': PAR_intensity_3})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_3 at {now[1]} on {now[0]}: {e}")
@@ -177,8 +179,9 @@ try:
             try:
                 # Read data from PAR_4
                 PAR_intensity_4 = PAR_4.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'PAR': PAR_intensity_4})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_4 at {now[1]} on {now[0]}: {e}")
@@ -186,8 +189,9 @@ try:
             try:
                 # Read data from Solar_11
                 Solar_Radiation_11 = Solar_11.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'Solar radiation': Solar_Radiation_11})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_11 at {now[1]} on {now[0]}: {e}")
@@ -195,8 +199,9 @@ try:
             try:
                 # Read data from Solar_12
                 Solar_Radiation_12 = Solar_12.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "2", 'Solar radiation': Solar_Radiation_12})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_12 at {now[1]} on {now[0]}: {e}")
@@ -204,8 +209,9 @@ try:
             try:
                 # Read data from Solar_13
                 Solar_Radiation_13 = Solar_13.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'Solar radiation': Solar_Radiation_13})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_13 at {now[1]} on {now[0]}: {e}")
@@ -213,24 +219,27 @@ try:
             try:
                 # Read data from Solar_14
                 Solar_Radiation_14 = Solar_14.read_float(0, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "2", 'Solar radiation': Solar_Radiation_14})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_14 at {now[1]} on {now[0]}: {e}")
 
             try:
                 carbon_conc_41 = carbo_41.read_float(1, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "B", 'Subzone': "1", 'CO2 conc': carbon_conc_41})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_41 at {now[1]} on {now[0]}: {e}")
 
             try:
                 carbon_conc_42 = carbo_42.read_float(1, 3, 2, 0)
-                sleep(4)
+                sleep(1)
                 writer.writerow({'Date': date, 'Time': time, 'Zone': "C", 'Subzone': "1", 'CO2 conc': carbon_conc_42})
+                sleep(1)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
@@ -263,7 +272,7 @@ try:
                 sleep(1)
                 THUM_32.write("SEND\r\n")
                 THUM_32.flush()
-                sleep(2)
+                sleep(1)
                 data_32 = THUM_32.readlines()
                 last_line_32 = data_32[-1]
                 rh_index_32 = last_line_32.find('RH=')
@@ -285,7 +294,7 @@ try:
                 sleep(1)
                 THUM_33.write("SEND\r\n")
                 THUM_33.flush()
-                sleep(2)
+                sleep(1)
                 data_33 = THUM_33.readlines()
                 last_line_33 = data_33[-1]
                 rh_index_33 = last_line_33.find('RH=')
@@ -308,7 +317,7 @@ try:
                 sleep(1)
                 THUM_34.write("SEND\r\n")
                 THUM_34.flush()
-                sleep(2)
+                sleep(1)
                 data_34 = THUM_34.readlines()
                 last_line_34 = data_34[-1]
                 rh_index_34 = last_line_34.find('RH=')
