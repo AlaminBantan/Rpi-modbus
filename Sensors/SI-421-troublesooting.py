@@ -2,8 +2,8 @@ import serial
 import time
 import io
 
-IR_0 = serial.Serial("/dev/ttyACM0",
-                   baudrate=19200,
+IR_0 = serial.Serial("/dev/ttyUSB0",
+                   baudrate=9600,
                    bytesize=serial.EIGHTBITS,
                    parity=serial.PARITY_NONE,
                    stopbits=serial.STOPBITS_ONE,
