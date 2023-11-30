@@ -135,12 +135,19 @@ def get_datetime():
 
 # Define the file path for the CSV file
 Climatic_data_pathway = "/home/cdacea/GH_data/climatic_data.csv"
-try:
 
+# Check if the file is empty
+file_exists = os.path.exists(Climatic_data_pathway) and os.path.getsize(Climatic_data_pathway) > 0
+
+try:
     with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
         fieldnames = ['Date', 'Time', 'Zone', 'Subzone', 'PAR', 'Solar radiation', 'Temp', 'Humidity', 'CO2 conc']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-        writer.writeheader()
+
+        # Write the header only if the file is empty
+        if not file_exists:
+            writer.writeheader()
+
 
 
         while True:
