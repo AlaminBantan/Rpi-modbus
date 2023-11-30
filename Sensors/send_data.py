@@ -1,19 +1,29 @@
 import yagmail
 
 # Set up your yagmail instance
-yag = yagmail.SMTP('bantanalamin@gmail.com', 'muzomvmpwxiczzmo')
+email_address = 'bantanalamin@gmail.com'
+password = 'muzomvmpwxiczzmo'
+yag = yagmail.SMTP(email_address, password)
 
-# Compose the email
-to = 'alamin.bantan@kaust.edu.sa'
-subject = 'Reading of the zones'
-body = 'These are the light data from zones b and c'
+try:
+    # Compose the email
+    to = ['alamin.bantan@kaust.edu.sa', 'chad.vietti@kaust.edu.sa']
+    subject = 'Reading of the zones'
+    body = 'These are the light data from zones b and c'
 
-# Attach the file
-attachment1 = "Light_comparison.csv"
-attachment2 = "Light_comparison11.csv"
+    # Attach the file
+    attachment1 = "/home/cdacea/GH_data/climatic_data.csv"
 
-# Send the email
-yag.send(to, subject, [body, attachment1, attachment2])
+    # Send the email
+    yag.send(to, subject, [body, attachment1])
 
-# Logout
-yag.close()
+    # Log success or other relevant information
+    print("Email sent successfully!")
+
+except Exception as e:
+    # Log the error
+    print(f"Error: {e}")
+
+finally:
+    # Logout
+    yag.close()
