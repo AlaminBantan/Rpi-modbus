@@ -1,25 +1,26 @@
 import pandas as pd
 
-# Assuming your CSV data is in a file named 'climatic_data.csv'
+# Replace '/home/cdacea/GH_data/climatic_data.csv' with your actual file path
 file_path = '/home/cdacea/GH_data/climatic_data.csv'
+output_file_path = '/home/cdacea/GH_data/modified_climatic_data.csv'
 
-# Read CSV, skipping rows with non-numeric 'Time'
-df = pd.read_csv(file_path, skiprows=lambda x: x == 14, na_values=['Time'])
+# Assuming your data is stored in a CSV file
+data = pd.read_csv(file_path)
 
-# Convert 'Time' column to datetime format, handling mixed data types
-df['Time'] = pd.to_datetime(df['Time'], format='%H:%M', errors='coerce')
+# Convert 'Date' and 'Time' columns to datetime format
+data['Datetime'] = pd.to_datetime(data['Date'] + ' ' + data['Time'])
 
-# Remove rows where 'Time' couldn't be converted
-df = df.dropna(subset=['Time'])
+# Group by 'Datetime', 'Zone', and 'Subzone', and calculate the average for each group
+grouped_data = data.groupby(['Datetime', 'Zone', 'Subzone']).agg({
+    'PAR': 'mean',
+    'Solar radiation': 'mean',
+    'Temp': 'mean',
+    'Humidity': 'mean',
+    'CO2 conc': 'mean'
+}).reset_index()
 
-# Round 'Time' to the nearest 15 minutes
-df['Time'] = df['Time'].dt.round('15min')
+# Save the resulting grouped data to a new CSV file
+grouped_data.to_csv(output_file_path, index=False)
 
-# Group by 'Date', 'Time', 'Zone', and 'Subzone' and calculate the mean for each group
-result_df = df.groupby(['Date', 'Time', 'Zone', 'Subzone']).mean().reset_index()
-
-# Save the modified DataFrame to a new CSV file
-modified_file_path = '/home/cdacea/GH_data/modified_climatic_data.csv'
-result_df.to_csv(modified_file_path, index=False)
-
-print(f"Modified data saved to {modified_file_path}")
+# Print a message indicating the process is complete
+print(f"Modified data saved to {output_file_path}")
