@@ -4,6 +4,7 @@ import datetime
 import csv
 import serial
 import io
+import os
 
 # Configuration of SQ-618 ID=1
 PAR_1 = minimalmodbus.Instrument('/dev/ttyACM0',1)
