@@ -5,7 +5,7 @@ file_path = '/home/cdacea/GH_data/climatic_data.csv'
 df = pd.read_csv(file_path)
 
 # Convert 'Time' column to datetime format
-df['Time'] = pd.to_datetime(df['Time'])
+df['Time'] = pd.to_datetime(df['Time'], format='%H:%M')
 
 # Round 'Time' to the nearest 15 minutes
 df['Time'] = df['Time'].dt.round('15min')
