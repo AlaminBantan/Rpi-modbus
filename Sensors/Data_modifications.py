@@ -5,10 +5,13 @@ file_path = '/home/cdacea/GH_data/climatic_data.csv'
 output_file_path = '/home/cdacea/GH_data/modified_climatic_data.csv'
 
 # Assuming your data is stored in a CSV file
-data = pd.read_csv(file_path)
+data = pd.read_csv(file_path, skiprows=1)  # Skip the first row if it contains headers
 
 # Convert 'Date' and 'Time' columns to datetime format
-data['Datetime'] = pd.to_datetime(data['Date'] + ' ' + data['Time'])
+data['Datetime'] = pd.to_datetime(data['Date'] + ' ' + data['Time'], errors='coerce')
+
+# Drop rows where datetime conversion failed
+data = data.dropna(subset=['Datetime'])
 
 # Group by 'Datetime', 'Zone', and 'Subzone', and calculate the average for each group
 grouped_data = data.groupby(['Datetime', 'Zone', 'Subzone']).agg({
