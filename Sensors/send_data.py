@@ -12,7 +12,7 @@ try:
     body = 'These are the light data from zones b and c'
 
     # Attach the file
-    attachment1 = "/home/cdacea/GH_data/climatic_data.csv"
+    attachment1 = "/home/cdacea/GH_data/modified_data_15min.csv"
 
     # Send the email
     yag.send(to, subject, [body, attachment1])
