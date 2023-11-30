@@ -1,33 +1,24 @@
 import pandas as pd
 
-# Replace '/home/cdacea/GH_data/climatic_data.csv' with your actual file path
-file_path = '/home/cdacea/GH_data/climatic_data.csv'
-output_file_path = '/home/cdacea/GH_data/modified_climatic_data.csv'
+# Load the CSV file into a DataFrame
+file_path = "/home/cdacea/GH_data/climatic_data.csv"
+df = pd.read_csv(file_path)
 
-# Assuming your data is stored in a CSV file
-data = pd.read_csv(file_path, skiprows=1)  # Skip the first row if it contains headers
+# Convert the 'Date' and 'Time' columns to datetime format
+df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
 
-try:
-    # Convert 'Date' and 'Time' columns to datetime format
-    data['Datetime'] = pd.to_datetime(data['Date'] + ' ' + data['Time'], errors='coerce')
+# Round the 'DateTime' column to the nearest 15-minute interval
+df['RoundedDateTime'] = df['DateTime'].dt.round('15min')
 
-    # Drop rows where datetime conversion failed
-    data = data.dropna(subset=['Datetime'])
-    
-    # Group by 'Datetime', 'Zone', and 'Subzone', and calculate the average for each group
-    grouped_data = data.groupby(['Datetime', 'Zone', 'Subzone']).agg({
-        'PAR': 'mean',
-        'Solar radiation': 'mean',
-        'Temp': 'mean',
-        'Humidity': 'mean',
-        'CO2 conc': 'mean'
-    }).reset_index()
+# Group by 'RoundedDateTime', 'Zone', and 'Subzone' and calculate the mean for each group
+grouped_data = df.groupby(['RoundedDateTime', 'Zone', 'Subzone']).mean().reset_index()
 
-    # Save the resulting grouped data to a new CSV file
-    grouped_data.to_csv(output_file_path, index=False)
+# Drop the temporary 'RoundedDateTime' column
+grouped_data = grouped_data.drop(columns=['RoundedDateTime'])
 
-    # Print a message indicating the process is complete
-    print(f"Modified data saved to {output_file_path}")
+# Save the grouped data to a new CSV file in the same directory
+output_file_path = "/home/cdacea/GH_data/modified_data_15min.csv"
+grouped_data.to_csv(output_file_path, index=False)
 
-except KeyError as e:
-    print(f"Error: {e}. Check the column names in your CSV file.")
+# Print the result
+print(f"Grouped and averaged data for 15-minute intervals saved to {output_file_path}")
