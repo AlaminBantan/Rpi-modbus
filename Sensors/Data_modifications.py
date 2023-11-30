@@ -2,10 +2,15 @@ import pandas as pd
 
 # Assuming your CSV data is in a file named 'climatic_data.csv'
 file_path = '/home/cdacea/GH_data/climatic_data.csv'
-df = pd.read_csv(file_path)
 
-# Convert 'Time' column to datetime format
-df['Time'] = pd.to_datetime(df['Time'], format='%H:%M')
+# Read CSV, skipping rows with non-numeric 'Time'
+df = pd.read_csv(file_path, skiprows=lambda x: x == 14, na_values=['Time'])
+
+# Convert 'Time' column to datetime format, handling mixed data types
+df['Time'] = pd.to_datetime(df['Time'], format='%H:%M', errors='coerce')
+
+# Remove rows where 'Time' couldn't be converted
+df = df.dropna(subset=['Time'])
 
 # Round 'Time' to the nearest 15 minutes
 df['Time'] = df['Time'].dt.round('15min')
