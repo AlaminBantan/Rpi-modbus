@@ -16,9 +16,6 @@ df['RoundedDateTime'] = df['DateTime'].dt.round('15min')
 # Group by 'RoundedDateTime', 'Zone', and 'Subzone' and calculate the mean for each group
 grouped_data = df.groupby(['RoundedDateTime', 'Zone', 'Subzone']).mean(numeric_only=True).reset_index()
 
-# Drop the temporary 'RoundedDateTime' column
-grouped_data = grouped_data.drop(columns=['RoundedDateTime'])
-
 # Save the grouped data to a new CSV file in the same directory
 output_file_path = "/home/cdacea/GH_data/modified_data_15min.csv"
 grouped_data.to_csv(output_file_path, index=False)
