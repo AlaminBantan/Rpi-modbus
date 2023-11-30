@@ -7,11 +7,14 @@ df = pd.read_csv(file_path)
 # Convert the 'Date' and 'Time' columns to datetime format
 df['DateTime'] = pd.to_datetime(df['Date'] + ' ' + df['Time'])
 
+# Convert 'CO2 conc' column to numeric, ignoring errors to handle non-numeric values
+df['CO2 conc'] = pd.to_numeric(df['CO2 conc'], errors='coerce')
+
 # Round the 'DateTime' column to the nearest 15-minute interval
 df['RoundedDateTime'] = df['DateTime'].dt.round('15min')
 
 # Group by 'RoundedDateTime', 'Zone', and 'Subzone' and calculate the mean for each group
-grouped_data = df.groupby(['RoundedDateTime', 'Zone', 'Subzone']).mean().reset_index()
+grouped_data = df.groupby(['RoundedDateTime', 'Zone', 'Subzone']).mean(numeric_only=True).reset_index()
 
 # Drop the temporary 'RoundedDateTime' column
 grouped_data = grouped_data.drop(columns=['RoundedDateTime'])
