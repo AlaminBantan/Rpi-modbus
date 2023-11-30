@@ -1,40 +1,47 @@
 import RPi.GPIO as GPIO
 from datetime import datetime, time
+import threading
 import time as t
 
-channel_13 = 13 #change channel_13 based on relay
+# Define GPIO channels
+channel_pump = 14 #connect the wet pad pump from zones B and C to relay 6 (129,152)
 
 # GPIO setup
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel_13, GPIO.OUT)
+GPIO.setwarnings(False)
 
+GPIO.setup(channel_pump, GPIO.OUT)
+
+
+# Define functions for each device
+#wet pad pump
 def pump_off(pin):
-    GPIO.output(pin, GPIO.HIGH)  
-
+    GPIO.output(pin, GPIO.HIGH)
 def pump_on(pin):
-    GPIO.output(pin, GPIO.LOW)  
+    GPIO.output(pin, GPIO.LOW)
 
-try:
+
+# Define functions to control devices in threads
+
+def pump_thread():
     while True:
-      
-        # Get the current time
         current_time = datetime.now().time()
 
-        # Define the start and end times
-        start_time_pump = time(6, 00)
-        end_time_pump = time(18, 00)
-
-        # Check if the current time is between 6:00 AM and 6:00 PM:
-        if start_time_pump <= current_time <= end_time_pump:
-            print("The current time is between 6 AM and 6 PM")
-            print("Fan in zone C is on now")
-            pump_off(channel_13)
-            t.sleep(180)
+        if time(6, 0) <= current_time <= time(18, 0):
+            pump_on(channel_pump)
         else:
-            print("no change to shading now")
-            pump_on(channel_13)
-            t.sleep(1)
+            pump_off(channel_pump)
+            
+            
 
+try:
+    # Start threads for each device
+    threading.Thread(target=pump_thread).start()
+
+
+    # Keep the main thread running
+    while True:
+        pass
 
 except KeyboardInterrupt:
     GPIO.cleanup()
