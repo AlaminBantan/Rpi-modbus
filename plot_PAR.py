@@ -27,4 +27,4 @@ plt.title('PAR for Different Zones and Subzones')
 plt.legend()
 
 # Show the plot
-plt.show()
+plt.savefig('par_plot.svg')
