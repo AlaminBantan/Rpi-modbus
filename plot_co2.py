@@ -18,7 +18,7 @@ plt.figure(figsize=(12, 8))
 plt.plot(zone_b_subzone_1['RoundedDateTime'], zone_b_subzone_1['CO2 conc'], label='Zone B Subzone 1 CO2 Conc')
 plt.plot(zone_c_subzone_1['RoundedDateTime'], zone_c_subzone_1['CO2 conc'], label='Zone C Subzone 1 CO2 Conc')
 
-
+plt.xticks(rotation='vertical')
 # Add labels and legend
 plt.xlabel('Time')
 plt.ylabel('CO2 Concentration')

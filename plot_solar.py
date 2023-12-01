@@ -20,6 +20,7 @@ plt.plot(zone_b_subzone_2['RoundedDateTime'], zone_b_subzone_2['Solar radiation'
 plt.plot(zone_c_subzone_1['RoundedDateTime'], zone_c_subzone_1['Solar radiation'], label='Zone C Subzone 1 Solar Radiation')
 plt.plot(zone_c_subzone_2['RoundedDateTime'], zone_c_subzone_2['Solar radiation'], label='Zone C Subzone 2 Solar Radiation')
 
+plt.xticks(rotation='vertical')
 # Add labels and legend
 plt.xlabel('Time')
 plt.ylabel('Solar Radiation')

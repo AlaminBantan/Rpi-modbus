@@ -20,6 +20,7 @@ plt.plot(zone_b_subzone_2['RoundedDateTime'], zone_b_subzone_2['Temp'], label='Z
 plt.plot(zone_c_subzone_1['RoundedDateTime'], zone_c_subzone_1['Temp'], label='Zone C Subzone 1 Temp')
 plt.plot(zone_c_subzone_2['RoundedDateTime'], zone_c_subzone_2['Temp'], label='Zone C Subzone 2 Temp')
 
+plt.xticks(rotation='vertical')
 # Add labels and legend
 plt.xlabel('Time')
 plt.ylabel('Temperature')
