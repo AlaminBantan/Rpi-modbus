@@ -12,7 +12,7 @@ zone_c_subzone_1 = df[(df['Zone'] == 'C') & (df['Subzone'] == 1)]
 zone_c_subzone_2 = df[(df['Zone'] == 'C') & (df['Subzone'] == 2)]
 
 # Plotting the graphs
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(20, 20))
 
 # Plot for 'PAR'
 plt.plot(zone_b_subzone_1['RoundedDateTime'], zone_b_subzone_1['PAR'], label='Zone B Subzone 1 PAR')
