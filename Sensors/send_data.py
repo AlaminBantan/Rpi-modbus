@@ -7,7 +7,7 @@ yag = yagmail.SMTP(email_address, password)
 
 try:
     # Compose the email
-    to = ['alamin.bantan@kaust.edu.sa', 'chad.vietti@kaust.edu.sa']
+    to = ['alamin.bantan@kaust.edu.sa']
     subject = 'Reading of the zones'
     body = 'These are the light data from zones b and c'
 
