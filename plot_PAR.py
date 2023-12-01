@@ -20,8 +20,9 @@ plt.plot(zone_b_subzone_2['RoundedDateTime'], zone_b_subzone_2['PAR'], label='Zo
 plt.plot(zone_c_subzone_1['RoundedDateTime'], zone_c_subzone_1['PAR'], label='Zone C Subzone 1 PAR')
 plt.plot(zone_c_subzone_2['RoundedDateTime'], zone_c_subzone_2['PAR'], label='Zone C Subzone 2 PAR')
 
-
-plt.xticks(rotation='vertical')
+# Customize x-axis ticks
+n = 5  # Display every 10th timestamp
+plt.xticks(range(0, len(df), n), df['RoundedDateTime'][::n], rotation='vertical')
 
 # Add labels and legend
 plt.xlabel('Time')
