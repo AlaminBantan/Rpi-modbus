@@ -64,6 +64,7 @@ def fan1_thread():
     while True:
         current_time = datetime.now().time()
         fan1_time_ranges = [
+            (time(0,0,0), time(9,59,52)),           
             (time(10, 0, 23), time(10, 29, 52)),
             (time(10, 30, 21), time(10, 59, 52)),
             (time(11, 0, 21), time(11, 29, 52)),
@@ -76,7 +77,7 @@ def fan1_thread():
             (time(14, 30, 21), time(14, 59, 52)),
             (time(15, 0, 21), time(15, 29, 52)),
             (time(15, 30, 21), time(15, 59, 52)),
-            (time(16, 0, 21), time(9, 59, 52))
+            (time(16, 0, 21), time(23,59,59))
         ]
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
 
@@ -92,6 +93,7 @@ def fan2_thread():
     while True:
         current_time = datetime.now().time()
         fan2_time_ranges = [
+            (time(0, 0, 0), time(9, 59, 54)),
             (time(10, 0, 25), time(10, 29, 54)),
             (time(10, 30, 23), time(10, 59, 54)),
             (time(11, 0, 23), time(11, 29, 54)),
@@ -104,7 +106,7 @@ def fan2_thread():
             (time(14, 30, 23), time(14, 59, 54)),
             (time(15, 0, 23), time(15, 29, 54)),
             (time(15, 30, 23), time(15, 59, 54)),
-            (time(16, 0, 23), time(9, 59, 54))
+            (time(16, 0, 23), time(23,59,59))
         ]
 
         fan2_time = any(fan2_start_time <= current_time <= fan2_end_time for fan2_start_time, fan2_end_time in fan2_time_ranges)
