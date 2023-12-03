@@ -64,30 +64,20 @@ def fan1_thread():
     while True:
         current_time = datetime.now().time()
         fan1_time_ranges = [
-            (time(6, 0, 0), time(7, 59, 50)),
-            (time(8, 0, 20), time(8, 23, 50)),
-            (time(8, 24, 20), time(8, 47, 50)),
-            (time(8, 48, 20), time(9, 11, 50)),
-            (time(9, 12, 20), time(9, 35, 50)),
-            (time(9, 36, 20), time(9, 59, 50)),
-            (time(10, 0, 20), time(10, 23, 50)),
-            (time(10, 24, 20), time(10, 47, 50)),
-            (time(10, 48, 20), time(11, 11, 50)),
-            (time(11, 12, 20), time(11, 35, 50)),
-            (time(11, 36, 20), time(11, 59, 50)),
-            (time(12, 0, 20), time(12, 23, 50)),
-            (time(12, 24, 20), time(12, 47, 50)),
-            (time(12, 48, 20), time(1, 11, 50)),
-            (time(13, 12, 20), time(13, 35, 50)),
-            (time(13, 36, 20), time(13, 59, 50)),
-            (time(14, 0, 20), time(14, 23, 50)),
-            (time(14, 24, 20), time(14, 47, 50)),
-            (time(14, 48, 20), time(15, 11, 50)),
-            (time(15, 12, 20), time(15, 35, 50)),
-            (time(15, 36, 20), time(15, 59, 50)),
-            (time(16, 0, 20), time(18, 0, 0))
+            (time(10, 0, 23), time(10, 29, 52)),
+            (time(10, 30, 21), time(10, 59, 52)),
+            (time(11, 0, 21), time(11, 29, 52)),
+            (time(11, 30, 21), time(11, 59, 52)),
+            (time(12, 0, 21), time(12, 29, 52)),
+            (time(12, 30, 21), time(12, 59, 52)),
+            (time(13, 0, 21), time(13, 29, 52)),
+            (time(13, 30, 21), time(13, 59, 52)),
+            (time(14, 0, 21), time(14, 29, 52)),
+            (time(14, 30, 21), time(14, 59, 52)),
+            (time(15, 0, 21), time(15, 29, 52)),
+            (time(15, 30, 21), time(15, 59, 52)),
+            (time(16, 0, 21), time(9, 59, 52))
         ]
-
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
 
         if fan1_time:
@@ -102,28 +92,19 @@ def fan2_thread():
     while True:
         current_time = datetime.now().time()
         fan2_time_ranges = [
-            (time(6, 0, 0), time(7, 59, 55)),
-            (time(8, 0, 25), time(8, 23, 55)),
-            (time(8, 24, 25), time(8, 47, 55)),
-            (time(8, 48, 25), time(9, 11, 55)),
-            (time(9, 12, 25), time(9, 35, 55)),
-            (time(9, 36, 25), time(9, 59, 55)),
-            (time(10, 0, 25), time(10, 23, 55)),
-            (time(10, 24, 25), time(10, 47, 55)),
-            (time(10, 48, 25), time(11, 11, 55)),
-            (time(11, 12, 25), time(11, 35, 55)),
-            (time(11, 36, 25), time(11, 59, 55)),
-            (time(12, 0, 25), time(12, 23, 55)),
-            (time(12, 24, 25), time(12, 47, 55)),
-            (time(12, 48, 25), time(13, 11, 55)),
-            (time(13, 12, 25), time(13, 35, 55)),
-            (time(13, 36, 25), time(13, 59, 55)),
-            (time(14, 0, 25), time(14, 23, 55)),
-            (time(14, 24, 25), time(14, 47, 55)),
-            (time(14, 48, 25), time(15, 11, 55)),
-            (time(15, 12, 25), time(15, 35, 55)),
-            (time(15, 36, 25), time(15, 59, 55)),
-            (time(16, 0, 25), time(18, 0, 0))
+            (time(10, 0, 25), time(10, 29, 54)),
+            (time(10, 30, 23), time(10, 59, 54)),
+            (time(11, 0, 23), time(11, 29, 54)),
+            (time(11, 30, 23), time(11, 59, 54)),
+            (time(12, 0, 23), time(12, 29, 54)),
+            (time(12, 30, 23), time(12, 59, 54)),
+            (time(13, 0, 23), time(13, 29, 54)),
+            (time(13, 30, 23), time(13, 59, 54)),
+            (time(14, 0, 23), time(14, 29, 54)),
+            (time(14, 30, 23), time(14, 59, 54)),
+            (time(15, 0, 23), time(15, 29, 54)),
+            (time(15, 30, 23), time(15, 59, 54)),
+            (time(16, 0, 23), time(9, 59, 54))
         ]
 
         fan2_time = any(fan2_start_time <= current_time <= fan2_end_time for fan2_start_time, fan2_end_time in fan2_time_ranges)
@@ -137,29 +118,20 @@ def mist_thread():
      while True:
         current_time = datetime.now().time()
         misting_time_ranges = [
-            (time(8, 0, 0), time(8, 0, 8)),
-            (time(8, 24, 0), time(8, 24, 8)),
-            (time(8, 48, 0), time(8, 48, 8)),
-            (time(9, 12, 0), time(9, 12, 8)),
-            (time(9, 36, 0), time(9, 36, 8)),
             (time(10, 0, 0), time(10, 0, 8)),
-            (time(10, 24, 0), time(10, 24, 8)),
-            (time(10, 48, 0), time(10, 48, 8)),
-            (time(11, 12, 0), time(11, 12, 8)),
-            (time(11, 36, 0), time(11, 36, 8)),
-            (time(12, 0, 0), time(12, 0, 8)),
-            (time(12, 24, 0), time(12, 24, 8)),
-            (time(12, 48, 0), time(12, 48, 8)),
-            (time(13, 12, 0), time(13, 12, 8)),
-            (time(13, 36, 0), time(13, 36, 8)),
-            (time(14, 0, 0), time(14, 0, 8)),
-            (time(14, 24, 0), time(14, 24, 8)),
-            (time(14, 48, 0), time(14, 48, 8)),
-            (time(15, 12, 0), time(15, 12, 8)),
-            (time(15, 36, 0), time(15, 36, 8)),
-            (time(16, 0, 0), time(16, 0, 8))
+            (time(10, 30, 0), time(10, 30, 6)),
+            (time(11, 0, 0), time(11, 0, 6)),
+            (time(11, 30, 0), time(11, 30, 6)),
+            (time(12, 0, 0), time(12, 0, 6)),
+            (time(12, 30, 0), time(12, 30, 6)),
+            (time(13, 0, 0), time(13, 0, 6)),
+            (time(13, 30, 0), time(13, 30, 6)),
+            (time(14, 0, 0), time(14, 0, 6)),
+            (time(14, 30, 0), time(14, 30, 6)),
+            (time(15, 0, 0), time(15, 0, 6)),
+            (time(15, 30, 0), time(15, 30, 6)),
+            (time(16, 0, 0), time(16, 0, 6))
         ]
-
         misting_time = any(mist_start_time <= current_time <= mist_end_time for mist_start_time, mist_end_time in misting_time_ranges)
 
         if misting_time:
@@ -172,7 +144,7 @@ def pump_thread():
     while True:
         current_time = datetime.now().time()
 
-        if time(6, 0) <= current_time <= time(18, 0):
+        if time(5, 0) <= current_time <= time(17, 0):
             pump_on(channel_pump)
         else:
             pump_off(channel_pump)
