@@ -78,14 +78,14 @@ def fan1_thread():
             (time(12, 0, 20), time(12, 23, 50)),
             (time(12, 24, 20), time(12, 47, 50)),
             (time(12, 48, 20), time(1, 11, 50)),
-            (time(1, 12, 20), time(1, 35, 50)),
-            (time(1, 36, 20), time(1, 59, 50)),
-            (time(2, 0, 20), time(2, 23, 50)),
-            (time(2, 24, 20), time(2, 47, 50)),
-            (time(2, 48, 20), time(3, 11, 50)),
-            (time(3, 12, 20), time(3, 35, 50)),
-            (time(3, 36, 20), time(3, 59, 50)),
-            (time(4, 0, 20), time(18, 0, 0))
+            (time(13, 12, 20), time(13, 35, 50)),
+            (time(13, 36, 20), time(13, 59, 50)),
+            (time(14, 0, 20), time(14, 23, 50)),
+            (time(14, 24, 20), time(14, 47, 50)),
+            (time(14, 48, 20), time(15, 11, 50)),
+            (time(15, 12, 20), time(15, 35, 50)),
+            (time(15, 36, 20), time(15, 59, 50)),
+            (time(16, 0, 20), time(18, 0, 0))
         ]
 
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
@@ -115,15 +115,15 @@ def fan2_thread():
             (time(11, 36, 25), time(11, 59, 55)),
             (time(12, 0, 25), time(12, 23, 55)),
             (time(12, 24, 25), time(12, 47, 55)),
-            (time(12, 48, 25), time(1, 11, 55)),
-            (time(1, 12, 25), time(1, 35, 55)),
-            (time(1, 36, 25), time(1, 59, 55)),
-            (time(2, 0, 25), time(2, 23, 55)),
-            (time(2, 24, 25), time(2, 47, 55)),
-            (time(2, 48, 25), time(3, 11, 55)),
-            (time(3, 12, 25), time(3, 35, 55)),
-            (time(3, 36, 25), time(3, 59, 55)),
-            (time(4, 0, 25), time(18, 0, 0))
+            (time(12, 48, 25), time(13, 11, 55)),
+            (time(13, 12, 25), time(13, 35, 55)),
+            (time(13, 36, 25), time(13, 59, 55)),
+            (time(14, 0, 25), time(14, 23, 55)),
+            (time(14, 24, 25), time(14, 47, 55)),
+            (time(14, 48, 25), time(15, 11, 55)),
+            (time(15, 12, 25), time(15, 35, 55)),
+            (time(15, 36, 25), time(15, 59, 55)),
+            (time(16, 0, 25), time(18, 0, 0))
         ]
 
         fan2_time = any(fan2_start_time <= current_time <= fan2_end_time for fan2_start_time, fan2_end_time in fan2_time_ranges)

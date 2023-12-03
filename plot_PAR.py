@@ -12,6 +12,13 @@ zone_b_subzone_2 = df[(df['Zone'] == 'B') & (df['Subzone'] == 2)]
 zone_c_subzone_1 = df[(df['Zone'] == 'C') & (df['Subzone'] == 1)]
 zone_c_subzone_2 = df[(df['Zone'] == 'C') & (df['Subzone'] == 2)]
 
+# Downsample the data by selecting every Nth row (adjust N as needed)
+N = 4
+zone_b_subzone_1 = zone_b_subzone_1.iloc[::N, :]
+zone_b_subzone_2 = zone_b_subzone_2.iloc[::N, :]
+zone_c_subzone_1 = zone_c_subzone_1.iloc[::N, :]
+zone_c_subzone_2 = zone_c_subzone_2.iloc[::N, :]
+
 # Plotting the graphs
 plt.figure(figsize=(20, 20))
 
@@ -30,7 +37,7 @@ plt.xticks(rotation='vertical')
 
 # Add labels and legend
 plt.xlabel('Time')
-plt.ylabel('PAR (umol.m-2.s-1)')
+plt.ylabel('PAR')
 plt.title('PAR for Different Zones and Subzones')
 plt.legend()
 
