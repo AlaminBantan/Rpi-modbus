@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.dates import HourLocator, DateFormatter
 
 # Assuming your data is stored in a CSV file named 'your_data.csv'
 # If it's stored in a different format, you can adjust the read function accordingly.
@@ -20,12 +21,16 @@ plt.plot(zone_b_subzone_2['RoundedDateTime'], zone_b_subzone_2['PAR'], label='Zo
 plt.plot(zone_c_subzone_1['RoundedDateTime'], zone_c_subzone_1['PAR'], label='Zone C Subzone 1 PAR')
 plt.plot(zone_c_subzone_2['RoundedDateTime'], zone_c_subzone_2['PAR'], label='Zone C Subzone 2 PAR')
 
+# Set the x-axis ticks to show time only with one tick per hour
+plt.gca().xaxis.set_major_locator(HourLocator(interval=1))
+plt.gca().xaxis.set_major_formatter(DateFormatter("%H:%M"))
 
+# Rotate x-axis labels vertically
 plt.xticks(rotation='vertical')
 
 # Add labels and legend
 plt.xlabel('Time')
-plt.ylabel('PAR')
+plt.ylabel('PAR (umol.m-2.s-1)')
 plt.title('PAR for Different Zones and Subzones')
 plt.legend()
 
