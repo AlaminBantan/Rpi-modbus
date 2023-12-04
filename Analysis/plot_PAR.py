@@ -1,45 +1,26 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.dates import HourLocator, DateFormatter
 
-# Assuming your data is stored in a CSV file named 'your_data.csv'
-# If it's stored in a different format, you can adjust the read function accordingly.
-df = pd.read_csv('/home/cdacea/GH_data/modified_data_15min.csv')
+# Read the CSV file into a DataFrame
+df = pd.read_csv('/home/cdacea/GH_data/mean_PAR_data.csv', parse_dates=['time'])
 
-# Filter data for each zone and subzone combination
-zone_b_subzone_1 = df[(df['Zone'] == 'B') & (df['Subzone'] == 1)]
-zone_b_subzone_2 = df[(df['Zone'] == 'B') & (df['Subzone'] == 2)]
-zone_c_subzone_1 = df[(df['Zone'] == 'C') & (df['Subzone'] == 1)]
-zone_c_subzone_2 = df[(df['Zone'] == 'C') & (df['Subzone'] == 2)]
+# Plotting
+plt.figure(figsize=(12, 6))
 
-# Downsample the data by selecting every Nth row (adjust N as needed)
-N = 4
-zone_b_subzone_1 = zone_b_subzone_1.iloc[::N, :]
-zone_b_subzone_2 = zone_b_subzone_2.iloc[::N, :]
-zone_c_subzone_1 = zone_c_subzone_1.iloc[::N, :]
-zone_c_subzone_2 = zone_c_subzone_2.iloc[::N, :]
+# Plotting for each zone (you can customize this based on your requirement)
+for zone in ['Zone B subzone 1', 'Zone B subzone 2', 'Zone C subzone 1', 'Zone C subzone 2']:
+    plt.plot(df['time'], df[zone], label=zone)
 
-# Plotting the graphs
-plt.figure(figsize=(20, 20))
+# Plotting mean values
+plt.plot(df['time'], df['Mean zone B'], label='Mean zone B', linestyle='--', linewidth=2, color='black')
+plt.plot(df['time'], df['Mean zone C'], label='Mean zone C', linestyle='--', linewidth=2, color='gray')
 
-# Plot for 'PAR'
-plt.plot(zone_b_subzone_1['RoundedDateTime'], zone_b_subzone_1['PAR'], label='Zone B Subzone 1 PAR')
-plt.plot(zone_b_subzone_2['RoundedDateTime'], zone_b_subzone_2['PAR'], label='Zone B Subzone 2 PAR')
-plt.plot(zone_c_subzone_1['RoundedDateTime'], zone_c_subzone_1['PAR'], label='Zone C Subzone 1 PAR')
-plt.plot(zone_c_subzone_2['RoundedDateTime'], zone_c_subzone_2['PAR'], label='Zone C Subzone 2 PAR')
-
-# Set the x-axis ticks to show time only with one tick per hour
-plt.gca().xaxis.set_major_locator(HourLocator(interval=1))
-plt.gca().xaxis.set_major_formatter(DateFormatter("%H:%M"))
-
-# Rotate x-axis labels vertically
-plt.xticks(rotation='vertical')
-
-# Add labels and legend
+# Set labels and title
 plt.xlabel('Time')
 plt.ylabel('PAR')
-plt.title('PAR for Different Zones and Subzones')
+plt.title('PAR Data over Time')
 plt.legend()
+plt.grid(True)
 
-# Show the plot
-plt.savefig('par_plot.svg')
+# Save the plot as an SVG file
+plt.savefig('/home/cdacea/GH_data/plots/par_plot.svg')
