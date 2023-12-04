@@ -2,7 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv('/home/cdacea/GH_data/mean_PAR_data.csv', parse_dates=['time'])
+df = pd.read_csv('/home/cdacea/GH_data/mean_PAR_data.csv', parse_dates=['time'], date_parser=lambda x: pd.to_datetime(x, format='%Y-%m-%d %H:%M:%S'))
+
 
 # Plotting
 plt.figure(figsize=(12, 6))
