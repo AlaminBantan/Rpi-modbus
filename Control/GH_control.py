@@ -64,7 +64,7 @@ def fan1_thread():
     while True:
         current_time = datetime.now().time()
         fan1_time_ranges = [
-            (time(0,0,0), time(9,59,52)),           
+            (time(0, 0, 0), time(9, 59, 52)),           
             (time(10, 0, 23), time(10, 29, 52)),
             (time(10, 30, 21), time(10, 59, 52)),
             (time(11, 0, 21), time(11, 29, 52)),
@@ -77,16 +77,16 @@ def fan1_thread():
             (time(14, 30, 21), time(14, 59, 52)),
             (time(15, 0, 21), time(15, 29, 52)),
             (time(15, 30, 21), time(15, 59, 52)),
-            (time(16, 0, 21), time(23,59,59))
+            (time(16, 0, 21), time(23, 59, 59))
         ]
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
 
         if fan1_time:
             fan1_on(channel_fan1)
-            t.sleep(1)
+            t.sleep(0.5)
         else:
             fan1_off(channel_fan1)
-            t.sleep(5)
+            t.sleep(0.5)
 
 
 def fan2_thread():
@@ -113,8 +113,10 @@ def fan2_thread():
 
         if fan2_time:
             fan2_on(channel_fan2)
+            t.sleep(0.5)
         else:
             fan2_off(channel_fan2)
+            t.sleep(0.5)
 
 def mist_thread():
      while True:
@@ -139,8 +141,10 @@ def mist_thread():
         if misting_time:
             print("mist is on")
             mist_on(channel_mist)
+            t.sleep(0.5)
         else:
             mist_off(channel_mist)
+            t.sleep(0.5)
 
 def pump_thread():
     while True:
@@ -148,8 +152,10 @@ def pump_thread():
 
         if time(5, 0) <= current_time <= time(17, 0):
             pump_on(channel_pump)
+            t.sleep(5)
         else:
             pump_off(channel_pump)
+            t.sleep(5)
             
             
 #def shade_ex_thread():
