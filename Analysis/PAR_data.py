@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the CSV file
-df = pd.read_csv('/home/cdacea/GH_data/modified_data_15min.csv')
+df = pd.read_csv('C:\\Users\\bantanam\\KAUST\\CDA-CEA Team - Documents\\CO2 misting - Cucumber trial\\Data collection\\Climatic_data\\modified_data_15min.csv')
 
 # Extract relevant columns
 df_extracted = df[['RoundedDateTime', 'Zone', 'Subzone', 'PAR']]
@@ -24,4 +24,4 @@ df_pivoted[['date', 'time']] = df_pivoted['date'].str.split(expand=True)
 df_pivoted = df_pivoted[['date', 'time', 'Zone B subzone 1', 'Zone B subzone 2', 'Zone C subzone 1', 'Zone C subzone 2', 'Mean zone B', 'Mean zone C']]
 
 # Save the result to a new CSV file
-df_pivoted.to_csv('/home/cdacea/GH_data/mean_PAR_data.csv', index=False)
+df_pivoted.to_csv('C:\\Users\\bantanam\\KAUST\\CDA-CEA Team - Documents\\CO2 misting - Cucumber trial\\Data collection\\Climatic_data\\modified_data_15min.csv', 'mean_PAR_data.csv', index=False)
