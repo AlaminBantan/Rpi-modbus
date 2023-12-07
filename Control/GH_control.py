@@ -47,6 +47,8 @@ def pump_off(pin):
 def pump_on(pin):
     GPIO.output(pin, GPIO.LOW)
 
+#shade will not be controlled by the Pi, but in case we want to we can change these lines.
+
 #shade extension
 #def shade_ex_off(pin):
 #    GPIO.output(pin, GPIO.HIGH)
@@ -58,26 +60,43 @@ def pump_on(pin):
 #    GPIO.output(pin, GPIO.HIGH)
 #def shade_ret_on(pin):
 #    GPIO.output(pin, GPIO.LOW)
-#
+
+
+
+
+#########################################################################################################################
+#Schedule:
+    #5:00 fans and wet pad pump on
+    #10:00 misting starts (first mist 10 seconds to repressurize the lines) and every 30 mins one mist for 6 seconds
+    #fan1 goes off 9 second after mista and go on 20 second after the mist ends.
+    #fan2 goes off 7 second after mista and go on 22 second after the mist ends.
+    #16:00 last misting.
+    #17:00 fans and wet pad pump go off.
+#########################################################################################################################
+
+
+
 # Define functions to control devices in threads
+
+#fans are delayed by 2 seconds to prevent electricla surge
 def fan1_thread():
     while True:
         current_time = datetime.now().time()
         fan1_time_ranges = [
-            (time(0, 0, 0), time(9, 59, 52)),           
-            (time(10, 0, 31), time(10, 29, 52)),
-            (time(10, 30, 27), time(10, 59, 52)),
-            (time(11, 0, 27), time(11, 29, 52)),
-            (time(11, 30, 27), time(11, 59, 52)),
-            (time(12, 0, 27), time(12, 29, 52)),
-            (time(12, 30, 27), time(12, 59, 52)),
-            (time(13, 0, 27), time(13, 29, 52)),
-            (time(13, 30, 27), time(13, 59, 52)),
-            (time(14, 0, 27), time(14, 29, 52)),
-            (time(14, 30, 27), time(14, 59, 52)),
-            (time(15, 0, 27), time(15, 29, 52)),
-            (time(15, 30, 27), time(15, 59, 52)),
-            (time(16, 0, 27), time(23, 59, 59))
+            (time(5, 0, 0), time(9, 59, 51)),           
+            (time(10, 0, 30), time(10, 29, 51)),
+            (time(10, 30, 26), time(10, 59, 51)),
+            (time(11, 0, 26), time(11, 29, 51)),
+            (time(11, 30, 26), time(11, 59, 51)),
+            (time(12, 0, 26), time(12, 29, 51)),
+            (time(12, 30, 26), time(12, 59, 51)),
+            (time(13, 0, 26), time(13, 29, 51)),
+            (time(13, 30, 26), time(13, 59, 51)),
+            (time(14, 0, 26), time(14, 29, 51)),
+            (time(14, 30, 26), time(14, 59, 51)),
+            (time(15, 0, 26), time(15, 29, 51)),
+            (time(15, 30, 26), time(15, 59, 51)),
+            (time(16, 0, 26), time(17, 0, 0))
         ]
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
 
@@ -93,20 +112,20 @@ def fan2_thread():
     while True:
         current_time = datetime.now().time()
         fan2_time_ranges = [
-            (time(0, 0, 0), time(9, 59, 54)),
-            (time(10, 0, 34), time(10, 29, 54)),
-            (time(10, 30, 29), time(10, 59, 54)),
-            (time(11, 0, 29), time(11, 29, 54)),
-            (time(11, 30, 29), time(11, 59, 54)),
-            (time(12, 0, 29), time(12, 29, 54)),
-            (time(12, 30, 29), time(12, 59, 54)),
-            (time(13, 0, 29), time(13, 29, 54)),
-            (time(13, 30, 29), time(13, 59, 54)),
-            (time(14, 0, 29), time(14, 29, 54)),
-            (time(14, 30, 29), time(14, 59, 54)),
-            (time(15, 0, 29), time(15, 29, 54)),
-            (time(15, 30, 29), time(15, 59, 54)),
-            (time(16, 0, 29), time(23,59,59))
+            (time(5, 0, 2), time(9, 59, 53)),
+            (time(10, 0, 32), time(10, 29, 53)),
+            (time(10, 30, 28), time(10, 59, 53)),
+            (time(11, 0, 28), time(11, 29, 53)),
+            (time(11, 30, 28), time(11, 59, 53)),
+            (time(12, 0, 28), time(12, 29, 53)),
+            (time(12, 30, 28), time(12, 59, 53)),
+            (time(13, 0, 28), time(13, 29, 53)),
+            (time(13, 30, 28), time(13, 59, 53)),
+            (time(14, 0, 28), time(14, 29, 53)),
+            (time(14, 30, 28), time(14, 59, 53)),
+            (time(15, 0, 28), time(15, 29, 53)),
+            (time(15, 30, 28), time(15, 59, 53)),
+            (time(16, 0, 28), time(17,0,0))
         ]
 
         fan2_time = any(fan2_start_time <= current_time <= fan2_end_time for fan2_start_time, fan2_end_time in fan2_time_ranges)
@@ -150,7 +169,9 @@ def pump_thread():
     while True:
         current_time = datetime.now().time()
 
-        if time(5, 0) <= current_time <= time(17, 0):
+        #the pumps will work 5 seconds later so it doesnt go on and off in the same instant as the fans
+
+        if time(5, 0, 5) <= current_time <= time(17, 0, 5):
             pump_on(channel_pump)
             t.sleep(5)
         else:
