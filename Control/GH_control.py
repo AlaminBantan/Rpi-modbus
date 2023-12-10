@@ -66,19 +66,20 @@ def pump_on(pin):
 
 #########################################################################################################################
 #Schedule:
-    #5:00 fans and wet pad pump on
+    #6:30 fan2 and wet pad pump on.
     #10:00 misting starts (first mist 10 seconds to repressurize the lines) and every 30 mins one mist for 6 seconds
-    #fan1 goes off 9 second after mista and go on 20 second after the mist ends.
-    #fan2 goes off 7 second after mista and go on 22 second after the mist ends.
+    #fan1 goes off 9 second before mist and go on 20 second after the mist ends.
+    #fan2 goes off 7 second before mist and go on 22 second after the mist ends.
     #16:00 last misting.
-    #17:00 fans and wet pad pump go off.
+    #18:30 fan2 and wet pad pump go off.
+    #fan1 is on all day long (except misting intervals).
 #########################################################################################################################
 
 
 
 # Define functions to control devices in threads
 
-#fans are delayed by 2 seconds to prevent electricla surge
+#fans are delayed by 2 seconds to prevent electricl surge
 def fan1_thread():
     while True:
         current_time = datetime.now().time()
@@ -168,8 +169,6 @@ def mist_thread():
 def pump_thread():
     while True:
         current_time = datetime.now().time()
-
-        #the pumps will work 5 seconds later so it doesnt go on and off in the same instant as the fans
 
         if time(6, 30, 0) <= current_time <= time(18, 30, 0):
             pump_on(channel_pump)
