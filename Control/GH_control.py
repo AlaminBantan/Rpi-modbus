@@ -83,7 +83,7 @@ def fan1_thread():
     while True:
         current_time = datetime.now().time()
         fan1_time_ranges = [
-            (time(5, 0, 0), time(9, 59, 51)),           
+            (time(0, 0, 0), time(9, 59, 51)),           
             (time(10, 0, 30), time(10, 29, 51)),
             (time(10, 30, 26), time(10, 59, 51)),
             (time(11, 0, 26), time(11, 29, 51)),
@@ -96,7 +96,7 @@ def fan1_thread():
             (time(14, 30, 26), time(14, 59, 51)),
             (time(15, 0, 26), time(15, 29, 51)),
             (time(15, 30, 26), time(15, 59, 51)),
-            (time(16, 0, 26), time(17, 0, 0))
+            (time(16, 0, 26), time(23, 59, 59))
         ]
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
 
@@ -112,7 +112,7 @@ def fan2_thread():
     while True:
         current_time = datetime.now().time()
         fan2_time_ranges = [
-            (time(5, 0, 2), time(9, 59, 53)),
+            (time(6, 29, 0), time(9, 59, 53)),
             (time(10, 0, 32), time(10, 29, 53)),
             (time(10, 30, 28), time(10, 59, 53)),
             (time(11, 0, 28), time(11, 29, 53)),
@@ -125,7 +125,7 @@ def fan2_thread():
             (time(14, 30, 28), time(14, 59, 53)),
             (time(15, 0, 28), time(15, 29, 53)),
             (time(15, 30, 28), time(15, 59, 53)),
-            (time(16, 0, 28), time(17,0,0))
+            (time(16, 0, 28), time(18, 31, 0))
         ]
 
         fan2_time = any(fan2_start_time <= current_time <= fan2_end_time for fan2_start_time, fan2_end_time in fan2_time_ranges)
@@ -171,7 +171,7 @@ def pump_thread():
 
         #the pumps will work 5 seconds later so it doesnt go on and off in the same instant as the fans
 
-        if time(5, 0, 5) <= current_time <= time(17, 0, 5):
+        if time(6, 30, 0) <= current_time <= time(18, 30, 0):
             pump_on(channel_pump)
             t.sleep(5)
         else:
