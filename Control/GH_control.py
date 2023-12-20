@@ -84,20 +84,26 @@ def fan1_thread():
     while True:
         current_time = datetime.now().time()
         fan1_time_ranges = [
-            (time(0, 0, 0), time(9, 59, 51)),           
-            (time(10, 0, 30), time(10, 29, 51)),
-            (time(10, 30, 26), time(10, 59, 51)),
-            (time(11, 0, 26), time(11, 29, 51)),
-            (time(11, 30, 26), time(11, 59, 51)),
-            (time(12, 0, 26), time(12, 29, 51)),
-            (time(12, 30, 26), time(12, 59, 51)),
-            (time(13, 0, 26), time(13, 29, 51)),
-            (time(13, 30, 26), time(13, 59, 51)),
-            (time(14, 0, 26), time(14, 29, 51)),
-            (time(14, 30, 26), time(14, 59, 51)),
-            (time(15, 0, 26), time(15, 29, 51)),
-            (time(15, 30, 26), time(15, 59, 51)),
-            (time(16, 0, 26), time(23, 59, 59))
+            (time(0, 0, 0), time(9, 59, 51)),    
+            (time(10, 0, 30), time(10, 19, 51)),       
+            (time(10, 20, 25), time(10, 39, 51)),
+            (time(10, 40, 25), time(10, 59, 51)),
+            (time(11, 0, 25), time(11, 19, 51)),
+            (time(11, 20, 25), time(11, 39, 51)),
+            (time(11, 40, 25), time(11, 59, 51)),
+            (time(12, 0, 25), time(12, 19, 51)),
+            (time(12, 20, 25), time(12, 39, 51)),
+            (time(12, 40, 25), time(12, 59, 51)),
+            (time(13, 0, 25), time(13, 19, 51)),
+            (time(13, 20, 25), time(13, 39, 51)),
+            (time(13, 40, 25), time(13, 59, 51)),
+            (time(14, 0, 25), time(14, 19, 51)),
+            (time(14, 20, 25), time(14, 39, 51)),
+            (time(14, 40, 25), time(14, 59, 51)),
+            (time(15, 0, 25), time(15, 19, 51)),
+            (time(15, 20, 25), time(15, 39, 51)),
+            (time(15, 40, 25), time(15, 59, 51)),
+            (time(16, 0, 25), time(23, 59, 59))
         ]
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
 
@@ -113,22 +119,27 @@ def fan2_thread():
     while True:
         current_time = datetime.now().time()
         fan2_time_ranges = [
-            (time(6, 29, 0), time(9, 59, 53)),
-            (time(10, 0, 32), time(10, 29, 53)),
-            (time(10, 30, 28), time(10, 59, 53)),
-            (time(11, 0, 28), time(11, 29, 53)),
-            (time(11, 30, 28), time(11, 59, 53)),
-            (time(12, 0, 28), time(12, 29, 53)),
-            (time(12, 30, 28), time(12, 59, 53)),
-            (time(13, 0, 28), time(13, 29, 53)),
-            (time(13, 30, 28), time(13, 59, 53)),
-            (time(14, 0, 28), time(14, 29, 53)),
-            (time(14, 30, 28), time(14, 59, 53)),
-            (time(15, 0, 28), time(15, 29, 53)),
-            (time(15, 30, 28), time(15, 59, 53)),
-            (time(16, 0, 28), time(18, 31, 0))
+            (time(6, 30, 0), time(9, 59, 53)),
+            (time(10, 0, 32), time(10, 19, 53)),
+            (time(10, 20, 27), time(10, 39, 53)),
+            (time(10, 40, 27), time(10, 59, 53)),
+            (time(11, 0, 27), time(11, 19, 53)),
+            (time(11, 20, 27), time(11, 39, 53)),
+            (time(11, 40, 27), time(11, 59, 53)),
+            (time(12, 0, 27), time(12, 19, 53)),
+            (time(12, 20, 27), time(12, 39, 53)),
+            (time(12, 40, 27), time(12, 59, 53)),
+            (time(13, 0, 27), time(13, 19, 53)),
+            (time(13, 20, 27), time(13, 39, 53)),
+            (time(13, 40, 27), time(13, 59, 53)),
+            (time(14, 0, 27), time(14, 19, 53)),
+            (time(14, 20, 27), time(14, 39, 53)),
+            (time(14, 40, 27), time(14, 59, 53)),
+            (time(15, 0, 27), time(15, 19, 53)),
+            (time(15, 20, 27), time(15, 39, 53)),
+            (time(15, 40, 27), time(15, 59, 53)),
+            (time(16, 0, 27), time(18, 30, 0))
         ]
-
         fan2_time = any(fan2_start_time <= current_time <= fan2_end_time for fan2_start_time, fan2_end_time in fan2_time_ranges)
 
         if fan2_time:
@@ -143,18 +154,24 @@ def mist_thread():
         current_time = datetime.now().time()
         misting_time_ranges = [
             (time(10, 0, 0), time(10, 0, 10)),
-            (time(10, 30, 0), time(10, 30, 6)),
-            (time(11, 0, 0), time(11, 0, 6)),
-            (time(11, 30, 0), time(11, 30, 6)),
-            (time(12, 0, 0), time(12, 0, 6)),
-            (time(12, 30, 0), time(12, 30, 6)),
-            (time(13, 0, 0), time(13, 0, 6)),
-            (time(13, 30, 0), time(13, 30, 6)),
-            (time(14, 0, 0), time(14, 0, 6)),
-            (time(14, 30, 0), time(14, 30, 6)),
-            (time(15, 0, 0), time(15, 0, 6)),
-            (time(15, 30, 0), time(15, 30, 6)),
-            (time(16, 0, 0), time(16, 0, 6))
+            (time(10, 20, 0), time(10, 20, 5)),
+            (time(10, 40, 0), time(10, 40, 5)),
+            (time(11, 0, 0), time(11, 0, 5)),
+            (time(11, 20, 0), time(11, 20, 5)),
+            (time(11, 40, 0), time(11, 40, 5)),
+            (time(12, 0, 0), time(12, 0, 5)),
+            (time(12, 20, 0), time(12, 20, 5)),
+            (time(12, 40, 0), time(12, 40, 5)),
+            (time(13, 0, 0), time(13, 0, 5)),
+            (time(13, 20, 0), time(13, 20, 5)),
+            (time(13, 40, 0), time(13, 40, 5)),
+            (time(14, 0, 0), time(14, 0, 5)),
+            (time(14, 20, 0), time(14, 20, 5)),
+            (time(14, 40, 0), time(14, 40, 5)),
+            (time(15, 0, 0), time(15, 0, 5)),
+            (time(15, 20, 0), time(15, 20, 5)),
+            (time(15, 40, 0), time(15, 40, 5)),
+            (time(16, 0, 0), time(16, 0, 5))
         ]
         misting_time = any(mist_start_time <= current_time <= mist_end_time for mist_start_time, mist_end_time in misting_time_ranges)
 
