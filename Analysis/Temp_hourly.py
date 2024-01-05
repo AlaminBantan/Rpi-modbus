@@ -23,12 +23,13 @@ hourly_average_B = df.groupby(df.index.hour).agg({'Mean zone B': 'mean'})
 hourly_average_C = df.groupby(df.index.hour).agg({'Mean zone C': 'mean'})
 
 # Plot the hourly averages for Mean Zone B
-plt.figure(figsize=(10, 6))
-hourly_average_B.plot(marker='o', linestyle='-', color='blue')
-plt.title('Hourly Average of Mean Zone B (Temperature)')
-plt.xlabel('Hour of the Day')
-plt.ylabel('Average Value')
-plt.grid(True)
+plt.figure(figsize=(15, 10))
+hourly_average_B.plot(linestyle='-', color='blue')
+plt.title('Hourly Average Temperature of Zone B' )
+plt.xlabel('Time (hours)')
+plt.ylabel('Average Temperature (c)')
+plt.ylim(10, 40)
+
 
 # Save the plot in the specified directory
 plt.savefig(r"C:\Users\bantanam\KAUST\CDA-CEA Team - Documents\CO2 misting - Cucumber trial\Data collection\Climatic_data\plots\Temp\Hourly_Average_Mean_Zone_B_Temperature.png")
@@ -37,12 +38,12 @@ plt.savefig(r"C:\Users\bantanam\KAUST\CDA-CEA Team - Documents\CO2 misting - Cuc
 plt.show()
 
 # Plot the hourly averages for Mean Zone C
-plt.figure(figsize=(10, 6))
-hourly_average_C.plot(marker='o', linestyle='-', color='green')
-plt.title('Hourly Average of Mean Zone C (Temperature)')
-plt.xlabel('Hour of the Day')
-plt.ylabel('Average Value')
-plt.grid(True)
+plt.figure(figsize=(15, 10))
+hourly_average_C.plot(linestyle='-', color='green')
+plt.title('Hourly Average Temperature of Zone C' )
+plt.xlabel('Time (hours)')
+plt.ylabel('Average Temperature (c)')
+plt.ylim(10, 40)
 
 # Save the plot in the specified directory
 plt.savefig(r"C:\Users\bantanam\KAUST\CDA-CEA Team - Documents\CO2 misting - Cucumber trial\Data collection\Climatic_data\plots\Temp\Hourly_Average_Mean_Zone_C_Temperature.png")
