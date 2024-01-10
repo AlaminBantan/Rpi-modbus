@@ -8,7 +8,7 @@ scripts = [
     "Solar_plots.py"
 ]
 
-folder_path = r"C:\Users\bantanam\Desktop\Rpi-modbus\Analysis"
+folder_path = r"C:\Users\bantanam\Desktop\Rpi-modbus\Analysis\climate"
 
 processes = [subprocess.Popen(["python", script], cwd=folder_path) for script in scripts]
 

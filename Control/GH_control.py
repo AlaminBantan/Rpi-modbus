@@ -66,12 +66,12 @@ def pump_on(pin):
 
 #########################################################################################################################
 #Schedule:
-    #6:30 fan2 and wet pad pump on.
-    #10:00 misting starts (first mist 10 seconds to repressurize the lines) and every 30 mins one mist for 6 seconds
+    #9:00 fan2 and wet pad pump on.
+    #10:00 misting starts (first mist 8 seconds to repressurize the lines) and every 20 mins one mist for 5 seconds
     #fan1 goes off 9 second before mist and go on 20 second after the mist ends.
     #fan2 goes off 7 second before mist and go on 22 second after the mist ends.
     #16:00 last misting.
-    #18:30 fan2 and wet pad pump go off.
+    #20:00 fan2 and wet pad pump go off.
     #fan1 is on all day long (except misting intervals).
 #########################################################################################################################
 
@@ -84,28 +84,26 @@ def fan1_thread():
     while True:
         current_time = datetime.now().time()
         fan1_time_ranges = [
-            (time(0, 0, 0), time(9, 59, 51)), 
-            (time(10, 0, 30), time(10, 17, 51)),
-            (time(10, 18, 28), time(10, 35, 51)),
-            (time(10, 36, 28), time(10, 53, 51)),
-            (time(10, 54, 28), time(11, 11, 51)),
-            (time(11, 12, 28), time(11, 29, 51)),
-            (time(11, 30, 28), time(11, 47, 51)),
-            (time(11, 48, 28), time(12, 5, 51)),
-            (time(12, 6, 28), time(12, 23, 51)),
-            (time(12, 24, 28), time(12, 41, 51)),
-            (time(12, 42, 28), time(12, 59, 51)),
-            (time(13, 0, 28), time(13, 17, 51)),
-            (time(13, 18, 28), time(13, 35, 51)),
-            (time(13, 36, 28), time(13, 53, 51)),
-            (time(13, 54, 28), time(14, 11, 51)),
-            (time(14, 12, 28), time(14, 29, 51)),
-            (time(14, 30, 28), time(14, 47, 51)),
-            (time(14, 48, 28), time(15, 5, 51)),
-            (time(15, 6, 28), time(15, 23, 51)),
-            (time(15, 24, 28), time(15, 41, 51)),
-            (time(15, 42, 28), time(15, 59, 51)),
-            (time(16, 0, 28), time(23, 59, 59))
+            (time(0, 0, 0), time(9, 59, 51)),
+            (time(10, 0, 28), time(10, 19, 51)),
+            (time(10, 20, 25), time(10, 39, 51)),
+            (time(10, 40, 25), time(10, 59, 51)),
+            (time(11, 0, 25), time(11, 19, 51)),
+            (time(11, 20, 25), time(11, 39, 51)),
+            (time(11, 40, 25), time(11, 59, 51)),
+            (time(12, 0, 25), time(12, 19, 51)),
+            (time(12, 20, 25), time(12, 39, 51)),
+            (time(12, 40, 25), time(12, 59, 51)),
+            (time(13, 0, 25), time(13, 19, 51)),
+            (time(13, 20, 25), time(13, 39, 51)),
+            (time(13, 40, 25), time(13, 59, 51)),
+            (time(14, 0, 25), time(14, 19, 51)),
+            (time(14, 20, 25), time(14, 39, 51)),
+            (time(14, 40, 25), time(14, 59, 51)),
+            (time(15, 0, 25), time(15, 19, 51)),
+            (time(15, 20, 25), time(15, 39, 51)),
+            (time(15, 40, 25), time(15, 59, 51)),
+            (time(16, 0, 25), time(23, 59, 59))
         ]
         fan1_time = any(fan1_start_time <= current_time <= fan1_end_time for fan1_start_time, fan1_end_time in fan1_time_ranges)
 
@@ -121,28 +119,26 @@ def fan2_thread():
     while True:
         current_time = datetime.now().time()
         fan2_time_ranges = [
-            (time(6, 30, 0), time(9, 59, 53)),
-            (time(10, 0, 32), time(10, 17, 53)),
-            (time(10, 18, 30), time(10, 35, 53)),
-            (time(10, 36, 30), time(10, 53, 53)),
-            (time(10, 54, 30), time(11, 11, 53)),
-            (time(11, 12, 30), time(11, 29, 53)),
-            (time(11, 30, 30), time(11, 47, 53)),
-            (time(11, 48, 30), time(12, 5, 53)),
-            (time(12, 6, 30), time(12, 23, 53)),
-            (time(12, 24, 30), time(12, 41, 53)),
-            (time(12, 42, 30), time(12, 59, 53)),
-            (time(13, 0, 30), time(13, 17, 53)),
-            (time(13, 18, 30), time(13, 35, 53)),
-            (time(13, 36, 30), time(13, 53, 53)),
-            (time(13, 54, 30), time(14, 11, 53)),
-            (time(14, 12, 30), time(14, 29, 53)),
-            (time(14, 30, 30), time(14, 47, 53)),
-            (time(14, 48, 30), time(15, 5, 53)),
-            (time(15, 6, 30), time(15, 23, 53)),
-            (time(15, 24, 30), time(15, 41, 53)),
-            (time(15, 42, 30), time(15, 59, 53)),
-            (time(16, 0, 30), time(18, 30, 0))
+            (time(9, 0, 30), time(9, 59, 53)),
+            (time(10, 0, 30), time(10, 19, 53)),
+            (time(10, 20, 27), time(10, 39, 53)),
+            (time(10, 40, 27), time(10, 59, 53)),
+            (time(11, 0, 27), time(11, 19, 53)),
+            (time(11, 20, 27), time(11, 39, 53)),
+            (time(11, 40, 27), time(11, 59, 53)),
+            (time(12, 0, 27), time(12, 19, 53)),
+            (time(12, 20, 27), time(12, 39, 53)),
+            (time(12, 40, 27), time(12, 59, 53)),
+            (time(13, 0, 27), time(13, 19, 53)),
+            (time(13, 20, 27), time(13, 39, 53)),
+            (time(13, 40, 27), time(13, 59, 53)),
+            (time(14, 0, 27), time(14, 19, 53)),
+            (time(14, 20, 27), time(14, 39, 53)),
+            (time(14, 40, 27), time(14, 59, 53)),
+            (time(15, 0, 27), time(15, 19, 53)),
+            (time(15, 20, 27), time(15, 39, 53)),
+            (time(15, 40, 27), time(15, 59, 53)),
+            (time(16, 0, 27), time(20, 0, 0))
         ]
         fan2_time = any(fan2_start_time <= current_time <= fan2_end_time for fan2_start_time, fan2_end_time in fan2_time_ranges)
 
@@ -157,27 +153,25 @@ def mist_thread():
      while True:
         current_time = datetime.now().time()
         misting_time_ranges = [
-            (time(10, 0, 0), time(10, 0, 10)),
-            (time(10, 18, 0), time(10, 18, 8)),
-            (time(10, 36, 0), time(10, 36, 8)),
-            (time(10, 54, 0), time(10, 54, 8)),
-            (time(11, 12, 0), time(11, 12, 8)),
-            (time(11, 30, 0), time(11, 30, 8)),
-            (time(11, 48, 0), time(11, 48, 8)),
-            (time(12, 6, 0), time(12, 6, 8)),
-            (time(12, 24, 0), time(12, 24, 8)),
-            (time(12, 42, 0), time(12, 42, 8)),
-            (time(13, 0, 0), time(13, 0, 8)),
-            (time(13, 18, 0), time(13, 18, 8)),
-            (time(13, 36, 0), time(13, 36, 8)),
-            (time(13, 54, 0), time(13, 54, 8)),
-            (time(14, 12, 0), time(14, 12, 8)),
-            (time(14, 30, 0), time(14, 30, 8)),
-            (time(14, 48, 0), time(14, 48, 8)),
-            (time(15, 6, 0), time(15, 6, 8)),
-            (time(15, 24, 0), time(15, 24, 8)),
-            (time(15, 42, 0), time(15, 42, 8)),
-            (time(16, 0, 0), time(16, 0, 8))
+            (time(10, 0, 0), time(10, 0, 8)),
+            (time(10, 20, 0), time(10, 20, 5)),
+            (time(10, 40, 0), time(10, 40, 5)),
+            (time(11, 0, 0), time(11, 0, 5)),
+            (time(11, 20, 0), time(11, 20, 5)),
+            (time(11, 40, 0), time(11, 40, 5)),
+            (time(12, 0, 0), time(12, 0, 5)),
+            (time(12, 20, 0), time(12, 20, 5)),
+            (time(12, 40, 0), time(12, 40, 5)),
+            (time(13, 0, 0), time(13, 0, 5)),
+            (time(13, 20, 0), time(13, 20, 5)),
+            (time(13, 40, 0), time(13, 40, 5)),
+            (time(14, 0, 0), time(14, 0, 5)),
+            (time(14, 20, 0), time(14, 20, 5)),
+            (time(14, 40, 0), time(14, 40, 5)),
+            (time(15, 0, 0), time(15, 0, 5)),
+            (time(15, 20, 0), time(15, 20, 5)),
+            (time(15, 40, 0), time(15, 40, 5)),
+            (time(16, 0, 0), time(16, 0, 5))
         ]
         misting_time = any(mist_start_time <= current_time <= mist_end_time for mist_start_time, mist_end_time in misting_time_ranges)
 
@@ -193,7 +187,7 @@ def pump_thread():
     while True:
         current_time = datetime.now().time()
 
-        if time(6, 30, 0) <= current_time <= time(18, 30, 0):
+        if time(9, 0, 0) <= current_time <= time(20, 0, 0):
             pump_on(channel_pump)
             t.sleep(5)
         else:

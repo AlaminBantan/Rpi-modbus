@@ -36,6 +36,7 @@ ax.plot(nightly_mean_humidity_zone_b.index, nightly_mean_humidity_zone_b, label=
 ax.set_title('Mean Humidity - Zone B')
 ax.set_xlabel('Date')
 ax.set_ylabel('Humidity (%)')
+plt.ylim(30, 100)
 ax.legend()
 plt.tight_layout()
 save_path_humidity_zone_b = r"C:\Users\bantanam\KAUST\CDA-CEA Team - Documents\CO2 misting - Cucumber trial\Data collection\Climatic_data\plots\Humidity\mean_humidity_zone_b.png"
@@ -49,6 +50,7 @@ ax.plot(nightly_mean_humidity_zone_c.index, nightly_mean_humidity_zone_c, label=
 ax.set_title('Mean Humidity - Zone C')
 ax.set_xlabel('Date')
 ax.set_ylabel('Humidity (%)')
+plt.ylim(30, 100)
 ax.legend()
 plt.tight_layout()
 save_path_humidity_zone_c = r"C:\Users\bantanam\KAUST\CDA-CEA Team - Documents\CO2 misting - Cucumber trial\Data collection\Climatic_data\plots\Humidity\mean_humidity_zone_c.png"
