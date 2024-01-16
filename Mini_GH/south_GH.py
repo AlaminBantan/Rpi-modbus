@@ -4,8 +4,14 @@ import datetime
 import csv
 import os
 
+import minimalmodbus 
+from time import sleep
+import datetime
+import csv
+import os
+
 # Configuration of SQ-618 ID=6
-PAR_6 = minimalmodbus.Instrument('/dev/ttyACM0',6)
+PAR_6 = minimalmodbus.Instrument('/dev/ttyACM0', 6)
 PAR_6.serial.baudrate = 19200
 PAR_6.serial.bytesize = 8
 PAR_6.serial.parity = minimalmodbus.serial.PARITY_NONE
@@ -16,7 +22,7 @@ PAR_6.clear_buffers_before_each_transaction = True
 PAR_6.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=10
-Solar_10 = minimalmodbus.Instrument('/dev/ttyACM0',10)
+Solar_10 = minimalmodbus.Instrument('/dev/ttyACM0', 10)
 Solar_10.serial.baudrate = 19200
 Solar_10.serial.bytesize = 8
 Solar_10.serial.parity = minimalmodbus.serial.PARITY_NONE
@@ -25,7 +31,6 @@ Solar_10.serial.timeout = 0.5
 Solar_10.mode = minimalmodbus.MODE_RTU
 Solar_10.clear_buffers_before_each_transaction = True
 Solar_10.close_port_after_each_call = True
-
 
 
 
