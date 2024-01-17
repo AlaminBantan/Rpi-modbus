@@ -11,7 +11,7 @@ import csv
 import os
 
 # Configuration of SQ-618 ID=5
-PAR_5 = minimalmodbus.Instrument('/dev/ttyACM0', 5)
+PAR_5 = minimalmodbus.Instrument('/dev/ttyACM0', 6)
 PAR_5.serial.baudrate = 19200
 PAR_5.serial.bytesize = 8
 PAR_5.serial.parity = minimalmodbus.serial.PARITY_EVEN
