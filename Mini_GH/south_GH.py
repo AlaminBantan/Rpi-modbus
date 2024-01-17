@@ -10,16 +10,16 @@ import datetime
 import csv
 import os
 
-# Configuration of SQ-618 ID=5
-PAR_5 = minimalmodbus.Instrument('/dev/ttyACM0', 6)
-PAR_5.serial.baudrate = 19200
-PAR_5.serial.bytesize = 8
-PAR_5.serial.parity = minimalmodbus.serial.PARITY_EVEN
-PAR_5.serial.stopbits = 1
-PAR_5.serial.timeout = 0.5
-PAR_5.mode = minimalmodbus.MODE_RTU
-PAR_5.clear_buffers_before_each_transaction = True
-PAR_5.close_port_after_each_call = True
+# Configuration of SQ-618 ID=6
+PAR_6 = minimalmodbus.Instrument('/dev/ttyACM0', 6)
+PAR_6.serial.baudrate = 19200
+PAR_6.serial.bytesize = 8
+PAR_6.serial.parity = minimalmodbus.serial.PARITY_EVEN
+PAR_6.serial.stopbits = 1
+PAR_6.serial.timeout = 0.5
+PAR_6.mode = minimalmodbus.MODE_RTU
+PAR_6.clear_buffers_before_each_transaction = True
+PAR_6.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=10
 Solar_10 = minimalmodbus.Instrument('/dev/ttyACM0', 10)
@@ -40,7 +40,7 @@ def get_datetime():
     return now.strftime("%m/%d/%Y"), now.strftime("%H:%M")
 
 # Define the file path for the CSV file
-Climatic_data_pathway = "/home/cdacea/south_GH/climatic_data.csv"
+Climatic_data_pathway = "/home/cdacea/south_GH/south_climatic_data.csv"
 
 # Check if the file is empty
 file_exists = os.path.exists(Climatic_data_pathway) and os.path.getsize(Climatic_data_pathway) > 0
@@ -60,10 +60,10 @@ try:
             date, time = get_datetime()
 
             try:
-                # Read data from PAR_5
-                PAR_intensity_5 = PAR_5.read_float(0, 3, 2, 0)
+                # Read data from PAR_6
+                PAR_intensity_6 = PAR_6.read_float(0, 3, 2, 0)
                 sleep(5)
-                writer.writerow({'Date': date, 'Time': time, 'PAR_south': PAR_intensity_5})
+                writer.writerow({'Date': date, 'Time': time, 'PAR_south': PAR_intensity_6})
                 sleep(5)
             except Exception as e:
                 now = get_datetime()
