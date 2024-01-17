@@ -10,16 +10,16 @@ import datetime
 import csv
 import os
 
-# Configuration of SQ-618 ID=6
-PAR_6 = minimalmodbus.Instrument('/dev/ttyACM0', 6)
-PAR_6.serial.baudrate = 19200
-PAR_6.serial.bytesize = 8
-PAR_6.serial.parity = minimalmodbus.serial.PARITY_NONE
-PAR_6.serial.stopbits = 1
-PAR_6.serial.timeout = 0.5
-PAR_6.mode = minimalmodbus.MODE_RTU
-PAR_6.clear_buffers_before_each_transaction = True
-PAR_6.close_port_after_each_call = True
+# Configuration of SQ-618 ID=5
+PAR_5 = minimalmodbus.Instrument('/dev/ttyACM0', 5)
+PAR_5.serial.baudrate = 19200
+PAR_5.serial.bytesize = 8
+PAR_5.serial.parity = minimalmodbus.serial.PARITY_NONE
+PAR_5.serial.stopbits = 1
+PAR_5.serial.timeout = 0.5
+PAR_5.mode = minimalmodbus.MODE_RTU
+PAR_5.clear_buffers_before_each_transaction = True
+PAR_5.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=10
 Solar_10 = minimalmodbus.Instrument('/dev/ttyACM0', 10)
@@ -60,10 +60,10 @@ try:
             date, time = get_datetime()
 
             try:
-                # Read data from PAR_6
-                PAR_intensity_6 = PAR_6.read_float(0, 3, 2, 0)
+                # Read data from PAR_5
+                PAR_intensity_5 = PAR_5.read_float(0, 3, 2, 0)
                 sleep(1)
-                writer.writerow({'Date': date, 'Time': time, 'PAR': PAR_intensity_6})
+                writer.writerow({'Date': date, 'Time': time, 'PAR': PAR_intensity_5})
                 sleep(1)
             except Exception as e:
                 now = get_datetime()
@@ -78,7 +78,7 @@ try:
                 sleep(1)
             except Exception as e:
                 now = get_datetime()
-                print(f"Error reading Solar_11 at {now[1]} on {now[0]}: {e}")
+                print(f"Error reading Solar_10 at {now[1]} on {now[0]}: {e}")
 
 
 except KeyboardInterrupt:
@@ -86,7 +86,7 @@ except KeyboardInterrupt:
     if Solar_10.serial.is_open:
         Solar_10.serial.close()
 
-    if PAR_6.serial.is_open:
-        PAR_6.serial.close()
+    if PAR_5.serial.is_open:
+        PAR_5.serial.close()
 
     print("Ports Closed")
