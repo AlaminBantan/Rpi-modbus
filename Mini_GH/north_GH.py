@@ -34,14 +34,14 @@ def get_datetime():
     return now.strftime("%m/%d/%Y"), now.strftime("%H:%M")
 
 # Define the file path for the CSV file
-Climatic_data_pathway = "/home/cdacea/south_GH/south_climatic_data.csv"
+Climatic_data_pathway = "/home/cdacea/north_GH/north_climatic_data.csv"
 
 # Check if the file is empty
 file_exists = os.path.exists(Climatic_data_pathway) and os.path.getsize(Climatic_data_pathway) > 0
 
 try:
     with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
-        fieldnames = ['Date', 'Time', 'PAR_south', 'Solar_radiation_south']
+        fieldnames = ['Date', 'Time', 'PAR_north', 'Solar_radiation_north']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
         # Write the header only if the file is empty
@@ -57,7 +57,7 @@ try:
                 # Read data from PAR_5
                 PAR_intensity_5 = PAR_5.read_float(0, 3, 2, 0)
                 sleep(5)
-                writer.writerow({'Date': date, 'Time': time, 'PAR_south': PAR_intensity_5})
+                writer.writerow({'Date': date, 'Time': time, 'PAR_north': PAR_intensity_5})
                 sleep(5)
             except Exception as e:
                 now = get_datetime()
@@ -68,7 +68,7 @@ try:
                 # Read data from Solar_15
                 Solar_Radiation_15 = Solar_15.read_float(0, 3, 2, 0)
                 sleep(5)
-                writer.writerow({'Date': date, 'Time': time, 'Solar_radiation_south': Solar_Radiation_15})
+                writer.writerow({'Date': date, 'Time': time, 'Solar_radiation_north': Solar_Radiation_15})
                 sleep(5)
             except Exception as e:
                 now = get_datetime()
