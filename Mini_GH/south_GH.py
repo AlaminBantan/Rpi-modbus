@@ -63,7 +63,7 @@ try:
                 # Read data from PAR_5
                 PAR_intensity_5 = PAR_5.read_float(0, 3, 2, 0)
                 sleep(5)
-                writer.writerow({'Date': date, 'Time': time, 'PAR': PAR_intensity_5})
+                writer.writerow({'Date': date, 'Time': time, 'PAR_south': PAR_intensity_5})
                 sleep(5)
             except Exception as e:
                 now = get_datetime()
@@ -74,7 +74,7 @@ try:
                 # Read data from Solar_10
                 Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
                 sleep(5)
-                writer.writerow({'Date': date, 'Time': time, 'Solar radiation': Solar_Radiation_10})
+                writer.writerow({'Date': date, 'Time': time, 'Solar_radiation_south': Solar_Radiation_10})
                 sleep(5)
             except Exception as e:
                 now = get_datetime()
