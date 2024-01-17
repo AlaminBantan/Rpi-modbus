@@ -86,7 +86,7 @@ except KeyboardInterrupt:
     if Solar_10.serial.is_open:
         Solar_10.serial.close()
 
-    if PAR_5.serial.is_open:
-        PAR_5.serial.close()
+    if PAR_6.serial.is_open:
+        PAR_6.serial.close()
 
     print("Ports Closed")
