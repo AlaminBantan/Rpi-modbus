@@ -67,7 +67,7 @@ try:
                 sleep(1)
             except Exception as e:
                 now = get_datetime()
-                print(f"Error reading PAR_6 at {now[1]} on {now[0]}: {e}")
+                print(f"Error reading PAR_5 at {now[1]} on {now[0]}: {e}")
 
 
             try:
