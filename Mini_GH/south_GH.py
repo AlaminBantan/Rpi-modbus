@@ -14,7 +14,7 @@ import os
 PAR_5 = minimalmodbus.Instrument('/dev/ttyACM0', 5)
 PAR_5.serial.baudrate = 19200
 PAR_5.serial.bytesize = 8
-PAR_5.serial.parity = minimalmodbus.serial.PARITY_NONE
+PAR_5.serial.parity = minimalmodbus.serial.PARITY_EVEN
 PAR_5.serial.stopbits = 1
 PAR_5.serial.timeout = 0.5
 PAR_5.mode = minimalmodbus.MODE_RTU
@@ -25,7 +25,7 @@ PAR_5.close_port_after_each_call = True
 Solar_10 = minimalmodbus.Instrument('/dev/ttyACM0', 10)
 Solar_10.serial.baudrate = 19200
 Solar_10.serial.bytesize = 8
-Solar_10.serial.parity = minimalmodbus.serial.PARITY_NONE
+Solar_10.serial.parity = minimalmodbus.serial.PARITY_EVEN
 Solar_10.serial.stopbits = 1
 Solar_10.serial.timeout = 0.5
 Solar_10.mode = minimalmodbus.MODE_RTU
@@ -62,9 +62,9 @@ try:
             try:
                 # Read data from PAR_5
                 PAR_intensity_5 = PAR_5.read_float(0, 3, 2, 0)
-                sleep(1)
+                sleep(5)
                 writer.writerow({'Date': date, 'Time': time, 'PAR': PAR_intensity_5})
-                sleep(1)
+                sleep(5)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_5 at {now[1]} on {now[0]}: {e}")
@@ -73,9 +73,9 @@ try:
             try:
                 # Read data from Solar_10
                 Solar_Radiation_10 = Solar_10.read_float(0, 3, 2, 0)
-                sleep(1)
+                sleep(5)
                 writer.writerow({'Date': date, 'Time': time, 'Solar radiation': Solar_Radiation_10})
-                sleep(1)
+                sleep(5)
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_10 at {now[1]} on {now[0]}: {e}")
