@@ -3,7 +3,10 @@ from time import sleep
 
 def configure_instrument(port, address):
     instrument = minimalmodbus.Instrument(port, address)
-    instrument.serial.timeout = 0.5
+    instrument.serial.baudrate = 9600  
+    instrument.serial.bytesize = 8  
+    instrument.serial.parity = minimalmodbus.serial.PARITY_NONE  
+    instrument.serial.stopbits = 1  
     instrument.mode = minimalmodbus.MODE_RTU
     instrument.clear_buffers_before_each_transaction = True
     instrument.close_port_after_each_call = True
