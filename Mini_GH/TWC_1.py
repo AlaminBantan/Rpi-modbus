@@ -26,7 +26,7 @@ def read_sensor_data(instrument):
         return None
 
 if __name__ == "__main__":
-    instrument_1 = configure_instrument('/dev/ttyACM0', 1)
+    instrument_1 = configure_instrument('/dev/ttyACM0', 18)
 
     try:
         while True:
