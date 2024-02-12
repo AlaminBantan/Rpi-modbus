@@ -28,7 +28,7 @@ for date, group_data in zone_b_grouped.groupby('date'):
     
     # Set vertical time ticks
     plt.xticks(rotation='vertical', fontsize=8)
-
+    plt.ylim(10, 40)
     plt.legend()
     
     file_name = f'Daily_temp_Zone_B_{date}.png'
@@ -51,7 +51,7 @@ for date, group_data in zone_c_grouped.groupby('date'):
     
     # Set vertical time ticks
     plt.xticks(rotation='vertical', fontsize=8)
-
+    plt.ylim(10, 40)
     plt.legend()
     
     file_name = f'Daily_temp_Zone_C_{date}.png'

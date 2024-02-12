@@ -25,6 +25,7 @@ for treatment, data in df.groupby('Treatment'):
 plt.xlabel('Date')
 plt.ylabel('Cumulative Number of Fruits')
 plt.title('Cumulative Number of Fruits for Each Treatment Over Time')
+plt.xticks(rotation=45)
 plt.legend()
 
 # Save the plot as an SVG file

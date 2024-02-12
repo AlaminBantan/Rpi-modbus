@@ -43,7 +43,7 @@ plt.close()
 
 # Plotting Mean Zone C
 plt.figure(figsize=(10, 6))
-plt.plot(dates, mean_zone_c_dli_values, label='Mean Zone C DLI', marker='o', color='orange')
+plt.plot(dates, mean_zone_c_dli_values, label='Mean Zone C DLI', marker='o', color='green')
 plt.xlabel('Date')
 plt.ylabel('DLI (mol/m^2)')
 plt.title('Daily Light Integral (DLI) for Mean Zone C')

@@ -33,7 +33,7 @@ plt.close()
 
 # Plotting for Mean zone C
 plt.figure(figsize=(10, 6))
-hourly_mean['Mean zone C'].plot(label='Mean zone C', color='orange')
+hourly_mean['Mean zone C'].plot(label='Mean zone C', color='green')
 plt.title('Average VPD for Zone C by Hour')
 plt.xlabel('Hour')
 plt.ylabel('VPD')

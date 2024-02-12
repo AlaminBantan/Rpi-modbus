@@ -25,6 +25,7 @@ for treatment, data in df.groupby('Treatment'):
 plt.xlabel('Date')
 plt.ylabel('Cumulative Weight (g)')
 plt.title('Cumulative Weight of Each Treatment Over Time')
+plt.xticks(rotation=45)
 plt.legend()
 
 # Save the plot as an SVG file

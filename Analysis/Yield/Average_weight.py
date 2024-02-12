@@ -22,6 +22,7 @@ for treatment, data in df.groupby('Treatment'):
 plt.xlabel('Date')
 plt.ylabel('Average Weight of Fruits (g/fruit)')
 plt.title('Average Weight of Fruits for Each Treatment Over Time')
+plt.xticks(rotation=45)
 plt.legend()
 
 # Save the plot as an SVG file
