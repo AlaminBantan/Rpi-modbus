@@ -1,7 +1,7 @@
 import minimalmodbus
 from time import sleep
 
-TWC_1 = minimalmodbus.TWC_1('/dev/ttyACM0', 0)
+TWC_1 = minimalmodbus.Instrument('/dev/ttyACM0', 0)
 TWC_1.serial.baudrate = 9600  
 TWC_1.serial.bytesize = 8 
 TWC_1.serial.parity = minimalmodbus.serial.PARITY_NONE  
