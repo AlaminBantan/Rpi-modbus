@@ -14,11 +14,11 @@ def configure_instrument(port, address):
 
 def read_sensor_data(instrument):
     try:
-        temp = instrument.read_register(0, 0, 3, False)
-        water_content = instrument.read_register(1, 0, 3, False)
-        ec = instrument.read_register(3, 0, 3, False)
-        salinity = instrument.read_register(4, 0, 3, False)
-        tds = instrument.read_register(5, 0, 3, False)
+        temp = instrument.read_register(0, 0, 4, False)
+        water_content = instrument.read_register(1, 0, 4, False)
+        ec = instrument.read_register(3, 0, 4, False)
+        salinity = instrument.read_register(4, 0, 4, False)
+        tds = instrument.read_register(5, 0, 4, False)
 
         return temp, water_content, ec, salinity, tds
     except Exception as e:
