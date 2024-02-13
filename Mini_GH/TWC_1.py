@@ -14,9 +14,9 @@ TWC_1.close_port_after_each_call = True
 
 try:
     while True:
-        temp_1 = TWC_1.read_register(0, 0, 3, False)
-        print(f"Temp: {temp_1}")
-        sleep(1)
+        TWC_1.write_register(512,1, 0, 16, False)
+ #       print(f"Temp: {temp_1}")
+  #      sleep(1)
 
 except KeyboardInterrupt:
         print("KeyboardInterrupt: Closing port.")
