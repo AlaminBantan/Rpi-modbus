@@ -11,15 +11,6 @@ TWC_1.clear_buffers_before_each_transaction = True
 TWC_1.close_port_after_each_call = True
 
 
+TWC_1.write_register(512,1, 0, 16, False)
 
-try:
-    while True:
-        TWC_1.write_register(512,1, 0, 16, False)
- #       print(f"Temp: {temp_1}")
-  #      sleep(1)
-
-except KeyboardInterrupt:
-        print("KeyboardInterrupt: Closing port.")
-except Exception as e:
-        print(f"An unexpected error occurred: {e}")
 
