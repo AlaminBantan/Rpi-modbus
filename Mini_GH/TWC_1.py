@@ -11,6 +11,9 @@ TWC_1.clear_buffers_before_each_transaction = True
 TWC_1.close_port_after_each_call = True
 
 TWC_1.write_register(512, 5, 0, 16, False)
+Add_ID=TWC_1.read_register(512,0,3, False)
+print("f'{Add_ID}")
+sleep(2)
 
 #try:
  #   while True:
