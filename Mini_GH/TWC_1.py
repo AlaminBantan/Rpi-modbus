@@ -10,14 +10,14 @@ TWC_1.mode = minimalmodbus.MODE_RTU
 TWC_1.clear_buffers_before_each_transaction = True
 TWC_1.close_port_after_each_call = True
 
+TWC_1.write_register(512, 5, 0, 16, False)
 
+#try:
+ #   while True:
+  #      temp_1=TWC_1.read_register(0, 0, 3 ,False)
+   #     print(f"Temp is {temp_1}")
+    #    sleep(1)
 
-try:
-    while True:
-        temp_1=TWC_1.read_register(0, 0, 3 ,False)
-        print(f"Temp is {temp_1}")
-        sleep(1)
-
-except KeyboardInterrupt:
-    TWC_1.serial.close()
-    print("TWC_1 closed")
+#except KeyboardInterrupt:
+ #   TWC_1.serial.close()
+  #  print("TWC_1 closed")
