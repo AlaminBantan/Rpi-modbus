@@ -12,6 +12,7 @@ daily_dli = df.groupby('date').apply(lambda group: (group['Mean zone B'].sum() *
 
 # Print the results
 for date, (mean_zone_b_dli, mean_zone_c_dli) in daily_dli.items():
+    print(f"DLI for Mean Zone B on {date.date()}: {mean_zone_b_dli:.2f} mol/m^2")
     print(f"DLI for Mean Zone C on {date.date()}: {mean_zone_c_dli:.2f} mol/m^2")
 
     print()
