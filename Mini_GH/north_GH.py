@@ -53,57 +53,49 @@ THUM_31 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
 def get_datetime():
     timenow = datetime.datetime.now()
     return timenow
-
 try:
+    while True:
+        current_datetime = get_datetime()
 
-        while True:
-            current_datetime = get_datetime()
-            date = current_datetime.date()
-            time = current_datetime.time()
-            
-            # Read data from PAR_1
-            PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
-            sleep(1)
+        # Format date and time without decimal seconds
+        formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
 
-            # Read data from Solar_11
-            Solar_Radiation_11 = Solar_11.read_float(0, 3, 2, 0)
-            sleep(1)
+        # Read data from PAR_1 and round to 1 decimal place
+        PAR_intensity_1 = round(PAR_1.read_float(0, 3, 2, 0), 1)
+        sleep(1)
 
-#            #Read data from Thum_31
-            THUM_31.write("OPEN 31\r\n")
-            THUM_31.flush()
-            sleep(1)
-            THUM_31.write("SEND\r\n")
-            THUM_31.flush()
-            sleep(1)
-            data_31 = THUM_31.readlines()
-            last_line_31 = data_31[-1]
-            rh_index_31 = last_line_31.find('RH=')
-            temp_index_31 = last_line_31.find("Ta=")
-            if rh_index_31 != -1 and temp_index_31 != -1:
-                rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
-                temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
+        # Read data from Solar_11 and round to 1 decimal place
+        Solar_Radiation_11 = round(Solar_11.read_float(0, 3, 2, 0), 1)
+        sleep(1)
 
-            #Read data from carbo_41
-            carbon_conc_41 = carbo_41.read_float(1, 3, 2, 0)
-            sleep(1)
+        # Read data from Thum_31
+        THUM_31.write("OPEN 31\r\n")
+        THUM_31.flush()
+        sleep(1)
+        THUM_31.write("SEND\r\n")
+        THUM_31.flush()
+        sleep(1)
+        data_31 = THUM_31.readlines()
+        last_line_31 = data_31[-1]
+        rh_index_31 = last_line_31.find('RH=')
+        temp_index_31 = last_line_31.find("Ta=")
+        if rh_index_31 != -1 and temp_index_31 != -1:
+            rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
+            temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
 
+        # Read data from carbo_41 and round to 1 decimal place
+        carbon_conc_41 = round(carbo_41.read_float(1, 3, 2, 0), 1)
+        sleep(1)
 
-            timenow = get_datetime()
-            
-        
-            # Print the sensor readings
-            print(f"time is {timenow} Conditions in North GH")
-            print(f"PAR is {PAR_intensity_1} umol.m-2.s-1")
-            print(f"Solar radiation is {Solar_Radiation_11} W.m-2")
-            print(f"Temperature is {temp_value_31} c")
-            print(f"relative jumidity is {rh_value_31}%")
-            print(f"Carbon concentration is  {carbon_conc_41} ppm")
+        # Print the sensor readings
+        print(f"Time is {formatted_datetime} Conditions in North GH")
+        print(f"PAR is {PAR_intensity_1} umol.m-2.s-1")
+        print(f"Solar radiation is {Solar_Radiation_11} W.m-2")
+        print(f"Temperature is {temp_value_31:.1f} °C")
+        print(f"Relative humidity is {rh_value_31}%")
+        print(f"Carbon concentration is {carbon_conc_41} ppm")
 
-            sleep(10)
-
-
-
+        sleep(10)
 
 except KeyboardInterrupt:
     # Close serial ports only if they are open
