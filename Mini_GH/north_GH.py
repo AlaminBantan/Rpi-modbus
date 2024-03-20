@@ -90,7 +90,8 @@ try:
         # Print the sensor readings
         print("\n"*10)
         print("--------------------------------")
-        print(f"Time is {formatted_datetime}: Conditions in North GH")
+        print("Climatic condition in North GH!")
+        print(f"Time is {formatted_datetime}")
         print(f"PAR is {PAR_intensity_1} umol.m-2.s-1")
         print(f"Solar radiation is {Solar_Radiation_11} W.m-2")
         print(f"Temperature is {temp_value_31:.1f} C")
