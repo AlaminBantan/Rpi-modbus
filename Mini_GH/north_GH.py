@@ -57,7 +57,10 @@ def get_datetime():
 try:
 
         while True:
-            date, time = get_datetime()
+            current_datetime = get_datetime()
+            date = current_datetime.date()
+            time = current_datetime.time()
+            
             # Read data from PAR_1
             PAR_intensity_1 = PAR_1.read_float(0, 3, 2, 0)
             sleep(1)
