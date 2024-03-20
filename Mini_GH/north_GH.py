@@ -93,7 +93,7 @@ try:
         print(f"Time is {formatted_datetime}: Conditions in North GH")
         print(f"PAR is {PAR_intensity_1} umol.m-2.s-1")
         print(f"Solar radiation is {Solar_Radiation_11} W.m-2")
-        print(f"Temperature is {temp_value_31:.1f} °C")
+        print(f"Temperature is {temp_value_31:.1f} C")
         print(f"Relative humidity is {rh_value_31}%")
         print(f"Carbon concentration is {carbon_conc_41} ppm")
         print("--------------------------------")
