@@ -40,15 +40,15 @@ carbo_41.clear_buffers_before_each_transaction = True
 carbo_41.close_port_after_each_call = True
 
 # Configuration of HMP-155
-serial_THUM = serial.Serial("/dev/ttyACM1",
-                   baudrate=4800,
-                   bytesize=serial.SEVENBITS,
-                   parity=serial.PARITY_EVEN,
-                   stopbits=serial.STOPBITS_ONE,
-                   xonxoff=False,
-                   timeout=2)
+#serial_THUM = serial.Serial("/dev/ttyACM1",
+#                   baudrate=4800,
+#                  bytesize=serial.SEVENBITS,
+#                   parity=serial.PARITY_EVEN,
+#                   stopbits=serial.STOPBITS_ONE,
+#                   xonxoff=False,
+#                   timeout=2)
 
-THUM_31 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
+#THUM_31 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
 
 # Define a function to get the current date and time in the required format
 def get_datetime():
@@ -67,20 +67,20 @@ try:
             Solar_Radiation_11 = Solar_11.read_float(0, 3, 2, 0)
             sleep(1)
 
-            #Read data from Thum_31
-            THUM_31.write("OPEN 31\r\n")
-            THUM_31.flush()
-            sleep(1)
-            THUM_31.write("SEND\r\n")
-            THUM_31.flush()
-            sleep(1)
-            data_31 = THUM_31.readlines()
-            last_line_31 = data_31[-1]
-            rh_index_31 = last_line_31.find('RH=')
-            temp_index_31 = last_line_31.find("Ta=")
-            if rh_index_31 != -1 and temp_index_31 != -1:
-                rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
-                temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
+#            #Read data from Thum_31
+#            THUM_31.write("OPEN 31\r\n")
+#            THUM_31.flush()
+#            sleep(1)
+#            THUM_31.write("SEND\r\n")
+#            THUM_31.flush()
+#            sleep(1)
+#            data_31 = THUM_31.readlines()
+#            last_line_31 = data_31[-1]
+#            rh_index_31 = last_line_31.find('RH=')
+#            temp_index_31 = last_line_31.find("Ta=")
+#            if rh_index_31 != -1 and temp_index_31 != -1:
+#                rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
+#                temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
 
             #Read data from carbo_41
             carbon_conc_41 = carbo_41.read_float(1, 3, 2, 0)
@@ -89,8 +89,6 @@ try:
             # Print the sensor readings
             print(f"PAR is {PAR_intensity_1},\
                     Solar radiation is {Solar_Radiation_11},\
-                    Temp is {temp_value_31},\
-                    Humidity is {rh_value_31},\
                     CO2 ppm is {carbon_conc_41}")
 
 
