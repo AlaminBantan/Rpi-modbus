@@ -43,7 +43,7 @@ ax.fill_between(daily_stats['date'], daily_stats['Mean zone C min'], daily_stats
 ax.set_xlabel('Date')
 ax.set_ylabel('Temperature (°C)')
 ax.set_title('Daily Temperature Stats for Zones B and C')
-ax.legend()
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.savefig(r"C:\Users\bantanam\KAUST\CDA-CEA Team - Documents\CO2 misting - Cucumber trial\Data collection\Climatic_data\plots\Temp\Daily_Average_Mean_Zone_B_and_C.svg")
