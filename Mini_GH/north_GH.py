@@ -60,44 +60,50 @@ try:
         # Format date and time without decimal seconds
         formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
 
-        # Read data from PAR_1 and round to 1 decimal place
-        PAR_intensity_1 = round(PAR_1.read_float(0, 3, 2, 0), 1)
-        sleep(1)
+        try:
+            # Read data from PAR_1 and round to 1 decimal place
+            PAR_intensity_1 = round(PAR_1.read_float(0, 3, 2, 0), 1)
+        except Exception as e:
+            PAR_intensity_1 = "Error"
 
-        # Read data from Solar_11 and round to 1 decimal place
-        Solar_Radiation_11 = round(Solar_11.read_float(0, 3, 2, 0), 1)
-        sleep(1)
+        try:
+            # Read data from Solar_11 and round to 1 decimal place
+            Solar_Radiation_11 = round(Solar_11.read_float(0, 3, 2, 0), 1)
+        except Exception as e:
+            Solar_Radiation_11 = "Error"
+
+        try:
+            # Read data from carbo_41 and round to 1 decimal place
+            carbon_conc_41 = round(carbo_41.read_float(1, 3, 2, 0), 1)
+        except Exception as e:
+            carbon_conc_41 = "Error"
 
         # Read data from Thum_31
-        THUM_31.write("OPEN 31\r\n")
-        THUM_31.flush()
-        sleep(1)
-        THUM_31.write("SEND\r\n")
-        THUM_31.flush()
-        sleep(1)
-        data_31 = THUM_31.readlines()
-        last_line_31 = data_31[-1]
-        rh_index_31 = last_line_31.find('RH=')
-        temp_index_31 = last_line_31.find("Ta=")
-        if rh_index_31 != -1 and temp_index_31 != -1:
-            rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
-            temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
-
-        # Read data from carbo_41 and round to 1 decimal place
-        carbon_conc_41 = round(carbo_41.read_float(1, 3, 2, 0), 1)
-        sleep(1)
+        try:
+            THUM_31.write("OPEN 31\r\n")
+            THUM_31.flush()
+            sleep(1)
+            THUM_31.write("SEND\r\n")
+            THUM_31.flush()
+            sleep(1)
+            data_31 = THUM_31.readlines()
+            last_line_31 = data_31[-1]
+            rh_index_31 = last_line_31.find('RH=')
+            temp_index_31 = last_line_31.find("Ta=")
+            if rh_index_31 != -1 and temp_index_31 != -1:
+                rh_value_31 = float(last_line_31[rh_index_31 + 3:last_line_31.find('%RH')])
+                temp_value_31 = float(last_line_31[temp_index_31 + 3:last_line_31.find("'C")])
+        except Exception as e:
+            rh_value_31 = "Error"
+            temp_value_31 = "Error"
 
         # Print the sensor readings
-        print("\n"*10)
-        print("--------------------------------")
-        print("Climatic condition in North GH!")
-        print(f"Time is {formatted_datetime}")
+        print(f"Time is {formatted_datetime} Conditions in North GH")
         print(f"PAR is {PAR_intensity_1} umol.m-2.s-1")
         print(f"Solar radiation is {Solar_Radiation_11} W.m-2")
-        print(f"Temperature is {temp_value_31:.1f} C")
+        print(f"Temperature is {temp_value_31} °C")
         print(f"Relative humidity is {rh_value_31}%")
         print(f"Carbon concentration is {carbon_conc_41} ppm")
-        print("--------------------------------")
 
         sleep(10)
 
