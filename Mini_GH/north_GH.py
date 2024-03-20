@@ -87,10 +87,10 @@ try:
             sleep(1)
 
             # Print the sensor readings
-            print(f"PAR is {PAR_intensity_1},
-                    Solar radiation is {Solar_Radiation_11},
-                    Temp is {temp_value_31},
-                    Humidity is {rh_value_31},
+            print(f"PAR is {PAR_intensity_1},\
+                    Solar radiation is {Solar_Radiation_11},\
+                    Temp is {temp_value_31},\
+                    Humidity is {rh_value_31},\
                     CO2 ppm is {carbon_conc_41}")
 
 
