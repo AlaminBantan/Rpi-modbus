@@ -49,6 +49,10 @@ serial_THUM = serial.Serial("/dev/ttyACM1",
                    timeout=2)
 THUM_31 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
 
+# Define a function to get the current date and time in the required format
+def get_datetime():
+    timenow = datetime.datetime.now()
+    return timenow
 
 try:
 
@@ -82,9 +86,7 @@ try:
             sleep(1)
 
 
-            # Define a function to get the current date and time in the required format
-            def get_datetime():
-            timenow = datetime.datetime.now()
+            timenow = get_datetime()
             
         
             # Print the sensor readings
