@@ -92,7 +92,7 @@ try:
             temp_index_32 = last_line_32.find("Ta=")
             if rh_index_32 != -1 and temp_index_32 != -1:
                 rh_value_32 = float(last_line_32[rh_index_32 + 3:last_line_32.find('%RH')])
-                temp_value_31 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
+                temp_value_32 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
         except Exception as e:
             rh_value_32 = f"Error reading Thum_32: {e}"
             temp_value_32 = f"Error reading Thum_32: {e}"
