@@ -7,7 +7,7 @@ import io
 import os
 
 # Configuration of SQ-618 ID=5
-PAR_2 = minimalmodbus.Instrument('/dev/ttyACM0', 1)
+PAR_2 = minimalmodbus.Instrument('/dev/ttyACM0', 2)
 PAR_2.serial.baudrate = 19200
 PAR_2.serial.bytesize = 8
 PAR_2.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -18,7 +18,7 @@ PAR_2.clear_buffers_before_each_transaction = True
 PAR_2.close_port_after_each_call = True
 
 # Configuration of SP-522 ID=10
-Solar_12 = minimalmodbus.Instrument('/dev/ttyACM0', 11)
+Solar_12 = minimalmodbus.Instrument('/dev/ttyACM0', 12)
 Solar_12.serial.baudrate = 19200
 Solar_12.serial.bytesize = 8
 Solar_12.serial.parity = minimalmodbus.serial.PARITY_EVEN
@@ -30,7 +30,7 @@ Solar_12.close_port_after_each_call = True
 
 
 # Configuration of GMP-252 ID=41
-carbo_42 = minimalmodbus.Instrument('/dev/ttyACM0',41)
+carbo_42 = minimalmodbus.Instrument('/dev/ttyACM0',42)
 carbo_42.serial.baudrate = 19200
 carbo_42.serial.bytesize = 8
 carbo_42.serial.parity = minimalmodbus.serial.PARITY_NONE
@@ -62,25 +62,25 @@ try:
 
         try:
             # Read data from PAR_2 and round to 1 decimal place
-            PAR_intensity_1 = round(PAR_2.read_float(0, 3, 2, 0), 1)
+            PAR_intensity_2 = round(PAR_2.read_float(0, 3, 2, 0), 1)
         except Exception as e:
-            PAR_intensity_1 = "Error"
+            PAR_intensity_2 = f"Error reading PAR_2: {e}"
 
         try:
             # Read data from Solar_12 and round to 1 decimal place
-            Solar_Radiation_11 = round(Solar_12.read_float(0, 3, 2, 0), 1)
+            Solar_Radiation_12 = round(Solar_12.read_float(0, 3, 2, 0), 1)
         except Exception as e:
-            Solar_Radiation_11 = "Error"
+            Solar_Radiation_12 = f"Error reading Solar_12: {e}"
 
         try:
             # Read data from carbo_42 and round to 1 decimal place
-            carbon_conc_41 = round(carbo_42.read_float(1, 3, 2, 0), 1)
+            carbon_conc_42 = round(carbo_42.read_float(1, 3, 2, 0), 1)
         except Exception as e:
-            carbon_conc_41 = "Error"
+            carbon_conc_42 = f"Error reading carbo_42: {e}"
 
         # Read data from THUM_32
         try:
-            THUM_32.write("OPEN 31\r\n")
+            THUM_32.write("OPEN 32\r\n")
             THUM_32.flush()
             sleep(1)
             THUM_32.write("SEND\r\n")
@@ -94,8 +94,8 @@ try:
                 rh_value_32 = float(last_line_32[rh_index_32 + 3:last_line_32.find('%RH')])
                 temp_value_31 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
         except Exception as e:
-            rh_value_32 = "Error"
-            temp_value_32 = "Error"
+            rh_value_32 = f"Error reading Thum_32: {e}"
+            temp_value_32 = f"Error reading Thum_32: {e}"
 
         # Print the sensor readings
         print("\n"*10)
