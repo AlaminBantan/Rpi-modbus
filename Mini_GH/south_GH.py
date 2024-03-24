@@ -100,12 +100,12 @@ try:
         # Print the sensor readings
         print("\n"*10)
         print("--------------------------------")
-        print("Climatic condition in North GH!")
+        print("Climatic condition in South GH!")
         print(f"Time is {formatted_datetime}")
         print(f"PAR is {PAR_intensity_1} umol.m-2.s-1")
         print(f"Solar radiation is {Solar_Radiation_11} W.m-2")
-        print(f"Temperature is {temp_value_31:.1f} C")
-        print(f"Relative humidity is {rh_value_31}%")
+        print(f"Temperature is {temp_value_32:.1f} C")
+        print(f"Relative humidity is {rh_value_32}%")
         print(f"Carbon concentration is {carbon_conc_41} ppm")
         print("--------------------------------")
 
