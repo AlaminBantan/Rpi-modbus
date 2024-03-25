@@ -6,9 +6,9 @@ import serial
 import io
 import os
 
-# Configuration of SQ-618 ID=5
+# Configuration of SQ-618 ID=1
 PAR_1 = minimalmodbus.Instrument('/dev/ttyACM0', 1)
-PAR_1.serial.baudrate = 19100
+PAR_1.serial.baudrate = 19200
 PAR_1.serial.bytesize = 8
 PAR_1.serial.parity = minimalmodbus.serial.PARITY_EVEN
 PAR_1.serial.stopbits = 1
@@ -17,9 +17,9 @@ PAR_1.mode = minimalmodbus.MODE_RTU
 PAR_1.clear_buffers_before_each_transaction = True
 PAR_1.close_port_after_each_call = True
 
-# Configuration of SP-511 ID=10
+# Configuration of SP-522 ID=10
 Solar_11 = minimalmodbus.Instrument('/dev/ttyACM0', 11)
-Solar_11.serial.baudrate = 19100
+Solar_11.serial.baudrate = 19200
 Solar_11.serial.bytesize = 8
 Solar_11.serial.parity = minimalmodbus.serial.PARITY_EVEN
 Solar_11.serial.stopbits = 1
@@ -29,24 +29,24 @@ Solar_11.clear_buffers_before_each_transaction = True
 Solar_11.close_port_after_each_call = True
 
 
-# Configuration of GMP-151 ID=41
+# Configuration of GMP-252 ID=41
 carbo_41 = minimalmodbus.Instrument('/dev/ttyACM0',41)
-carbo_41.serial.baudrate = 19100
+carbo_41.serial.baudrate = 19200
 carbo_41.serial.bytesize = 8
 carbo_41.serial.parity = minimalmodbus.serial.PARITY_NONE
-carbo_41.serial.stopbits = 1
+carbo_41.serial.stopbits = 2
 carbo_41.mode = minimalmodbus.MODE_RTU
 carbo_41.clear_buffers_before_each_transaction = True
 carbo_41.close_port_after_each_call = True
 
 # Configuration of HMP-155
-serial_THUM = serial.Serial("/dev/ttyACM2",
+serial_THUM = serial.Serial("/dev/ttyACM1",
                    baudrate=4800,
                   bytesize=serial.SEVENBITS,
                    parity=serial.PARITY_EVEN,
                    stopbits=serial.STOPBITS_ONE,
                    xonxoff=False,
-                   timeout=1)
+                   timeout=2)
 THUM_31 = io.TextIOWrapper(io.BufferedRWPair(serial_THUM, serial_THUM))
 
 # Define a function to get the current date and time in the required format
