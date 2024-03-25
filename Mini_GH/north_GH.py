@@ -6,7 +6,7 @@ import serial
 import io
 import os
 
-# Configuration of SQ-618 ID=5
+# Configuration of SQ-618 ID=1
 PAR_1 = minimalmodbus.Instrument('/dev/ttyACM0', 1)
 PAR_1.serial.baudrate = 19200
 PAR_1.serial.bytesize = 8
@@ -40,7 +40,7 @@ carbo_41.clear_buffers_before_each_transaction = True
 carbo_41.close_port_after_each_call = True
 
 # Configuration of HMP-155
-serial_THUM = serial.Serial("/dev/ttyACM1",
+serial_THUM = serial.Serial("/dev/ttyACM2",
                    baudrate=4800,
                   bytesize=serial.SEVENBITS,
                    parity=serial.PARITY_EVEN,
