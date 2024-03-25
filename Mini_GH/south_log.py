@@ -59,7 +59,7 @@ csv_file_path = '/home/cdacea/south_GH/south_climate.csv'
 with open(csv_file_path, mode='a', newline='') as file:
     writer = csv.writer(file)
     # Write the header row
-    writer.writerow(['datetime', 'PAR_south', 'Solar radiation_south', 'Temperature_south', 'Humidity_south', 'CO2 conc_south'])
+    writer.writerow(['datetime', 'PAR_south (umol.m-2.s-1)', 'Solar radiation_south (w.m-2)', 'Temperature_south (c)', 'Humidity_south (%)', 'CO2 conc_south (ppm)'])
 
     try:
         while True:
