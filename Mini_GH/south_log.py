@@ -67,19 +67,24 @@ try:
         # Write the header only if the file is empty
         if not file_exists:
             writer.writeheader()
-    try:
+
+
+
+
+
         while True:
             current_datetime = get_datetime()
 
             # Format date and time without decimal seconds
-            formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+            formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M")
+
 
             try:
                 # Read data from PAR_2 and round to 1 decimal place
                 PAR_intensity_2 = round(PAR_2.read_float(0, 3, 2, 0), 1)
                 sleep(1)
                 writer.writerow({'datetime': formatted_datetime, 'PAR_south (umol.m-1.s-1)': PAR_intensity_2})
-                
+                    
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading PAR_2 at {now[1]} on {now[0]}: {e}")
@@ -90,7 +95,7 @@ try:
                 Solar_Radiation_12 = round(Solar_12.read_float(0, 3, 2, 0), 1)
                 sleep(1)
                 writer.writerow({'datetime': formatted_datetime, 'Solar radiation_south (w.m-2)': Solar_Radiation_12})
-            
+                
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading Solar_12 at {now[1]} on {now[0]}: {e}")
@@ -101,13 +106,13 @@ try:
                 carbon_conc_42 = round(carbo_42.read_float(1, 3, 2, 0), 1)
                 sleep(1)
                 writer.writerow({'datetime': formatted_datetime, 'CO2 conc_south (ppm)': carbon_conc_42})
-                
+                    
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
                 sleep(1)
 
-            # Read data from THUM_32
+                # Read data from THUM_32
             try:
                 THUM_32.write("OPEN 32\r\n")
                 THUM_32.flush()
@@ -123,13 +128,13 @@ try:
                     rh_value_32 = float(last_line_32[rh_index_32 + 3:last_line_32.find('%RH')])
                     temp_value_32 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
                     writer.writerow({'datetime': formatted_datetime, 'Temperature_south (c)': temp_value_32, 'Humidity_south (%)': rh_value_32})
-                    
+                        
             except Exception as e:
                 now = get_datetime()
                 print(f"Error reading THUM_32 at {now[1]} on {now[0]}: {e}")
 
 
-            sleep(50) 
+            sleep(53) 
 
 except KeyboardInterrupt:
         # Close serial ports only if they are open

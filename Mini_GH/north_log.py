@@ -62,7 +62,7 @@ file_exists = os.path.exists(Climatic_data_pathway) and os.path.getsize(Climatic
 
 try:
     with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
-        fieldnames = ['datetime', 'PAR_north (umol.m-1.s-1)', 'Solar radiation_north (w.m-2)', 'Temperature_north (c)', 'Humidity_north (%)', 'CO2 conc_north (ppm)']]
+        fieldnames = ['datetime', 'PAR_north (umol.m-1.s-1)', 'Solar radiation_north (w.m-2)', 'Temperature_north (c)', 'Humidity_north (%)', 'CO2 conc_north (ppm)']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         # Write the header only if the file is empty
         if not file_exists:
@@ -133,7 +133,7 @@ try:
                 print(f"Error reading THUM_31 at {now[1]} on {now[0]}: {e}")
 
 
-            sleep(50) 
+            sleep(53) 
 
 except KeyboardInterrupt:
         # Close serial ports only if they are open
