@@ -132,6 +132,10 @@ try:
                 now = get_datetime()
                 print(f"Error reading THUM_31 at {now[1]} on {now[0]}: {e}")
 
+            # Flush the buffer after writing to the CSV file
+            csv_file.flush()
+            os.fsync(csv_file.fileno())
+
 
             sleep(53) 
 
