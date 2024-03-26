@@ -42,7 +42,7 @@ carbo_41.close_port_after_each_call = True
 # Configuration of HMP-155
 serial_THUM = serial.Serial("/dev/ttyACM1",
                    baudrate=4800,
-                   bytesize=serial.SEVENBITS,
+                  bytesize=serial.SEVENBITS,
                    parity=serial.PARITY_EVEN,
                    stopbits=serial.STOPBITS_ONE,
                    xonxoff=False,
