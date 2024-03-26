@@ -59,7 +59,6 @@ Climatic_data_pathway = '/home/cdacea/south_GH/south_climate.csv'
 
 # Check if the file is empty
 file_exists = os.path.exists(Climatic_data_pathway) and os.path.getsize(Climatic_data_pathway) > 0
-
 try:
     with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
         fieldnames = ['datetime', 'PAR_south (umol.m-1.s-1)', 'Solar radiation_south (w.m-2)', 'Temperature_south (c)', 'Humidity_south (%)', 'CO2 conc_south (ppm)']
@@ -68,51 +67,33 @@ try:
         if not file_exists:
             writer.writeheader()
 
-
-
-
-
         while True:
             current_datetime = get_datetime()
 
             # Format date and time without decimal seconds
             formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M")
 
-
             try:
-                # Read data from PAR_2 and round to 1 decimal place
                 PAR_intensity_2 = round(PAR_2.read_float(0, 3, 2, 0), 1)
                 sleep(1)
-                writer.writerow({'datetime': formatted_datetime, 'PAR_south (umol.m-1.s-1)': PAR_intensity_2})
-                    
             except Exception as e:
-                now = get_datetime()
-                print(f"Error reading PAR_2 at {now[1]} on {now[0]}: {e}")
-                sleep(1)
+                print(f"Error reading PAR_2: {e}")
+                PAR_intensity_2 = "error"
 
             try:
-                # Read data from Solar_12 and round to 1 decimal place
                 Solar_Radiation_12 = round(Solar_12.read_float(0, 3, 2, 0), 1)
                 sleep(1)
-                writer.writerow({'datetime': formatted_datetime, 'Solar radiation_south (w.m-2)': Solar_Radiation_12})
-                
             except Exception as e:
-                now = get_datetime()
-                print(f"Error reading Solar_12 at {now[1]} on {now[0]}: {e}")
-                sleep(1)
+                print(f"Error reading Solar_12: {e}")
+                Solar_Radiation_12 = "error"
 
             try:
-                # Read data from carbo_42 and round to 1 decimal place
                 carbon_conc_42 = round(carbo_42.read_float(1, 3, 2, 0), 1)
                 sleep(1)
-                writer.writerow({'datetime': formatted_datetime, 'CO2 conc_south (ppm)': carbon_conc_42})
-                    
             except Exception as e:
-                now = get_datetime()
-                print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
-                sleep(1)
+                print(f"Error reading carbo_42: {e}")
+                carbon_conc_42 = "error"
 
-                # Read data from THUM_32
             try:
                 THUM_32.write("OPEN 32\r\n")
                 THUM_32.flush()
@@ -127,26 +108,27 @@ try:
                 if rh_index_32 != -1 and temp_index_32 != -1:
                     rh_value_32 = float(last_line_32[rh_index_32 + 3:last_line_32.find('%RH')])
                     temp_value_32 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
-                    writer.writerow({'datetime': formatted_datetime, 'Temperature_south (c)': temp_value_32, 'Humidity_south (%)': rh_value_32})
-                        
+                else:
+                    rh_value_32 = "error"
+                    temp_value_32 = "error"
             except Exception as e:
-                now = get_datetime()
-                print(f"Error reading THUM_32 at {now[1]} on {now[0]}: {e}")
+                print(f"Error reading THUM_32: {e}")
+                rh_value_32 = "error"
+                temp_value_32 = "error"
 
-            # Flush the buffer after writing to the CSV file
+            writer.writerow({'datetime': formatted_datetime, 'PAR_south (umol.m-1.s-1)': PAR_intensity_2, 'Solar radiation_south (w.m-2)': Solar_Radiation_12, 'Temperature_south (c)': temp_value_32, 'Humidity_south (%)': rh_value_32, 'CO2 conc_south (ppm)': carbon_conc_42})
+
             csv_file.flush()
             os.fsync(csv_file.fileno())
 
-
-            sleep(53) 
+            sleep(53)
 
 except KeyboardInterrupt:
-        # Close serial ports only if they are open
-        if PAR_2.serial.is_open:
-            PAR_2.serial.close()
-        if Solar_12.serial.is_open:
-            Solar_12.serial.close()
-        if carbo_42.serial.is_open:
-            carbo_42.serial.close()
+    if PAR_2.serial.is_open:
+        PAR_2.serial.close()
+    if Solar_12.serial.is_open:
+        Solar_12.serial.close()
+    if carbo_42.serial.is_open:
+        carbo_42.serial.close()
 
-        print("Ports Closed")
+    print("Ports Closed")
