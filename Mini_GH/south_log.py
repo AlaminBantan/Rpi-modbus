@@ -54,13 +54,19 @@ def get_datetime():
     timenow = datetime.datetime.now()
     return timenow
 
-# Open CSV file in append mode with newline=''
-csv_file_path = '/home/cdacea/south_GH/south_climate.csv'
-with open(csv_file_path, mode='a', newline='') as file:
-    writer = csv.writer(file)
-    # Write the header row
-    writer.writerow(['datetime', 'PAR_south (umol.m-2.s-1)', 'Solar radiation_south (w.m-2)', 'Temperature_south (c)', 'Humidity_south (%)', 'CO2 conc_south (ppm)'])
+# Define the file path for the CSV file
+Climatic_data_pathway = '/home/cdacea/south_GH/south_climate.csv'
 
+# Check if the file is empty
+file_exists = os.path.exists(Climatic_data_pathway) and os.path.getsize(Climatic_data_pathway) > 0
+
+try:
+    with open(Climatic_data_pathway, mode='a', newline='') as csv_file:
+        fieldnames = ['datetime', 'PAR_south (umol.m-1.s-1)', 'Solar radiation_south (w.m-2)', 'Temperature_south (c)', 'Humidity_south (%)', 'CO2 conc_south (ppm)']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        # Write the header only if the file is empty
+        if not file_exists:
+            writer.writeheader()
     try:
         while True:
             current_datetime = get_datetime()
@@ -71,20 +77,35 @@ with open(csv_file_path, mode='a', newline='') as file:
             try:
                 # Read data from PAR_2 and round to 1 decimal place
                 PAR_intensity_2 = round(PAR_2.read_float(0, 3, 2, 0), 1)
+                sleep(1)
+                writer.writerow({'datetime': formatted_datetime, 'PAR_south (umol.m-1.s-1)': PAR_intensity_2})
+                
             except Exception as e:
-                PAR_intensity_2 = f"Error reading PAR_2: {e}"
+                now = get_datetime()
+                print(f"Error reading PAR_2 at {now[1]} on {now[0]}: {e}")
+                sleep(1)
 
             try:
                 # Read data from Solar_12 and round to 1 decimal place
                 Solar_Radiation_12 = round(Solar_12.read_float(0, 3, 2, 0), 1)
+                sleep(1)
+                writer.writerow({'datetime': formatted_datetime, 'Solar radiation_south (w.m-2)': Solar_Radiation_12})
+            
             except Exception as e:
-                Solar_Radiation_12 = f"Error reading Solar_12: {e}"
+                now = get_datetime()
+                print(f"Error reading Solar_12 at {now[1]} on {now[0]}: {e}")
+                sleep(1)
 
             try:
                 # Read data from carbo_42 and round to 1 decimal place
                 carbon_conc_42 = round(carbo_42.read_float(1, 3, 2, 0), 1)
+                sleep(1)
+                writer.writerow({'datetime': formatted_datetime, 'CO2 conc_south (ppm)': carbon_conc_42})
+                
             except Exception as e:
-                carbon_conc_42 = f"Error reading carbo_42: {e}"
+                now = get_datetime()
+                print(f"Error reading carbo_42 at {now[1]} on {now[0]}: {e}")
+                sleep(1)
 
             # Read data from THUM_32
             try:
@@ -101,16 +122,16 @@ with open(csv_file_path, mode='a', newline='') as file:
                 if rh_index_32 != -1 and temp_index_32 != -1:
                     rh_value_32 = float(last_line_32[rh_index_32 + 3:last_line_32.find('%RH')])
                     temp_value_32 = float(last_line_32[temp_index_32 + 3:last_line_32.find("'C")])
+                    writer.writerow({'datetime': formatted_datetime, 'Temperature_south (c)': temp_value_32, 'Humidity_south (%)': rh_value_32})
+                    
             except Exception as e:
-                rh_value_32 = f"Error reading Thum_32: {e}"
-                temp_value_32 = f"Error reading Thum_32: {e}"
+                now = get_datetime()
+                print(f"Error reading THUM_32 at {now[1]} on {now[0]}: {e}")
 
-            # Write data to CSV file
-            writer.writerow([formatted_datetime, PAR_intensity_2, Solar_Radiation_12, temp_value_32, rh_value_32, carbon_conc_42])
 
-            sleep(60)  # Sleep for 60 seconds (1 minute)
+            sleep(50) 
 
-    except KeyboardInterrupt:
+except KeyboardInterrupt:
         # Close serial ports only if they are open
         if PAR_2.serial.is_open:
             PAR_2.serial.close()
