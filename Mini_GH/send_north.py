@@ -1,5 +1,22 @@
+import pandas as pd
 import yagmail
 from datetime import datetime
+
+# Read the CSV file
+df = pd.read_csv("/home/cdacea/north_GH/north_climate.csv")
+
+# Convert 'datetime' column to datetime format
+df['datetime'] = pd.to_datetime(df['datetime'])
+
+# Set 'datetime' column as the index
+df.set_index('datetime', inplace=True)
+
+# Group by datetime for each minute and average every 15 minutes
+result = df.resample('15min').mean()
+
+# Save the result to CSV
+modified_file_path = "/home/cdacea/north_GH/north_modified.csv"
+result.to_csv(modified_file_path)
 
 # Set up your yagmail instance
 email_address = 'bantanalamin@gmail.com'
@@ -18,8 +35,8 @@ try:
     
     body = f'These are the climatic data from north_GH {today_date}'
 
-    # Attach the file
-    attachment1 = "/home/cdacea/north_GH/north_climate.csv"
+    # Attach the modified file
+    attachment1 = modified_file_path
 
     # Send the email
     yag.send(to, subject, [body, attachment1])
